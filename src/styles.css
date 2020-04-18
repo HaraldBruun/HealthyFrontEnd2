@@ -1,1 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
+.loginSpecial{
+  margin-top: 1cm;
+  margin-bottom: 1cm;
+  width: 15%;
+  margin-left: 42.5%;
+}
+
+.formsSpecial{
+  margin-top: 1cm;
+  margin-bottom: 1cm;
+  width: 20%;
+  margin-left: 40%;
+}
