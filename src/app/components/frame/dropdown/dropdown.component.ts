@@ -18,12 +18,12 @@ export class DropdownComponent implements OnInit {
     this.form = this.formBuilder.group({
       orders: ['']
     });
-    this.orders = this.getPupils();
+    // this.orders = this.getPupils();
   }
   getPupils() {
     let pupil = new PupilModel('Anton', 1)
     return [
-    { id: pupil.age, name: pupil.fullname },
+     { id: pupil.age, name: pupil.fullname },
     { id: '1', name: 'order 2' },
     { id: '3', name: 'order 3' },
     { id: '4', name: 'order 4' }

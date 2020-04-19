@@ -8,6 +8,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { FrameComponent } from './components/frame/frame.component';
 import { DropdownComponent } from './components/frame/dropdown/dropdown.component';
 import { LoginComponent } from './components/login/login.component';
+import { DatabaseConnecterComponent } from './database-connecter/database-connecter.component';
 
 
 @NgModule({
@@ -17,6 +18,7 @@ import { LoginComponent } from './components/login/login.component';
     FrameComponent,
     DropdownComponent,
     LoginComponent,
+    DatabaseConnecterComponent,
   ],
   imports: [
     BrowserModule,
