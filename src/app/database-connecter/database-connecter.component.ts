@@ -25,7 +25,7 @@ export class DatabaseConnecterComponent implements OnInit {
     const tObj = new TestObject('OOOanton123', 123)
     const username = "anton123";
     const password = "123123";
-    const uid = "nynynyny";
+    const uid = "haraldSpiserCheese";
     const first_time = false;
     const phys = new PhysiqueModel(180, 80, 1)
     const personal_info = new PersonalinfoModel("Anton", "Hansen", "male",
