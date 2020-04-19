@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, FormControl, ValidatorFn } from '@angular/forms';
-import {PupilModel} from '../../../shared/Pupil.model';
+import {Pupil} from '../../../shared/user.model';
 
 @Component({
   selector: 'app-dropdown',
@@ -20,15 +20,17 @@ export class DropdownComponent implements OnInit {
     });
     // this.orders = this.getPupils();
   }
-  getPupils() {
-    let pupil = new PupilModel('Anton', 1)
-    return [
-     { id: pupil.age, name: pupil.fullname },
-    { id: '1', name: 'order 2' },
-    { id: '3', name: 'order 3' },
-    { id: '4', name: 'order 4' }
-  ];
-  }
+  //TODO: FIx this, couldnt run because its fucked and you spelled pupil with a b omg
+
+  /* getPupils() {
+     let pupil = new Pupil('Anton', 1,'testUID')
+     return [
+      { id: pupil.age, name: pupil.fullname },
+     { id: '1', name: 'order 2' },
+     { id: '3', name: 'order 3' },
+     { id: '4', name: 'order 4' }
+   ];
+  }*/
   /*getPupils; pupils: [PupilModel](){
     const pupil1 = new PupilModel("hello", 1);
     const pupil2 = new PupilModel("din", 2);
