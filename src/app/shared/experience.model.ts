@@ -8,6 +8,7 @@ export class ExperienceModel {
   private _XPForProtein: boolean;
   private _XPForCarbs: boolean;
   private _XPForFat: boolean;
+  private _totalXP: number;
 
   constructor(level: number, nutritionXP: number, activityXP: number, socialXP: number,
               ticket: number, XPForCalories: boolean, XPForProtein: boolean,
@@ -22,6 +23,12 @@ export class ExperienceModel {
     this._XPForProtein = XPForProtein;
     this._XPForCarbs = XPForCarbs;
     this._XPForFat = XPForFat;
+    this._totalXP = this._activityXP + this._nutritionXP + this._socialXP;
+  }
+
+
+  get totalXP(): number {
+    return this._totalXP;
   }
 
   get level(): number {

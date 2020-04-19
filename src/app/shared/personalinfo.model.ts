@@ -4,6 +4,7 @@ export class PersonalinfoModel {
   private _gender: string;
   private _dateOfBirth: number;
   private _zipCode: number;
+  private _age: number;
 
   constructor(firstName: string, lastName: string, gender: string, dateOfBirth: number, zipCode: number) {
     this._firstName = firstName;
@@ -11,6 +12,11 @@ export class PersonalinfoModel {
     this._gender = gender;
     this._dateOfBirth = dateOfBirth;
     this._zipCode = zipCode;
+    this._age = 10;
+  }
+
+  get age(): number {
+    return this._age;
   }
 
   get firstName(): string {

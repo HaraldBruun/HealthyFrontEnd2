@@ -82,4 +82,8 @@ export class DatabaseConnecterComponent implements OnInit {
 
 
   }
+
+  getAllUsers() {
+    this.databaseService.getAllUsers();
+  }
 }

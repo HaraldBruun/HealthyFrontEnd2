@@ -20,7 +20,7 @@ export class DatabaseService {
 
   }
 
-  getAlleUsers() {
+  getAllUsers() {
     this.http.get(this.baseUrl + '/getallusers')
       .toPromise()
       .then(
@@ -30,7 +30,7 @@ export class DatabaseService {
 
 
   saveUser() {
-    const tObj = new TestObject('OOOanton123', 123);
+    // const tObj = new TestObject('OOOanton123', 123);
     const username = 'anton123';
     const password = '123123';
     const uid = 'haraldSpiserCheese';
