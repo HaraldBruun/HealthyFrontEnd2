@@ -50,7 +50,7 @@ abstract class UserModel {
   }
 }
 
-export class Pubil extends UserModel {
+export class Pupil extends UserModel {
   get physique(): PhysiqueModel {
     return this._physique;
   }

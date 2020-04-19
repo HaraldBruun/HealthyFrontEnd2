@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {TestObject} from '../shared/test.object';
-import {Pubil} from '../shared/user.model';
+import {Pupil} from '../shared/user.model';
 import {PhysiqueModel} from '../shared/physique.model';
 import {PersonalinfoModel} from '../shared/personalinfo.model';
 import {ExperienceModel} from '../shared/experience.model';
@@ -37,10 +37,10 @@ export class DatabaseConnecterComponent implements OnInit {
     let activities: string[];
     let rewards: RewardModel[];
 
-    const new_pubil = new Pubil(username, password, uid, first_time, phys, personal_info, xp,
+    const new_pupil = new Pupil(username, password, uid, first_time, phys, personal_info, xp,
       meals, friends, activities, rewards);
 
-    this.http.post('http://localhost:8080/saveuser', new_pubil)
+    this.http.post('http://localhost:8080/saveuser', new_pupil)
       .toPromise()
       .then((data: JSON) => {
         console.log(data);
