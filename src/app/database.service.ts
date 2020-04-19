@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import {EventEmitter, Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {TestObject} from './shared/test.object';
 import {PhysiqueModel} from './shared/physique.model';
@@ -10,15 +10,23 @@ import {Pupil} from './shared/user.model';
 
 @Injectable({providedIn: 'root'})
 export class DatabaseService {
-
+  users: Pupil[];
+  selectedPupil = new EventEmitter<Pupil>();
+  baseUrl = 'http://localhost:8080';
 
 
   constructor(private http: HttpClient) {
-    console.log('Service created')
+    console.log('Service created');
 
   }
 
-
+  getAlleUsers() {
+    this.http.get(this.baseUrl + '/getallusers')
+      .toPromise()
+      .then(
+        data => console.log(data)
+      );
+  }
 
 
   saveUser() {
@@ -40,7 +48,7 @@ export class DatabaseService {
     const new_pupil = new Pupil(username, password, uid, first_time, phys, personal_info, xp,
       meals, friends, activities, rewards);
 
-    this.http.post('http://localhost:8080/saveuser', new_pupil)
+    this.http.post(this.baseUrl + '/saveuser', new_pupil)
       .toPromise()
       .then((data: JSON) => {
         console.log(data);
@@ -67,7 +75,7 @@ export class DatabaseService {
   }
 
   getUser(userID: string) {
-    this.http.get('http://localhost:8080/getuser')
+    this.http.get(this.baseUrl + '/getuser')
       .toPromise()
       .then(
         (data: string) => {
