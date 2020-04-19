@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {TestObject} from '../shared/test.object';
 import {Pupil} from '../shared/user.model';
@@ -15,32 +15,33 @@ import {RewardModel} from '../shared/reward.model';
 })
 export class DatabaseConnecterComponent implements OnInit {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
   ngOnInit(): void {
   }
 
   saveUser() {
 
-    const tObj = new TestObject('OOOanton123', 123)
-    const username = "anton123";
-    const password = "123123";
-    const uid = "haraldSpiserCheese";
+    const tObj = new TestObject('OOOanton123', 123);
+    const username = 'anton123';
+    const password = '123123';
+    const uid = 'haraldSpiserCheese';
     const first_time = false;
-    const phys = new PhysiqueModel(180, 80, 1)
-    const personal_info = new PersonalinfoModel("Anton", "Hansen", "male",
+    const phys = new PhysiqueModel(180, 80, 1);
+    const personal_info = new PersonalinfoModel('Anton', 'Hansen', 'male',
       123123, 2820);
     const xp = new ExperienceModel(1, 1, 1, 1, 1,
-      false, false, false, false)
+      false, false, false, false);
     let meals: MealModel[];
     let friends: string[];
     let activities: string[];
     let rewards: RewardModel[];
 
-    const new_pupil = new Pupil(username, password, uid, first_time, phys, personal_info, xp,
+    const new_Pupil = new Pupil(username, password, uid, first_time, phys, personal_info, xp,
       meals, friends, activities, rewards);
 
-    this.http.post('http://localhost:8080/saveuser', new_pupil)
+    this.http.post('http://localhost:8080/saveuser', new_Pupil)
       .toPromise()
       .then((data: JSON) => {
         console.log(data);
@@ -71,11 +72,7 @@ export class DatabaseConnecterComponent implements OnInit {
       .toPromise()
       .then(
         (data: string) => {
-          console.log(data)
-        }
-      )
-
-
-
+          console.log(data);
+        });
   }
 }

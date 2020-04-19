@@ -1,6 +1,11 @@
-<div class="formsSpecial">
-  <app-dropdown></app-dropdown>
-  <app-dropdown></app-dropdown>
-  <app-dropdown></app-dropdown>
-  <app-dropdown></app-dropdown>
+<div class="row">
+  <div class="loginSpecial">
+    <label>Brugernavn</label>
+    <input type="text" id="name" class="form-control" #user/>
+    <div class="loginSpecial"></div>
+    <button class="btn btn-primary center-block"
+            (click)="clickFindUser(user.value)">
+      Find User
+    </button>
+  </div>
 </div>
