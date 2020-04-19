@@ -24,7 +24,13 @@ export class DatabaseService {
     this.http.get(this.baseUrl + '/getallusers')
       .toPromise()
       .then(
-        data => console.log(data)
+        (data: Pupil[]) => {
+          console.log(data);
+          console.log(data.slice(0,1));
+          this.users = data;
+          console.log(this.users.slice(0,1))
+
+        }
       );
   }
 
