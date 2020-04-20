@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
       .toPromise()
       .then((data: boolean) => {
         console.log(data);
-        data ? this.eventEmitterLogin.emit(data) : alert('Forkert login')
+        data ? this.eventEmitterLogin.emit(data) : alert('Forkert login');
       });
   }
 }
