@@ -1,12 +1,5 @@
 <div class="row">
   <div class="loginSpecial">
-    <label>Brugernavn</label>
-    <input type="text" id="name" class="form-control" #user/>
-    <div class="loginSpecial"></div>
-    <button class="btn btn-primary center-block"
-            (click)="clickFindUser(user.value)">
-      Find User
-    </button>
     <ul class = "list-group" *ngIf="users.length >= 1" >
       <li class = "list-group-item" *ngFor="let user of users">
         <p>{{ user.username }}</p>
