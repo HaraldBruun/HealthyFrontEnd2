@@ -17,7 +17,6 @@ export class DatabaseService {
 
   constructor(private http: HttpClient) {
     console.log('Service created');
-
   }
 
   getAllUsers() {
@@ -26,20 +25,18 @@ export class DatabaseService {
       .then(
         (data: Pupil[]) => {
           console.log(data);
-          console.log(data.slice(0,1));
+          console.log(data.slice(0, 1));
           this.users = data;
-          console.log(this.users.slice(0,1))
+          console.log(this.users.slice(0, 1));
 
         }
       );
   }
 
-
   saveUser() {
-    // const tObj = new TestObject('OOOanton123', 123);
     const username = 'anton123';
     const password = '123123';
-    const uid = 'haraldSpiserCheese';
+    const uid = 'alexErEnB';
     const first_time = false;
     const phys = new PhysiqueModel(180, 80, 1);
     const personal_info = new PersonalinfoModel('Anton', 'Hansen', 'male',
@@ -59,25 +56,6 @@ export class DatabaseService {
       .then((data: JSON) => {
         console.log(data);
       });
-
-    // this.http.post('http://localhost:8080/newtestpost', tObj)
-    //   .subscribe(
-    //     data => console.log('123', data),
-    //     error => console.log('oops ', error)
-    //   );
-    // ).toPromise()
-    //   .then(
-    //     data => {
-    //       console.log(data);
-    //       console.log('123');
-    //     }
-    //   );
-
-    // this.http.post('http://localhost:8080/newtestpost', tObj)
-    //   .toPromise()
-    //   .then((data: JSON) => {
-    //     console.log(data);
-    //   });
   }
 
   getUser(userID: string) {
@@ -89,6 +67,5 @@ export class DatabaseService {
         }
       );
   }
-
 
 }
