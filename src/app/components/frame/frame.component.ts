@@ -16,7 +16,6 @@ export class FrameComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.fetchUsers();
   }
 
   clickFindUser(user: string): string {
@@ -24,24 +23,6 @@ export class FrameComponent implements OnInit {
       alert('indtast email');
       return;
     }
-  }
-
-  private fetchUsers() {
-    this.http.get<{ [key: string]: Pupil }>('http://localhost:8080/getUsers')
-      .pipe(map(responseData  => {
-        const userArray: Pupil[] = [];
-
-        for (const key in responseData) {
-          if (responseData.hasOwnProperty(key)) {
-            userArray.push({...responseData[key]});
-          }
-        }
-        return userArray;
-      }))
-      .subscribe(user => {
-        console.log(user);
-        this.users = user;
-      });
   }
 }
 
