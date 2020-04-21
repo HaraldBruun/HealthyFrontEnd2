@@ -7,6 +7,7 @@ import {ExperienceModel} from './shared/experience.model';
 import {MealModel} from './shared/food.model';
 import {RewardModel} from './shared/reward.model';
 import {Pupil} from './shared/user.model';
+import {UsersService} from './components/users/users.service';
 
 @Injectable({providedIn: 'root'})
 export class DatabaseService {
@@ -28,15 +29,18 @@ export class DatabaseService {
           console.log(data.slice(0, 1));
           this.users = data;
           console.log(this.users.slice(0, 1));
-
         }
       );
+  }
+
+  getAllUsersForReal(): Pupil[] {
+    return this.users.slice();
   }
 
   saveUser() {
     const username = 'anton123';
     const password = '123123';
-    const uid = 'alexErEnB';
+    const uid = 'TestUser123';
     const first_time = false;
     const phys = new PhysiqueModel(180, 80, 1);
     const personal_info = new PersonalinfoModel('Anton', 'Hansen', 'male',

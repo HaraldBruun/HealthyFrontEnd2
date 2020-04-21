@@ -3,5 +3,9 @@
   <app-login (eventEmitterLogin)="showFeature($event)" *ngIf="!loggedIn"></app-login>
 </div>
 <app-database-connecter *ngIf="loggedIn"></app-database-connecter>
+<hr>
+<app-users *ngIf="loggedIn"></app-users>
 
-<app-frame *ngIf="loggedIn"></app-frame>
+
+<!-- <app-frame *ngIf="loggedIn"></app-frame> -->
+

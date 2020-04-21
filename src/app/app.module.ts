@@ -9,6 +9,9 @@ import { FrameComponent } from './components/frame/frame.component';
 import { DropdownComponent } from './components/frame/dropdown/dropdown.component';
 import { LoginComponent } from './components/login/login.component';
 import { DatabaseConnecterComponent } from './database-connecter/database-connecter.component';
+import { UsersComponent } from './components/users/users.component';
+import { UsersListComponent } from './components/users/users-list/users-list.component';
+import { UsersItemComponent } from './components/users/users-list/users-item/users-item.component';
 
 
 @NgModule({
@@ -19,6 +22,9 @@ import { DatabaseConnecterComponent } from './database-connecter/database-connec
     DropdownComponent,
     LoginComponent,
     DatabaseConnecterComponent,
+    UsersComponent,
+    UsersListComponent,
+    UsersItemComponent,
   ],
   imports: [
     BrowserModule,

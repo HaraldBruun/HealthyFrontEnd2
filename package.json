@@ -22,6 +22,7 @@
     "@ngtools/webpack": "^9.1.1",
     "bootstrap": "^3.3.7",
     "rxjs": "~6.5.4",
+    "ts-semaphore": "^1.0.0",
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2"
   },
