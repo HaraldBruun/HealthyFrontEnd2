@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {UsersService} from './users.service';
+import {Pupil} from '../../shared/user.model';
 
 @Component({
   selector: 'app-users',
@@ -6,10 +8,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./users.component.css']
 })
 export class UsersComponent implements OnInit {
+  selectedUser: Pupil;
 
-  constructor() { }
+  constructor(private usersService: UsersService) { }
 
   ngOnInit(): void {
+    this.usersService.selectedUser.subscribe(
+      (user: Pupil) => {
+        this.selectedUser = user;
+      });
   }
 
 }

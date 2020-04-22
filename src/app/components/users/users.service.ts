@@ -1,6 +1,6 @@
 import {EventEmitter, Injectable} from '@angular/core';
 import {Pupil} from '../../shared/user.model';
-import {DatabaseService} from '../../database.service';
+// import {DatabaseService} from '../../database.service';
 import {PhysiqueModel} from '../../shared/physique.model';
 import {PersonalinfoModel} from '../../shared/personalinfo.model';
 import {ExperienceModel} from '../../shared/experience.model';
@@ -10,6 +10,7 @@ import {RewardModel} from '../../shared/reward.model';
 @Injectable({providedIn: 'root'})
 export class UsersService {
   selectedUser = new EventEmitter<Pupil>();
+  usersChanged = new EventEmitter<Pupil[]>();
 
   // lort
   username = 'anton123';
@@ -31,17 +32,21 @@ export class UsersService {
     new Pupil(this.username, this.password, this.uid, this.first_time, this.phys, this.personal_info, this.xp,
       this.meals, this.friends, this.activities, this.rewards)];
 
-  constructor(private databaseService: DatabaseService) {
+  constructor() {
   }
 
   getUsers(): Pupil[] {
-    //this.users = this.databaseService.getAllUsers();
     return this.users.slice();
   }
 
-  populateUsers() {
-    this.databaseService.getAllUsers()
+  addUsers(users: Pupil[]) {
+    this.users.push(...users);
+    this.usersChanged.emit(this.users);
   }
+
+  // populateUsers() {
+  //   this.databaseService.getAllUsers();
+  // }
 
 
 }

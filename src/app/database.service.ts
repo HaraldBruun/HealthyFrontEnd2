@@ -12,11 +12,10 @@ import {UsersService} from './components/users/users.service';
 @Injectable({providedIn: 'root'})
 export class DatabaseService {
   users: Pupil[];
-  selectedPupil = new EventEmitter<Pupil>();
+  // selectedPupil = new EventEmitter<Pupil>();
   baseUrl = 'http://localhost:8080';
 
-
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private usersService: UsersService) {
     console.log('Service created');
   }
 
@@ -29,6 +28,7 @@ export class DatabaseService {
           console.log(data.slice(0, 1));
           this.users = data;
           console.log(this.users.slice(0, 1));
+          this.usersService.addUsers(this.users);
         }
       );
   }
