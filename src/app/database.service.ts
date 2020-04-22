@@ -87,22 +87,4 @@ export class DatabaseService {
       );
     console.log('Deleting ' + userID);
   }
-
-  makeOption(userID: string) {
-    const options = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-      }),
-      body: {
-        id: userID,
-      },
-    };
-    return options;
-  }
-
-  makeHTTPParams(userID: string) {
-    let httpParams = new HttpParams().set('uid', userID);
-    let options = {params: httpParams};
-
-  }
 }
