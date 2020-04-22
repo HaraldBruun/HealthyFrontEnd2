@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -8,8 +8,19 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'HealthyFrontEnd';
   loggedIn = true;
+  showUsers = true;
+  showStats: boolean;
 
-  showFeature($event: boolean) {
-    this.loggedIn = $event;
+  showFeature($event: string) {
+    switch ($event) {
+      case 'manage_users':
+        this.showUsers = true;
+        this.showStats = false;
+        break;
+      case 'statistics':
+        this.showUsers = false;
+        this.showStats = true;
+        break;
+    }
   }
 }
