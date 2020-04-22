@@ -1,12 +1,22 @@
-<app-header
-  (eventEmitterShow)="showFeature($event)"></app-header>
-<div class="container">
-  <app-login *ngIf="!loggedIn"></app-login>
-</div>
-<app-database-connecter *ngIf="loggedIn"></app-database-connecter>
-<hr>
-<app-users *ngIf="loggedIn && showUsers"></app-users>
+<div id="wrapper">
+  <div class="row">
+    <div class="col-md-10">
 
+      <div id="sidebar-wrapper">
+        <app-header
+          (eventEmitterShow)="showFeature($event)"></app-header>
+      </div>
+    </div>
+    <div class="col-xl-10">
+      <div id="content-wrapper">
+        <app-login *ngIf="!loggedIn"></app-login>
+        <app-database-connecter *ngIf="loggedIn"></app-database-connecter>
+        <hr>
+        <app-users *ngIf="loggedIn && showUsers"></app-users>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- <app-frame *ngIf="loggedIn"></app-frame> -->
 
