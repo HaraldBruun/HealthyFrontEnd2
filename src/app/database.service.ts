@@ -1,5 +1,5 @@
 import {EventEmitter, Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {TestObject} from './shared/test.object';
 import {PhysiqueModel} from './shared/physique.model';
 import {PersonalinfoModel} from './shared/personalinfo.model';
@@ -8,6 +8,7 @@ import {MealModel} from './shared/food.model';
 import {RewardModel} from './shared/reward.model';
 import {Pupil} from './shared/user.model';
 import {UsersService} from './components/users/users.service';
+import {getHeapCodeStatistics} from 'v8';
 
 @Injectable({providedIn: 'root'})
 export class DatabaseService {
@@ -72,4 +73,36 @@ export class DatabaseService {
       );
   }
 
+  deleteUser(userID: string) {
+    const httpParams = new HttpParams().set('uid', userID);
+    const options = {params: httpParams};
+    // const options = this.makeOption(userID);¬
+    // console.log(options);
+    this.http.delete(this.baseUrl + '/deleteuser', options)
+      .toPromise()
+      .then(
+        (data: boolean) => {
+          console.log(data);
+        }
+      );
+    console.log('Deleting ' + userID);
+  }
+
+  makeOption(userID: string) {
+    const options = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      }),
+      body: {
+        id: userID,
+      },
+    };
+    return options;
+  }
+
+  makeHTTPParams(userID: string) {
+    let httpParams = new HttpParams().set('uid', userID);
+    let options = {params: httpParams};
+
+  }
 }
