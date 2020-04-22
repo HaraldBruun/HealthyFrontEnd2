@@ -1,6 +1,5 @@
 import {EventEmitter, Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
-import {TestObject} from './shared/test.object';
 import {PhysiqueModel} from './shared/physique.model';
 import {PersonalinfoModel} from './shared/personalinfo.model';
 import {ExperienceModel} from './shared/experience.model';
@@ -8,7 +7,6 @@ import {MealModel} from './shared/food.model';
 import {RewardModel} from './shared/reward.model';
 import {Pupil} from './shared/user.model';
 import {UsersService} from './components/users/users.service';
-import {getHeapCodeStatistics} from 'v8';
 
 @Injectable({providedIn: 'root'})
 export class DatabaseService {
