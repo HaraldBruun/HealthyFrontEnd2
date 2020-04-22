@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Pupil} from '../../../../shared/user.model';
 import {UsersService} from '../../users.service';
+import {DatabaseService} from '../../../../database.service';
 
 @Component({
   selector: 'app-users-item',
@@ -10,7 +11,8 @@ import {UsersService} from '../../users.service';
 export class UsersItemComponent implements OnInit {
   @Input() user: Pupil;
 
-  constructor(private usersService: UsersService) { }
+  constructor(private usersService: UsersService, private databaseService: DatabaseService) {
+  }
 
   ngOnInit(): void {
   }
@@ -18,4 +20,10 @@ export class UsersItemComponent implements OnInit {
   onClickItem() {
     this.usersService.selectedUser.emit(this.user);
   }
+
+  onClickDelete() {
+    this.databaseService.deleteUser(this.user.uid);
+
+  }
+
 }

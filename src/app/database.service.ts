@@ -1,6 +1,5 @@
 import {EventEmitter, Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import {TestObject} from './shared/test.object';
+import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {PhysiqueModel} from './shared/physique.model';
 import {PersonalinfoModel} from './shared/personalinfo.model';
 import {ExperienceModel} from './shared/experience.model';
@@ -72,4 +71,18 @@ export class DatabaseService {
       );
   }
 
+  deleteUser(userID: string) {
+    const httpParams = new HttpParams().set('uid', userID);
+    const options = {params: httpParams};
+    // const options = this.makeOption(userID);¬
+    // console.log(options);
+    this.http.delete(this.baseUrl + '/deleteuser', options)
+      .toPromise()
+      .then(
+        (data: boolean) => {
+          console.log(data);
+        }
+      );
+    console.log('Deleting ' + userID);
+  }
 }
