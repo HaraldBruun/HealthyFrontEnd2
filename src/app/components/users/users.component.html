@@ -2,4 +2,13 @@
   <div class="col-md-5">
     <app-users-list></app-users-list>
   </div>
+  <div class="col-md-7">
+    <app-users-detail
+    *ngIf="selectedUser; else infoText"
+    [user]="selectedUser">
+    </app-users-detail>
+    <ng-template #infoText>
+      <p>Select user</p>
+    </ng-template>
+  </div>
 </div>

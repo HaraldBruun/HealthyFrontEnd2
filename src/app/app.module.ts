@@ -12,6 +12,7 @@ import { DatabaseConnecterComponent } from './database-connecter/database-connec
 import { UsersComponent } from './components/users/users.component';
 import { UsersListComponent } from './components/users/users-list/users-list.component';
 import { UsersItemComponent } from './components/users/users-list/users-item/users-item.component';
+import { UsersDetailComponent } from './components/users/users-detail/users-detail.component';
 
 
 @NgModule({
@@ -25,6 +26,7 @@ import { UsersItemComponent } from './components/users/users-list/users-item/use
     UsersComponent,
     UsersListComponent,
     UsersItemComponent,
+    UsersDetailComponent,
   ],
   imports: [
     BrowserModule,
