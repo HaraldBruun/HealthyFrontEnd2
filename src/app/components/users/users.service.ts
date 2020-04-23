@@ -11,8 +11,9 @@ import {RewardModel} from '../../shared/reward.model';
 export class UsersService {
   selectedUser = new EventEmitter<Pupil>();
   usersChanged = new EventEmitter<Pupil[]>();
+  private users: Pupil[] = [];
 
-  // lort
+  /* lort
   username = 'anton123';
   password = '123123';
   uid = 'alexErEnB';
@@ -26,22 +27,28 @@ export class UsersService {
   friends: string[];
   activities: string[];
   rewards: RewardModel[];
-  // --
 
-  private users: Pupil[] = [
+
+   = [
     new Pupil(this.username, this.password, this.uid, this.first_time, this.phys, this.personal_info, this.xp,
       this.meals, this.friends, this.activities, this.rewards)];
-
+*/
   constructor() {
   }
 
   getUsers(): Pupil[] {
-    return this.users.slice();
+    return this.users;
   }
 
   addUsers(users: Pupil[]) {
     this.users.push(...users);
     this.usersChanged.emit(this.users);
+  }
+
+  removeAllUsers() {
+    while (this.users.length > 0) {
+      this.users.pop();
+    }
   }
 
   // populateUsers() {

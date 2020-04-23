@@ -19,6 +19,7 @@ export class DatabaseService {
   }
 
   getAllUsers() {
+    this.usersService.removeAllUsers();
     this.http.get(this.baseUrl + '/getallusers')
       .toPromise()
       .then(
