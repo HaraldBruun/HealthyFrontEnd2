@@ -12,7 +12,7 @@ import {UsersService} from './components/users/users.service';
 export class DatabaseService {
   users: Pupil[];
   // selectedPupil = new EventEmitter<Pupil>();
-  baseUrl = 'http://35.198.67.143:8080/';
+  baseUrl = 'http://35.246.214.109:8080';
 
   constructor(private http: HttpClient, private usersService: UsersService) {
     console.log('Service created');
