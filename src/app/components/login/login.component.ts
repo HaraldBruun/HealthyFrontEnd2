@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
   clickOnLoginBtn(user: string, pass: string) {
     if (user == '' || pass == '') {
       alert('Indtast studienummer og kode');
-      this.loggedIn = true;
+      this.loggedIn = false;
       return;
     }
     this.http.post('http://localhost:8080/login', {
@@ -28,7 +28,9 @@ export class LoginComponent implements OnInit {
     })
       .toPromise()
       .then((data: boolean) => {
-        console.log(data);
+        //console.log(data.valueOf())
+        this.loggedIn = data.valueOf();
+        console.log(this.loggedIn)
         data ? this.eventEmitterLogin.emit(data) : alert('Forkert login');
       });
   }
