@@ -56,4 +56,8 @@ export class UsersService {
   // }
 
 
+  deleteUser(user: Pupil) {
+     //TODO: implement this
+    // this.users.splice(user,1)
+  }
 }
