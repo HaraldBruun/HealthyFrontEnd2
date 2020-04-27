@@ -22,8 +22,8 @@ export class UsersItemComponent implements OnInit {
   }
 
   onClickDelete() {
+    this.usersService.deleteUser(this.user);
     this.databaseService.deleteUser(this.user.uid);
-
   }
 
 }
