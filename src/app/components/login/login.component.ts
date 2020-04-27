@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
       this.loggedIn = false;
       return;
     }
-    this.http.post('http://localhost:8080/login', {
+    this.http.post('http://35.246.214.109:8080/login', {
       user: user,
       pass: pass
     })
