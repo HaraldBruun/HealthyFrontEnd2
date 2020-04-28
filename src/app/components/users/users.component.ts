@@ -20,9 +20,4 @@ export class UsersComponent implements OnInit {
         this.selectedUser = user;
       });
   }
-
-  refreshUsers() {
-    this.databaseService.getAllUsers();
-  }
-
 }

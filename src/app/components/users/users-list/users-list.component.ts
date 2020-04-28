@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Pupil} from '../../../shared/user.model';
 import {UsersService} from '../users.service';
 import {DatabaseService} from '../../../database.service';
@@ -10,17 +10,32 @@ import {DatabaseService} from '../../../database.service';
 })
 export class UsersListComponent implements OnInit {
   users: Pupil[];
+  isFetching = false;
 
-  constructor(private usersService: UsersService, private databaseService: DatabaseService) {
+  constructor(private usersService: UsersService, private _databaseService: DatabaseService) {
+  }
+
+
+  get databaseService(): DatabaseService {
+    return this._databaseService;
   }
 
   ngOnInit() {
-    this.databaseService.getAllUsers();
+    this.isFetching = true;
+    this._databaseService.getAllUsers();
     this.users = this.usersService.getUsers();
     this.usersService.usersChanged.subscribe(
       (users: Pupil[]) => {
         this.users = users;
+        this.isFetching = false;
       }
     );
   }
+
+  refreshUsers() {
+    this.isFetching = true;
+    this.databaseService.getAllUsers();
+    this.isFetching = false;
+  }
+
 }
