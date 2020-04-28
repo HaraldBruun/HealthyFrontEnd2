@@ -38,7 +38,7 @@ export class DatabaseService {
   }
 
   saveUser() {
-    const username = 'anton123';
+    const username = 'changedname';
     const password = '123123';
     const uid = 'TestUser123';
     const first_time = false;

@@ -1,4 +1,5 @@
 import {Component} from '@angular/core';
+import {$e} from 'codelyzer/angular/styles/chars';
 
 @Component({
   selector: 'app-root',
@@ -23,4 +24,9 @@ export class AppComponent {
         break;
     }
   }
+
+  loggedInFeature($event: boolean){
+    this.loggedIn = $event;
+  }
+
 }

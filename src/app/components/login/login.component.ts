@@ -28,9 +28,9 @@ export class LoginComponent implements OnInit {
     })
       .toPromise()
       .then((data: boolean) => {
-        //console.log(data.valueOf())
+        console.log(data.valueOf());
         this.loggedIn = data.valueOf();
-        console.log(this.loggedIn)
+        console.log(this.loggedIn);
         data ? this.eventEmitterLogin.emit(data) : alert('Forkert login');
       });
   }

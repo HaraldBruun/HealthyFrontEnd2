@@ -59,12 +59,12 @@ export class Pupil extends UserModel {
     this._physique = value;
   }
 
-  get personalinfo(): PersonalinfoModel {
-    return this._personalinfo;
+  get personalInfo(): PersonalinfoModel {
+    return this._personalInfo;
   }
 
-  set personalinfo(value: PersonalinfoModel) {
-    this._personalinfo = value;
+  set personalInfo(value: PersonalinfoModel) {
+    this._personalInfo = value;
   }
 
   get experience(): ExperienceModel {
@@ -108,7 +108,7 @@ export class Pupil extends UserModel {
   }
 
   private _physique: PhysiqueModel;
-  private _personalinfo: PersonalinfoModel;
+  private _personalInfo: PersonalinfoModel;
   private _experience: ExperienceModel;
 
   private _meals: MealModel[];
@@ -121,7 +121,7 @@ export class Pupil extends UserModel {
               meals: MealModel[], friends: string[], activities: string[], rewards: RewardModel[]) {
     super(username, password, uid, first_time_loggedin);
     this._physique = physique;
-    this._personalinfo = personalinfo;
+    this._personalInfo = personalinfo;
     this._experience = experience;
     this._meals = meals;
     this._friends = friends;
