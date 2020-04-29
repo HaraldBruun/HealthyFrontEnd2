@@ -2,7 +2,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
-import {PopupModule} from 'ng2-opd-popup';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
