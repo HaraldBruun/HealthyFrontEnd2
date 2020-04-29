@@ -12,17 +12,12 @@ export class UsersListComponent implements OnInit {
   users: Pupil[];
   isFetching = false;
 
-  constructor(private usersService: UsersService, private _databaseService: DatabaseService) {
-  }
-
-
-  get databaseService(): DatabaseService {
-    return this._databaseService;
+  constructor(private usersService: UsersService, private databaseService: DatabaseService) {
   }
 
   ngOnInit() {
     this.isFetching = true;
-    this._databaseService.getAllUsers();
+    this.databaseService.getAllUsers();
     this.users = this.usersService.getUsers();
     this.usersService.usersChanged.subscribe(
       (users: Pupil[]) => {
@@ -33,9 +28,7 @@ export class UsersListComponent implements OnInit {
   }
 
   refreshUsers() {
-    this.isFetching = true;
     this.databaseService.getAllUsers();
-    this.isFetching = false;
   }
 
 }

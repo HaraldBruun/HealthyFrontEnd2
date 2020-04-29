@@ -1,15 +1,20 @@
 <div class="row">
-  <div class="col-xs-1">
-    <button type="button" class="btn btn-default btn-sm">
+  <div class="col-xs-9">
+    <ng-container *ngIf="users.length > 0; then showUsers; else loading"></ng-container>
+    <ng-template #showUsers>
+      <app-users-item *ngFor="let userElement of users"
+                      [user]="userElement"
+      >
+      </app-users-item>
+    </ng-template>
+    <ng-template #loading>
+      <p>Loading...</p>
+    </ng-template>
+  </div>
+  <div class="col-xs-3">
+    <button type="button" class="btn btn-default btn-sm"
+            (click)="refreshUsers()">
       <span class="glyphicon glyphicon-refresh"></span> Refresh
     </button>
-  </div>
-  <div class="col-xs-11">
-    <div *ngIf="!isFetching">
-      <app-users-item *ngFor="let userElement of users"
-                        [user]="userElement"
-      ></app-users-item>
-    </div>
-    <p *ngIf="isFetching">Loading...</p>
   </div>
 </div>

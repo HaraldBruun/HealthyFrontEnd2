@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
+import {PopupModule} from 'ng2-opd-popup';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -13,6 +14,7 @@ import { UsersComponent } from './components/users/users.component';
 import { UsersListComponent } from './components/users/users-list/users-list.component';
 import { UsersItemComponent } from './components/users/users-list/users-item/users-item.component';
 import { UsersDetailComponent } from './components/users/users-detail/users-detail.component';
+
 
 
 @NgModule({

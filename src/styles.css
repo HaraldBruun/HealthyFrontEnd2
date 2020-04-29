@@ -1,18 +1,22 @@
 /* You can add global styles to this file, and also import other style files */
-.loginSpecial{
+.loginSpecial {
   margin-top: 1cm;
   margin-bottom: 1cm;
   width: 15%;
   margin-left: 42.5%;
 }
 
-.formsSpecial{
+.formsSpecial {
   margin-top: 1cm;
   margin-bottom: 1cm;
   width: 20%;
   margin-left: 40%;
 }
 
-.refreshSpecial{
+.refreshSpecial {
   padding: 10px;
+}
+
+.componentBorder {
+  border: 10px black;
 }

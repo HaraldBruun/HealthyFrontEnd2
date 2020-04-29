@@ -1,46 +1,48 @@
-<div class="row">
-  <div class="col-xs-6">
-    <img src="https://www.kindpng.com/picc/b/22/223965.png" alt="" class="img-responsive"
-         style="max-width: 100px">
+<div class="componentBorder">
+  <div class="row">
+    <div class="col-xs-6">
+      <img src="https://www.kindpng.com/picc/b/22/223965.png" alt="" class="img-responsive"
+           style="max-width: 100px">
+    </div>
+    <div class="col-xs-6">
+      <button class="btn btn-default"><i class="glyphicon glyphicon-pencil"></i> Edit</button>
+      <button class="btn btn-default"><i class="glyphicon glyphicon-trash"></i> Delete</button>
+    </div>
   </div>
-  <div class="col-xs-6">
-    <button class="btn btn-default"><i class="glyphicon glyphicon-pencil"></i> Edit</button>
-    <button class="btn btn-default"><i class="glyphicon glyphicon-trash"></i> Delete</button>
+  <div class="row">
+    <div class="col-xs-12">
+      <ng-container *ngIf="user.personalInfo.firstName.length > 0; then hasName; else noName "></ng-container>
+      <ng-template #hasName>
+        <h1 class="list-group-item-heading">{{ user.personalInfo.firstName }} {{ user.personalInfo.lastName }}</h1>
+      </ng-template>
+      <ng-template #noName>
+        <h1 class="list-group-item-heading"> No Name </h1>
+      </ng-template>
+    </div>
   </div>
-</div>
-<div class="row">
-  <div class="col-xs-12">
-    <ng-container *ngIf="user.personalInfo.firstName.length > 0; then hasName; else noName "></ng-container>
-    <ng-template #hasName>
-      <h1 class="list-group-item-heading">{{ user.personalInfo.firstName }} {{ user.personalInfo.lastName }}</h1>
-    </ng-template>
-    <ng-template #noName>
-      <h1 class="list-group-item-heading"> No Name </h1>
-    </ng-template>
+  <div class="row">
+    <div class="col-xs-12">
+      <p>Email: {{  user.username  }}</p>
+    </div>
   </div>
-</div>
-<div class="row">
-  <div class="col-xs-12">
-    <p>Email: {{  user.username  }}</p>
+  <div class="row">
+    <div class="col-xs-12">
+      <p>Birthday: {{  user.personalInfo.dateOfBirth | date:'dd/MM/yyyy' }}</p>
+    </div>
   </div>
-</div>
-<div class="row">
-  <div class="col-xs-12">
-    <p>Birthday: {{  user.personalInfo.dateOfBirth | date:'dd/MM/yyyy' }}</p>
+  <div class="row">
+    <div class="col-xs-12">
+      <p>Weight: {{ user.physique.weight }}</p>
+    </div>
   </div>
-</div>
-<div class="row">
-  <div class="col-xs-12">
-    <p>Weight: {{ user.physique.weight }}</p>
+  <div class="row">
+    <div class="col-xs-12">
+      <p>Height: {{ user.physique.height}}</p>
+    </div>
   </div>
-</div>
-<div class="row">
-  <div class="col-xs-12">
-    <p>Height: {{ user.physique.height}}</p>
-  </div>
-</div>
-<div class="row">
-  <div class="col-xs-12"> *empty line*
+  <div class="row">
+    <div class="col-xs-12"> *empty line*
+    </div>
   </div>
 </div>
 
