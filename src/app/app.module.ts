@@ -1,7 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { AngularMaterialModule } from './angular-material.module';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -13,6 +14,7 @@ import { UsersComponent } from './components/users/users.component';
 import { UsersListComponent } from './components/users/users-list/users-list.component';
 import { UsersItemComponent } from './components/users/users-list/users-item/users-item.component';
 import { UsersDetailComponent } from './components/users/users-detail/users-detail.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 
@@ -32,7 +34,10 @@ import { UsersDetailComponent } from './components/users/users-detail/users-deta
   imports: [
     BrowserModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule,
+    BrowserAnimationsModule,
+    AngularMaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent]

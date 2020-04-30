@@ -13,19 +13,12 @@ export class DatabaseService {
   users: Pupil[];
   // selectedPupil = new EventEmitter<Pupil>();
   baseUrl = 'http://35.246.214.109:8080';
-  private _isFetching = false;
 
   constructor(private http: HttpClient, private usersService: UsersService) {
     console.log('Service created');
   }
 
-
-  get isFetching(): boolean {
-    return this._isFetching;
-  }
-
   getAllUsers() {
-    this._isFetching = true;
     this.usersService.removeAllUsers();
     this.http.get(this.baseUrl + '/getallusers')
       .toPromise()
@@ -35,7 +28,6 @@ export class DatabaseService {
           console.log(data.slice(0, 1));
           this.users = data;
           console.log(this.users.slice(0, 1));
-          this._isFetching = false;
           this.usersService.addUsers(this.users);
         }
       );

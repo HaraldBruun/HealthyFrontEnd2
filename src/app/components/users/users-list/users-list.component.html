@@ -1,20 +1,35 @@
 <div class="row">
   <div class="col-xs-9">
+    <div class="row">
+      <div class="col-xs-12">
+        <mat-form-field>
+          <input type="text" placeholder="Enter Name" matInput [formControl]="myControl"
+                 [matAutocomplete]="auto">
+          <mat-autocomplete #auto="matAutocomplete">
+            <mat-option *ngFor="let option of users" [value]="option">
+              {{option.personalInfo.firstName + ' ' + option.personalInfo.lastName }}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+      </div>
+    </div>
     <ng-container *ngIf="users.length > 0; then showUsers; else loading"></ng-container>
     <ng-template #showUsers>
+
       <app-users-item *ngFor="let userElement of users"
-                      [user]="userElement"
-      >
+                      [user]="userElement">
       </app-users-item>
+
+
     </ng-template>
     <ng-template #loading>
       <p>Loading...</p>
     </ng-template>
   </div>
   <div class="col-xs-3">
-    <button type="button" class="btn btn-default btn-sm"
-            (click)="refreshUsers()">
+    <a href="#" class="btn btn-info btn-md"
+       (click)="refreshUsers()">
       <span class="glyphicon glyphicon-refresh"></span> Refresh
-    </button>
+    </a>
   </div>
 </div>

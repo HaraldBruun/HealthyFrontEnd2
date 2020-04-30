@@ -3,10 +3,10 @@
   <div class="pull-left">
     <ng-container *ngIf="user.personalInfo.firstName.length > 0; then hasName; else noName "></ng-container>
     <ng-template #hasName>
-      <h4 class="list-group-item-heading">{{ user.personalInfo.firstName }} {{ user.personalInfo.lastName }}</h4>
+      <h3 class="list-group-item-heading">{{ user.personalInfo.firstName }} {{ user.personalInfo.lastName }}</h3>
     </ng-template>
     <ng-template #noName>
-      <h4 class="list-group-item-heading"> No Name </h4>
+      <h3 class="list-group-item-heading"> No Name </h3>
     </ng-template>
     <p class="list-group-item-text">{{ user.username }}</p>
 
