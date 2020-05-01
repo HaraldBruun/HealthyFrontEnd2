@@ -32,7 +32,7 @@ export class StatisticsComponent implements OnInit {
   legendPosition = 'below';
 
   colorScheme = {
-    domain: ['#a42036', '#33a125', '#4945c7']
+    domain: ['#a42036', '#33a125', '#4945c7', '#'+(Math.random()*0xFFFFFF<<0).toString(16)]
   };
 
 
@@ -60,19 +60,23 @@ export class StatisticsComponent implements OnInit {
         this.single == users;
         for (let user in users) {
           console.log(users[user]);
-          this.totalActivityXP += users[user].experience.activityXP.valueOf();
-          this.totalNutritionXP += users[user].experience.nutritionXP.valueOf();
-          this.totalSocialXP += users[user].experience.socialXP.valueOf();
+          this.totalActivityXP += this.users[user].experience.activityXP.valueOf();
+          this.totalNutritionXP += this.users[user].experience.nutritionXP.valueOf();
+          this.totalSocialXP += this.users[user].experience.socialXP.valueOf();
         }
         console.log('TotalActivityXP = ' + this.totalActivityXP);
         console.log('TotalNutritionXP = ' + this.totalNutritionXP);
         console.log('TotalSocialXP = ' + this.totalSocialXP);
-        setSingleSingle(0, 'ActivityXP', this.totalActivityXP);
-        setSingleSingle(1, 'NutritionXP', this.totalNutritionXP);
-        setSingleSingle(2, 'SocialXP', this.totalSocialXP);
-        // VERY FUCKING IMPORTANT FOR UPDATING
-        this.single = [...this.single];
       }
     );
+  }
+  clickOnStatisticsButton() {
+    setSingleSingle(0, 'ActivityXP', this.totalActivityXP);
+    setSingleSingle(1, 'NutritionXP', this.totalNutritionXP);
+    setSingleSingle(2, 'SocialXP', this.totalSocialXP);
+    //this.single.push('Hej',10); Virker ikke pga. der ikke er oprettet en single til objektet før.
+
+    // VERY FUCKING IMPORTANT FOR UPDATING
+    this.single = [...this.single];
   }
 }

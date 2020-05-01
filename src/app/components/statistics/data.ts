@@ -1,17 +1,17 @@
 export var single = [
-    {
-      'name': 'Dani',
-      'value': 8940000
-    },
-    {
-      'name': 'Toma',
-      'value': 5000000
-    },
-    {
-      'name': 'Alix',
-      'value': 7200000
-    }
-  ];
+  {
+    'name': 'Anton',
+    'value': 8940000
+  },
+  {
+    'name': 'Alix',
+    'value': 5000000
+  },
+  {
+    'name': 'Oli',
+    'value': 7200000
+  },
+];
 
 /*
 
