@@ -1,7 +1,8 @@
 <app-header
   (eventEmitterShow)="showFeature($event)"></app-header>
 
-<app-login></app-login>
+<app-login *ngIf="!loggedIn"></app-login>
+<app-statistics></app-statistics>
 <app-database-connecter *ngIf="loggedIn"></app-database-connecter>
 <hr>
 <app-users *ngIf="loggedIn && showUsers"></app-users>

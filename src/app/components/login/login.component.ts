@@ -8,7 +8,6 @@ import {HttpClient} from '@angular/common/http';
 })
 export class LoginComponent implements OnInit {
   @Output() eventEmitterLogin = new EventEmitter<boolean>();
-  loggedIn = false;
 
   constructor(private http: HttpClient) {
   }
@@ -19,7 +18,6 @@ export class LoginComponent implements OnInit {
   clickOnLoginBtn(user: string, pass: string) {
     if (user == '' || pass == '') {
       alert('Indtast studienummer og kode');
-      this.loggedIn = false;
       return;
     }
     this.http.post('http://35.246.214.109:8080/login', {
@@ -29,8 +27,8 @@ export class LoginComponent implements OnInit {
       .toPromise()
       .then((data: boolean) => {
         //console.log(data.valueOf())
-        this.loggedIn = data.valueOf();
-        console.log(this.loggedIn)
+        // this.loggedIn = data.valueOf();
+        console.log(data.valueOf())
         data ? this.eventEmitterLogin.emit(data) : alert('Forkert login');
       });
   }
