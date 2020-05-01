@@ -22,7 +22,7 @@ export class DatabaseConnecterComponent implements OnInit {
   }
 
   saveUser() {
-    this.databaseService.saveUser();
+   // this.databaseService.saveUser();
   }
 
   getUser(userID: string) {

@@ -2,7 +2,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { AngularMaterialModule } from './angular-material.module';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -15,6 +14,10 @@ import { UsersListComponent } from './components/users/users-list/users-list.com
 import { UsersItemComponent } from './components/users/users-list/users-item/users-item.component';
 import { UsersDetailComponent } from './components/users/users-detail/users-detail.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import {MatInputModule} from '@angular/material/input';
+import {MatDialogModule} from '@angular/material/dialog';
+import { PopUpComponent } from './components/users/users-detail/pop-up/pop-up.component';
 
 
 
@@ -30,6 +33,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     UsersListComponent,
     UsersItemComponent,
     UsersDetailComponent,
+    PopUpComponent,
   ],
   imports: [
     BrowserModule,
@@ -37,7 +41,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ReactiveFormsModule,
     FormsModule,
     BrowserAnimationsModule,
-    AngularMaterialModule
+    MatAutocompleteModule,
+    MatInputModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]

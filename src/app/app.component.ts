@@ -23,6 +23,7 @@ export class AppComponent {
         this.showStats = true;
         break;
     }
+
   }
 
   loggedInFeature($event: boolean){
