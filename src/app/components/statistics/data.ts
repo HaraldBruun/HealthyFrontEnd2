@@ -8,7 +8,7 @@ export var single = [
     'value': 5000000
   },
   {
-    'name': 'Oli',
+    'name': 'Oliver',
     'value': 7200000
   },
 ];

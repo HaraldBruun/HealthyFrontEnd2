@@ -10,6 +10,22 @@ function setSingleSingle(id: number, name: string, value: number) {
   single[id].name = name;
   single[id].value = value;
 }
+function delay(ms: number) {
+  return new Promise( resolve => setTimeout(resolve, ms) );
+}
+
+// Virker ikke helt
+function addSingleSingle(name: any, value: any) {
+  this.colorScheme.push(generateRandomColour());
+  this.single.push({
+    'name': name,
+    'value': value
+  });
+}
+
+function generateRandomColour() {
+  return '#' + (Math.random() * 0xFFFFFF << 0).toString(16);
+}
 
 @Component({
   selector: 'app-statistics',
@@ -30,9 +46,8 @@ export class StatisticsComponent implements OnInit {
   showLabels = true;
   isDoughnut = false;
   legendPosition = 'below';
-
   colorScheme = {
-    domain: ['#a42036', '#33a125', '#4945c7', '#'+(Math.random()*0xFFFFFF<<0).toString(16)]
+    domain: ['#a42036', '#33a125', '#4945c7']
   };
 
 
@@ -70,13 +85,34 @@ export class StatisticsComponent implements OnInit {
       }
     );
   }
-  clickOnStatisticsButton() {
+
+  clickOnStatisticsUpdate() {
     setSingleSingle(0, 'ActivityXP', this.totalActivityXP);
     setSingleSingle(1, 'NutritionXP', this.totalNutritionXP);
     setSingleSingle(2, 'SocialXP', this.totalSocialXP);
-    //this.single.push('Hej',10); Virker ikke pga. der ikke er oprettet en single til objektet før.
+
+    // addSingleSingle(hej, 10); Virker ikke lige pt,
 
     // VERY FUCKING IMPORTANT FOR UPDATING
+    this.single = [...this.single];
+  }
+  clickOnStatisticsTest() {
+    // addSingleSingle('Hej', 10); TODO : Virker ikke, fejl med JSON og binding med name og value.
+    this.colorScheme.domain.push(generateRandomColour());
+    this.single.push({
+      'name': 'TEST 1',
+      'value': 4
+    });
+    console.log(generateRandomColour());
+    this.single = [...this.single];
+  }
+  clickOnStatisticsTest2()  {
+    // addSingleSingle('Hej', 10); TODO : Slet, bare for at vise farver
+    this.colorScheme.domain.push(generateRandomColour());
+    this.single.push({
+      'name': 'TEST 2',
+      'value': 8
+    });
     this.single = [...this.single];
   }
 }
