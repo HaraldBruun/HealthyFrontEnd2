@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {UsersService} from './users.service';
+import {UsersService} from '../../shared/users.service';
 import {Pupil} from '../../shared/user.model';
 
 @Component({

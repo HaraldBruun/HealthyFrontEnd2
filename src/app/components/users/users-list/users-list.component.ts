@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Pupil} from '../../../shared/user.model';
-import {UsersService} from '../users.service';
+import {UsersService} from '../../../shared/users.service';
 import {DatabaseService} from '../../../database.service';
 
 @Component({

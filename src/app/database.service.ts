@@ -6,7 +6,7 @@ import {ExperienceModel} from './shared/experience.model';
 import {MealModel} from './shared/food.model';
 import {RewardModel} from './shared/reward.model';
 import {Pupil} from './shared/user.model';
-import {UsersService} from './components/users/users.service';
+import {UsersService} from './shared/users.service';
 
 @Injectable({providedIn: 'root'})
 export class DatabaseService {
@@ -25,9 +25,9 @@ export class DatabaseService {
       .then(
         (data: Pupil[]) => {
           console.log(data);
-          console.log(data.slice(0, 1));
+          //console.log(data.slice(0, 1));
           this.users = data;
-          console.log(this.users.slice(0, 1));
+          //console.log(this.users.slice(0, 1));
           this.usersService.addUsers(this.users);
         }
       );

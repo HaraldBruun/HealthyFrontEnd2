@@ -1,11 +1,11 @@
 import {EventEmitter, Injectable} from '@angular/core';
-import {Pupil} from '../../shared/user.model';
+import {Pupil} from './user.model';
 // import {DatabaseService} from '../../database.service';
-import {PhysiqueModel} from '../../shared/physique.model';
-import {PersonalinfoModel} from '../../shared/personalinfo.model';
-import {ExperienceModel} from '../../shared/experience.model';
-import {MealModel} from '../../shared/food.model';
-import {RewardModel} from '../../shared/reward.model';
+import {PhysiqueModel} from './physique.model';
+import {PersonalinfoModel} from './personalinfo.model';
+import {ExperienceModel} from './experience.model';
+import {MealModel} from './food.model';
+import {RewardModel} from './reward.model';
 
 @Injectable({providedIn: 'root'})
 export class UsersService {
