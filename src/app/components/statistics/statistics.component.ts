@@ -41,6 +41,7 @@ export class StatisticsComponent implements OnInit {
   totalNutritionXP = 0;
 
   // Options
+  legendTitle = '123';
   gradient = true;
   showLegend = true;
   showLabels = true;
@@ -49,7 +50,6 @@ export class StatisticsComponent implements OnInit {
   colorScheme = {
     domain: ['#a42036', '#33a125', '#4945c7']
   };
-
 
   constructor(private usersService: UsersService, private databaseService: DatabaseService) {
     Object.assign(this, {single});
@@ -72,7 +72,6 @@ export class StatisticsComponent implements OnInit {
     this.users = this.usersService.getUsers();
     this.usersService.usersChanged.subscribe(
       (users: Pupil[]) => {
-        this.single == users;
         for (let user in users) {
           console.log(users[user]);
           this.totalActivityXP += this.users[user].experience.activityXP.valueOf();
