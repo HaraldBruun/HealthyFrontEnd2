@@ -107,6 +107,10 @@ export class Pupil extends UserModel {
     this._rewards = value;
   }
 
+  fullName(): string {
+    return this.personalInfo.firstName + ' ' + this.personalInfo.lastName;
+  }
+
   private _physique: PhysiqueModel;
   private _personalInfo: PersonalinfoModel;
   private _experience: ExperienceModel;

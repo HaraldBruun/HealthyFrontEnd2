@@ -1,19 +1,24 @@
 <div class="componentBorder">
   <div class="row">
-    <div class="col-xs-6">
-      <img src="https://www.kindpng.com/picc/b/22/223965.png" alt="" class="img-responsive"
-           style="max-width: 100px">
-    </div>
-    <div class="col-xs-6">
-      <button class="btn btn-default"><i class="glyphicon glyphicon-pencil"></i> Edit</button>
-      <button class="btn btn-default"><i class="glyphicon glyphicon-trash"></i> Delete</button>
+    <div class="col-xs-12">
+      <div class="pull-left">
+        <img src="https://www.kindpng.com/picc/b/22/223965.png" alt="" class="img-responsive"
+             style="max-width: 150px">
+      </div>
+      <div class="pull-right">
+        <button class="btn btn-default" (click)="onEditClick()"><i class="glyphicon glyphicon-pencil"
+        ></i> Edit
+        </button>
+        <button class="btn btn-default"><i class="glyphicon glyphicon-trash"></i> Delete</button>
+      </div>
     </div>
   </div>
   <div class="row">
     <div class="col-xs-12">
       <ng-container *ngIf="user.personalInfo.firstName.length > 0; then hasName; else noName "></ng-container>
       <ng-template #hasName>
-        <h1 class="list-group-item-heading">{{ user.personalInfo.firstName }} {{ user.personalInfo.lastName }}</h1>
+        <h1 *ngIf="!canEditCode" class="list-group-item-heading">{{ user.personalInfo.firstName }}</h1>
+        <input *ngIf="canEditCode" [(ngModel)]="user.personalInfo.firstName" type="text" class="form-control">
       </ng-template>
       <ng-template #noName>
         <h1 class="list-group-item-heading"> No Name </h1>
@@ -22,37 +27,52 @@
   </div>
   <div class="row">
     <div class="col-xs-12">
-      <p>Email: {{  user.username  }}</p>
+      <p>Email: &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; {{  user.username  }}</p>
     </div>
   </div>
   <div class="row">
     <div class="col-xs-12">
-      <p>Birthday: {{  user.personalInfo.dateOfBirth | date:'dd/MM/yyyy' }}</p>
+      <p>Birthday:&nbsp;&nbsp;&nbsp;&nbsp; {{  user.personalInfo.dateOfBirth | date:'dd/MM/yyyy' }}</p>
     </div>
   </div>
   <div class="row">
     <div class="col-xs-12">
-      <p>School: ??</p>
+      <p>School: &nbsp; &nbsp; &nbsp;&nbsp;??</p>
     </div>
   </div>
   <div class="row">
     <div class="col-xs-12">
-      <p>Class: ??</p>
+      <p>Class: &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;??</p>
     </div>
   </div>
   <div class="row">
     <div class="col-xs-12">
-      <p>Weight: {{ user.physique.weight }}</p>
+      <p>Weight: &nbsp; &nbsp; &nbsp; {{ user.physique.weight }}</p>
     </div>
   </div>
   <div class="row">
     <div class="col-xs-12">
-      <p>Height: {{ user.physique.height}}</p>
+      <p>Height: &nbsp; &nbsp; &nbsp; {{ user.physique.height}}</p>
     </div>
   </div>
   <div class="row">
     <div class="col-xs-12"> *empty line*
     </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-3"></div>
+    <div class="col-xs-6">
+      <p *ngIf="canEditCode" align="center">
+        <button class="btn btn-success pull-left"
+                (click)="onConfirmClick()">
+          <i class="glyphicon glyphicon-check"></i> Confirm
+        </button>
+        <button class="btn btn-danger pull-right">
+          <i class="glyphicon glyphicon-trash"></i> Cancel
+        </button>
+      </p>
+    </div>
+    <div class="col-xs-3"></div>
   </div>
 </div>
 

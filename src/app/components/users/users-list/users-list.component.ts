@@ -1,20 +1,24 @@
-import {Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, OnInit} from '@angular/core';
 import {Pupil} from '../../../shared/user.model';
 import {UsersService} from '../users.service';
 import {DatabaseService} from '../../../database.service';
 import {FormControl} from '@angular/forms';
+import {Observable, observable, pipe} from 'rxjs';
+import {map, startWith} from 'rxjs/operators';
 
 @Component({
   selector: 'app-users-list',
   templateUrl: './users-list.component.html',
   styleUrls: ['./users-list.component.css']
 })
-export class UsersListComponent implements OnInit {
+export class UsersListComponent implements OnInit, AfterViewInit {
   users: Pupil[];
   isFetching = false;
   myControl = new FormControl();
+  filteredOptions: Observable<Pupil[]>;
+  userDisplayList: Pupil[] = [];
 
-  constructor(private usersService: UsersService, private databaseService: DatabaseService) {
+  constructor(private usersService: UsersService, private databaseService: DatabaseService, private elementRef: ElementRef) {
   }
 
   ngOnInit() {
@@ -24,29 +28,45 @@ export class UsersListComponent implements OnInit {
     this.usersService.usersChanged.subscribe(
       (users: Pupil[]) => {
         this.users = users;
+        this.userDisplayList = users;
         this.isFetching = false;
-        this.initStudentNames();
+        this.filteredOptions = this.myControl.valueChanges.pipe(
+          startWith(''),
+          map(value => typeof value === 'string' ? value : value.name),
+          map(username => username ? this._filter(username) : this.users.slice())
+        );
       }
     );
-    console.log(this.options);
+  }
+
+  ngAfterViewInit(): void {
+    this.elementRef.nativeElement.ownerDocument.body.style.backgroundColor = 'white';
+  }
+
+
+  private _filter(value: string): Pupil[] {
+    const filterValue = value.toLowerCase();
+    console.log(this.filteredOptions);
+    this.userDisplayList = this.filteredOptions as unknown as Pupil[];
+    return this.users.filter(option =>
+      option.username.indexOf(filterValue) === 0);
   }
 
   refreshUsers() {
     this.databaseService.getAllUsers();
   }
 
-  initStudentNames() {
-    console.log(this.users);
-    this.users.forEach(user => {
-      let fullName = '';
-      console.log('this code');
-      if (user.personalInfo.firstName.length === 0) {
-        fullName = 'No Name';
-      } else {
-        fullName = user.personalInfo.firstName + ' ' + user.personalInfo.lastName;
-      }
-      this.options.push(fullName);
-    });
-
+  displayFn(user: Pupil): string {
+    return user && user.username ? user.username : '';
   }
+
+ /* updateDisplayList() {
+    this.userDisplayList = [];
+    this.filteredOptions.forEach(user => {
+      user.forEach(user2 => {
+        this.userDisplayList.push(user2);
+      });
+    });
+  }*/
+
 }

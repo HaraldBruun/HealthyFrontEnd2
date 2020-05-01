@@ -8,10 +8,26 @@ import {Pupil} from '../../../shared/user.model';
 })
 export class UsersDetailComponent implements OnInit {
   @Input() user: Pupil;
+  canEditCode = false;
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit(): void {
   }
+
+  setTitleEdit() {
+
+  }
+
+  onEditClick() {
+    this.canEditCode = true;
+    console.log('Fuck ANgular');
+  }
+
+  onConfirmClick(){
+    this.canEditCode = false;
+  }
+
 
 }
