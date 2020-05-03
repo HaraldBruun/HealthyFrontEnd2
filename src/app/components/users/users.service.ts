@@ -6,6 +6,7 @@ import {PersonalinfoModel} from '../../shared/personalinfo.model';
 import {ExperienceModel} from '../../shared/experience.model';
 import {MealModel} from '../../shared/food.model';
 import {RewardModel} from '../../shared/reward.model';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 
 @Injectable({providedIn: 'root'})
 export class UsersService {
@@ -36,6 +37,19 @@ export class UsersService {
   constructor() {
   }
 
+  form: FormGroup = new FormGroup({
+    $key: new FormControl(null),
+    firstName: new FormControl('', Validators.required),
+    lastName: new FormControl('', Validators.required),
+    userName: new FormControl('', [Validators.required, Validators.email]),
+    gender: new FormControl('1', Validators.required),
+    weight: new FormControl('', [Validators.required, Validators.minLength(1)]),
+    height: new FormControl('', [Validators.required, Validators.minLength(1)]),
+    activityLevel: new FormControl('1', Validators.required),
+    dateOfBirth: new FormControl('', Validators.required),
+    password: new FormControl()
+  });
+
   getUsers(): Pupil[] {
     return this.users;
   }
@@ -57,7 +71,7 @@ export class UsersService {
 
 
   deleteUser(user: Pupil) {
-     //TODO: implement this
+    //TODO: implement this
     // this.users.splice(user,1)
   }
 }

@@ -21,12 +21,18 @@ export class UsersDetailComponent implements OnInit, OnChanges {
   }
 
   ngOnInit(): void {
-    this.dummyUser = <Pupil> JSON.parse(JSON.stringify(this.user));
+    this.initDummyUser();
   }
 
   ngOnChanges(changes: SimpleChanges) {
     const previousUser = changes.user.previousValue as Pupil;
     const currentUser = changes.user.currentValue as Pupil;
+    if (this.canEditCode) {
+      this.user = previousUser;
+    } else {
+      this.initDummyUser();
+    }
+
 
     console.log('Previous: ' + (previousUser ? previousUser.personalInfo.firstName : 'NULL'));
     console.log('To be changed ' + currentUser.personalInfo.firstName);
@@ -34,6 +40,10 @@ export class UsersDetailComponent implements OnInit, OnChanges {
 
   checkForChange() {
 
+  }
+
+  initDummyUser() {
+    this.dummyUser = <Pupil> JSON.parse(JSON.stringify(this.user));
   }
 
   onEditClick() {

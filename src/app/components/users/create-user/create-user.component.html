@@ -1,0 +1,58 @@
+<form [formGroup]="usersService.form" class="normal-form">
+  <mat-grid-list cols="2" rowHeight="300px">
+    <mat-grid-tile>
+      <div class="cont-container">
+        <input type="hidden" formControlName="$key">
+        <mat-form-field>
+          <input formControlName="firstName" matInput placeholder="First Name">
+          <mat-error>Please write your first name.</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input formControlName="lastName" matInput placeholder="Last Name">
+          <mat-error>Please write your last name.</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input formControlName="userName" matInput placeholder="E-mail">
+          <mat-error>Please write a correct email.</mat-error>
+        </mat-form-field>
+        <div class="add-topbottom-padding">
+          <mat-radio-group formControlName="gender">
+            <mat-radio-button value="1">Male</mat-radio-button>
+            <mat-radio-button value="2">Female</mat-radio-button>
+          </mat-radio-group>
+        </div>
+        <mat-form-field>
+          <input formControlName="dateOfBirth" matInput [matDatepicker]="picker" placeholder="Date Of Birth">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+      </div>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <div class="cont-container">
+        <mat-form-field>
+          <input formControlName="weight" matInput placeholder="Weight">
+          <mat-error>Please insert your weight without decimals.</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input formControlName="height" matInput placeholder="Height">
+          <mat-error>Please insert your height</mat-error>
+        </mat-form-field>
+        <h3>Activity Level:</h3>
+        <div class="add-bottom-padding">
+          <mat-radio-group formControlName="activityLevel">
+            <mat-radio-button value="1">1</mat-radio-button>
+            <mat-radio-button value="2">2</mat-radio-button>
+            <mat-radio-button value="3">3</mat-radio-button>
+            <mat-radio-button value="4">4</mat-radio-button>
+            <mat-radio-button value="5">5</mat-radio-button>
+          </mat-radio-group>
+        </div>
+        <div class="button-row">
+          <button mat-raised-button color="primary" type="addUser">Add User</button>
+          <button mat-raised-button color="warn" type="cancel">Cancel</button>
+        </div>
+      </div>
+    </mat-grid-tile>
+  </mat-grid-list>
+</form>

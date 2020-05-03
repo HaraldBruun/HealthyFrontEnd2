@@ -21,9 +21,42 @@
   border: 10px black;
 }
 
-.my-Container{
-  background-color: white;
+.cont-container{
+  width: 100%;
+  padding: 5%;
 }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.cont-container > * {
+  width: 100%;
+}
+
+.add-topbottom-padding{
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.add-bottom-padding{
+  padding-bottom: 10px;
+}
+
+
+form.normal-form {
+  margin: 10px;
+}
+
+.button-row button{
+  margin: 5px;
+}
+
+html, body {
+  height: 100%;
+}
+
+mat-radio-group mat-radio-button{
+  margin-left: 10px;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
