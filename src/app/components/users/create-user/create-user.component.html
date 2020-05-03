@@ -1,8 +1,9 @@
-<form [formGroup]="usersService.form" class="normal-form">
-  <mat-grid-list cols="2" rowHeight="300px">
+<form [formGroup]="usersService.form" class="normal-form" (submit)="onSubmit()">
+  <mat-grid-list cols="2" rowHeight="350px">
     <mat-grid-tile>
       <div class="cont-container">
         <input type="hidden" formControlName="$key">
+        <h1>Personal Information</h1>
         <mat-form-field>
           <input formControlName="firstName" matInput placeholder="First Name">
           <mat-error>Please write your first name.</mat-error>
@@ -22,21 +23,26 @@
           </mat-radio-group>
         </div>
         <mat-form-field>
-          <input formControlName="dateOfBirth" matInput [matDatepicker]="picker" placeholder="Date Of Birth">
+          <input formControlName="dateOfBirth" matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker" placeholder="Date Of Birth">
           <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
           <mat-datepicker #picker></mat-datepicker>
+          <mat-error>Insert correct date of birth. Please Use date picker.</mat-error>
         </mat-form-field>
       </div>
     </mat-grid-tile>
     <mat-grid-tile>
       <div class="cont-container">
+        <h1>Activity & Physique</h1>
+        <p>*filling*</p>
         <mat-form-field>
-          <input formControlName="weight" matInput placeholder="Weight">
-          <mat-error>Please insert your weight without decimals.</mat-error>
+          <input type="number" formControlName="weight" matInput placeholder="Weight">
+          <mat-error *ngIf="usersService.form.controls['weight'].errors?.required"> Please insert weight</mat-error>
+          <mat-error *ngIf="usersService.form.controls['weight'].errors?.min">Please positive weight.</mat-error>
         </mat-form-field>
         <mat-form-field>
-          <input formControlName="height" matInput placeholder="Height">
-          <mat-error>Please insert your height</mat-error>
+          <input type="number" formControlName="height" matInput placeholder="Height">
+          <mat-error *ngIf="usersService.form.controls['height'].errors?.required"> Please insert height</mat-error>
+          <mat-error *ngIf="usersService.form.controls['height'].errors?.min">Please positive height.</mat-error>
         </mat-form-field>
         <h3>Activity Level:</h3>
         <div class="add-bottom-padding">
@@ -49,8 +55,8 @@
           </mat-radio-group>
         </div>
         <div class="button-row">
-          <button mat-raised-button color="primary" type="addUser">Add User</button>
-          <button mat-raised-button color="warn" type="cancel">Cancel</button>
+          <button mat-raised-button color="primary" type="submit" [disabled]="usersService.form.invalid">Add User</button>
+          <button mat-raised-button color="warn" type="cancel" (click)="onCancel()">Cancel</button>
         </div>
       </div>
     </mat-grid-tile>

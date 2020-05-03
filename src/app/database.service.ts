@@ -13,7 +13,7 @@ import {newArray} from '@angular/compiler/src/util';
 export class DatabaseService {
   users: Pupil[];
   // selectedPupil = new EventEmitter<Pupil>();
-  //baseUrl = 'http://35.246.214.109:8080';
+  // baseUrl = 'http://35.246.214.109:8080';
   baseUrl = 'http://localhost:8080';
 
   constructor(private http: HttpClient, private usersService: UsersService) {
@@ -62,6 +62,15 @@ export class DatabaseService {
         console.log(data);
       });
   }
+
+  createUser(user: Pupil) {
+  this.http.put(this.baseUrl + '/createUser', user)
+    .toPromise()
+    .then((data: JSON) => {
+      console.log(data);
+    });
+}
+
 
   getUser(userID: string) {
     this.http.get(this.baseUrl + '/getuser')

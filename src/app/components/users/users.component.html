@@ -1,16 +1,19 @@
 <div class="container">
-  <app-create-user></app-create-user>
-  <!--<div class="row">
-    <div class="col-sm-5">
+  <div class="row">
+    <div class="col-xs-3">
       <app-users-list></app-users-list>
     </div>
-    <div class="col-sm-1"></div>
-    <div class="col-sm-5">
-      <div class="my-Container list-group-item clearfix">
-      <app-users-detail
-        *ngIf="selectedUser; else infoText"
-        [user]="selectedUser">
-      </app-users-detail>
+    <div class="col-xs-2">
+      <a class="btn btn-success" (click)="onCreate()">
+        <span class="glyphicon glyphicon-plus"></span> Create User
+      </a>
+    </div>
+    <div class="col-xs-7">
+     <div class="my-Container list-group-item clearfix">
+         <app-users-detail
+           *ngIf="selectedUser; else infoText"
+           [user]="selectedUser">
+         </app-users-detail>
       </div>
       <ng-template #infoText>
         <div style="text-align: center;">
@@ -18,8 +21,5 @@
         </div>
       </ng-template>
     </div>
-    <div class="col-sm-1"></div>
-  </div>-->
-
-
+  </div>
 </div>

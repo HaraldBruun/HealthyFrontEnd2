@@ -6,13 +6,14 @@ import {PersonalinfoModel} from '../../shared/personalinfo.model';
 import {ExperienceModel} from '../../shared/experience.model';
 import {MealModel} from '../../shared/food.model';
 import {RewardModel} from '../../shared/reward.model';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {Form, FormControl, FormGroup, Validators} from '@angular/forms';
 
 @Injectable({providedIn: 'root'})
 export class UsersService {
   selectedUser = new EventEmitter<Pupil>();
   usersChanged = new EventEmitter<Pupil[]>();
   private users: Pupil[] = [];
+
 
   /* lort
   username = 'anton123';
@@ -37,18 +38,32 @@ export class UsersService {
   constructor() {
   }
 
-  form: FormGroup = new FormGroup({
+    form: FormGroup = new FormGroup({
     $key: new FormControl(null),
     firstName: new FormControl('', Validators.required),
     lastName: new FormControl('', Validators.required),
     userName: new FormControl('', [Validators.required, Validators.email]),
     gender: new FormControl('1', Validators.required),
-    weight: new FormControl('', [Validators.required, Validators.minLength(1)]),
-    height: new FormControl('', [Validators.required, Validators.minLength(1)]),
+    weight: new FormControl('', [Validators.required, Validators.min(0)]),
+    height: new FormControl('', [Validators.required, Validators.min(0)]),
     activityLevel: new FormControl('1', Validators.required),
-    dateOfBirth: new FormControl('', Validators.required),
+    dateOfBirth: new FormControl(new Date()),
     password: new FormControl()
   });
+
+  initializeFormGroup() {
+    this.form.setValue({
+      $key: null,
+      firstName: '',
+      lastName: '',
+      userName: '',
+      gender: '1',
+      weight: '',
+      height: '',
+      activityLevel: '1',
+      dateOfBirth: new Date()
+    });
+  }
 
   getUsers(): Pupil[] {
     return this.users;

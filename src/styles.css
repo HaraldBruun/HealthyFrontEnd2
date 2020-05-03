@@ -17,8 +17,9 @@
   margin-top: 1em;
 }
 
-.componentBorder {
-  border: 10px black;
+.container {
+  height: 100%;
+  width: 90%;
 }
 
 .cont-container{
@@ -60,3 +61,15 @@ body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
+
+snack-bar-container.success{
+  background-color: white;
+  color: Black;
+}
+
+snack-bar-container.notification simple-snack-bar{
+  font-size: 18px;
+  font-weight: normal;
+}
+
+

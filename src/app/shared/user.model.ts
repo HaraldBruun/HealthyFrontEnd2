@@ -8,13 +8,13 @@ abstract class UserModel {
   private _username: string;
   private _password: string;
   private _uid: string;
-  private _first_time_loggedin: boolean;
+  private _first_Time_LoggedIn: boolean;
 
   constructor(username: string, password: string, uid: string, first_time_loggedin: boolean) {
     this._username = username;
     this._password = password;
     this._uid = uid;
-    this._first_time_loggedin = first_time_loggedin;
+    this._first_Time_LoggedIn = first_time_loggedin;
   }
 
   get username(): string {
@@ -41,12 +41,12 @@ abstract class UserModel {
     this._uid = value;
   }
 
-  get first_time_loggedin(): boolean {
-    return this._first_time_loggedin;
+  get first_Time_LoggedIn(): boolean {
+    return this._first_Time_LoggedIn;
   }
 
-  set first_time_loggedin(value: boolean) {
-    this._first_time_loggedin = value;
+  set first_Time_LoggedIn(value: boolean) {
+    this._first_Time_LoggedIn = value;
   }
 }
 
