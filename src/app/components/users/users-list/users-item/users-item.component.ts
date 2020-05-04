@@ -10,6 +10,7 @@ import {Component, Input, OnInit} from '@angular/core';
 })
 export class UsersItemComponent implements OnInit {
   @Input() user: Pupil;
+  @Input() index: number;
 
   constructor(private usersService: UsersService, private databaseService: DatabaseService) {
   }

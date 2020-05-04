@@ -84,4 +84,10 @@ export class UsersService {
     //TODO: implement this
     // this.users.splice(user,1)
   }
+
+  getUser(id: number): Pupil {
+    console.log(id);
+    console.log(this.users[id]);
+    return this.users[id];
+  }
 }

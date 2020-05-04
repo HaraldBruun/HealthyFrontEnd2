@@ -21,8 +21,9 @@
     </div>
     <ng-container *ngIf="users.length > 0; then showUsers; else loading"></ng-container>
     <ng-template #showUsers>
-      <app-users-item *ngFor="let userElement of userDisplayList"
-                      [user]="userElement">
+      <app-users-item *ngFor="let userElement of userDisplayList; let i = index"
+                      [user]="userElement"
+                      [index]="i">
       </app-users-item>
     </ng-template>
     <ng-template #loading>

@@ -1,10 +1,10 @@
-
 import {Pupil} from '../../../shared/user.model';
 import {MatDialog} from '@angular/material/dialog';
 import {PopUpComponent} from './pop-up/pop-up.component';
 import {DatabaseService} from '../../../database.service';
 import {UsersService} from '../../../shared/users.service';
 import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {ActivatedRoute, Params} from "@angular/router";
 
 @Component({
   selector: 'app-users-detail',
@@ -12,17 +12,27 @@ import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core'
   styleUrls: ['./users-detail.component.css'],
 })
 export class UsersDetailComponent implements OnInit, OnChanges {
-  @Input() user: Pupil;
+  user: Pupil;
   dummyUser: Pupil;
   canEditCode = false;
   userSaved = false;
   popUpType = '';
+  id: number;
 
-  constructor(public dialog: MatDialog, private usersService: UsersService, private databaseService: DatabaseService) {
+  constructor(public dialog: MatDialog, private usersService: UsersService, private databaseService: DatabaseService,
+              private route: ActivatedRoute) {
   }
 
   ngOnInit(): void {
-    this.initDummyUser();
+
+    this.route.params.subscribe(
+      (params: Params) => {
+        this.id = +params['id'];
+        this.user = this.usersService.getUser(this.id);
+        this.initDummyUser();
+      }
+    );
+
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -44,7 +54,7 @@ export class UsersDetailComponent implements OnInit, OnChanges {
   }
 
   initDummyUser() {
-    this.dummyUser = <Pupil> JSON.parse(JSON.stringify(this.user));
+    this.dummyUser = <Pupil>JSON.parse(JSON.stringify(this.user));
   }
 
   onEditClick() {
@@ -59,7 +69,7 @@ export class UsersDetailComponent implements OnInit, OnChanges {
 
   onCancelClick() {
     this.canEditCode = false;
-    this.dummyUser = <Pupil> JSON.parse(JSON.stringify(this.user));
+    this.dummyUser = <Pupil>JSON.parse(JSON.stringify(this.user));
   }
 
   openDialog(): void {

@@ -1,5 +1,5 @@
-<a href="#" class="list-group-item clearfix"
-   (click)="onClickItem()">
+<a [routerLink]="index" class="list-group-item clearfix">
+<!--   (click)="onClickItem()"-->
   <div class="pull-left">
     <ng-container *ngIf="user.personalInfo.firstName.length > 0; then hasName; else noName "></ng-container>
     <ng-template #hasName>
