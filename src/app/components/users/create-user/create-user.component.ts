@@ -1,6 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {UsersService} from '../users.service';
-import {FormControl} from '@angular/forms';
 import {Pupil} from '../../../shared/user.model';
 import {DatabaseService} from '../../../database.service';
 import {PhysiqueModel} from '../../../shared/physique.model';
@@ -10,7 +8,7 @@ import {MealModel} from '../../../shared/food.model';
 import {RewardModel} from '../../../shared/reward.model';
 import {NotificationService} from '../../../shared/notification.service';
 import {MatDialogRef} from '@angular/material/dialog';
-import {UsersComponent} from '../users.component';
+import {UsersService} from '../../../shared/users.service';
 
 @Component({
   selector: 'app-create-user',

@@ -7,7 +7,6 @@ import {MealModel} from './shared/food.model';
 import {RewardModel} from './shared/reward.model';
 import {Pupil} from './shared/user.model';
 import {UsersService} from './shared/users.service';
-import {UsersService} from './components/users/users.service';
 import {newArray} from '@angular/compiler/src/util';
 
 @Injectable({providedIn: 'root'})

@@ -8,7 +8,7 @@ import {$e} from 'codelyzer/angular/styles/chars';
 })
 export class AppComponent {
   title = 'HealthyFrontEnd';
-  loggedIn = false;
+  loggedIn = true;
   showUsers = true;
   showStats: boolean;
 

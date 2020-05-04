@@ -2,8 +2,8 @@ import {Component, Input, OnChanges, OnInit, SimpleChange, SimpleChanges} from '
 import {Pupil} from '../../../shared/user.model';
 import {MatDialog} from '@angular/material/dialog';
 import {PopUpComponent} from './pop-up/pop-up.component';
-import {UsersService} from '../users.service';
 import {DatabaseService} from '../../../database.service';
+import {UsersService} from '../../../shared/users.service';
 
 @Component({
   selector: 'app-users-detail',

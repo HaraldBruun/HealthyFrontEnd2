@@ -1,6 +1,4 @@
-import {AfterContentChecked, AfterContentInit, AfterViewInit, Component, ElementRef, OnInit} from '@angular/core';
-import {UsersService} from './users.service';
-import { Component, OnInit } from '@angular/core';
+import {Component, ElementRef, OnInit} from '@angular/core';
 import {UsersService} from '../../shared/users.service';
 import {Pupil} from '../../shared/user.model';
 import {DatabaseService} from '../../database.service';
