@@ -33,11 +33,11 @@ export class UsersListComponent implements OnInit {
         this.users = users;
         this.userDisplayList = users;
         this.isFetching = false;
-       /* this.filteredOptions = this.myControl.valueChanges.pipe(
+        this.filteredOptions = this.myControl.valueChanges.pipe(
           startWith(''),
           map(value => typeof value === 'string' ? value : value.name),
           map(username => username ? this._filter(username) : this.users.slice())
-        );*/
+        );
       }
     );
   }
@@ -58,13 +58,13 @@ export class UsersListComponent implements OnInit {
     return user && user.username ? user.username : '';
   }
 
-  /* updateDisplayList() {
-     this.userDisplayList = [];
-     this.filteredOptions.forEach(user => {
-       user.forEach(user2 => {
-         this.userDisplayList.push(user2);
-       });
-     });
-   }*/
+  updateDisplayList() {
+    this.userDisplayList = [];
+    this.filteredOptions.forEach(user => {
+      user.forEach(user2 => {
+        this.userDisplayList.push(user2);
+      });
+    });
+  }
 
 }

@@ -1,0 +1,13 @@
+<h2>Title bih</h2>
+
+<div *ngIf="data.var === 'SAVE'">
+<mat-dialog-content>
+  Would you like to save changes?
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close>Cancel</button>
+
+  <button mat-raised-button (click)="save()">Confirm</button>
+</mat-dialog-actions>
+</div>

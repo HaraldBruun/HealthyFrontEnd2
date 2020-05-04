@@ -10,7 +10,7 @@ import {DatabaseService} from '../../../database.service';
   templateUrl: './users-detail.component.html',
   styleUrls: ['./users-detail.component.css'],
 })
-export class UsersDetailComponent implements OnInit/*, OnChanges*/ {
+export class UsersDetailComponent implements OnInit, OnChanges {
   @Input() user: Pupil;
   dummyUser: Pupil;
   canEditCode = false;
@@ -24,8 +24,7 @@ export class UsersDetailComponent implements OnInit/*, OnChanges*/ {
     this.initDummyUser();
   }
 
-  /*ngOnChanges(changes: SimpleChanges) {
-
+  ngOnChanges(changes: SimpleChanges) {
     const previousUser = changes.user.previousValue as Pupil;
     const currentUser = changes.user.currentValue as Pupil;
     if (this.canEditCode) {
@@ -34,11 +33,9 @@ export class UsersDetailComponent implements OnInit/*, OnChanges*/ {
       this.initDummyUser();
     }
 
-
     console.log('Previous: ' + (previousUser ? previousUser.personalInfo.firstName : 'NULL'));
     console.log('To be changed ' + currentUser.personalInfo.firstName);
   }
-  */
 
 
   checkForChange() {
