@@ -42,8 +42,7 @@ export class UsersService {
     weight: new FormControl('', [Validators.required, Validators.min(0)]),
     height: new FormControl('', [Validators.required, Validators.min(0)]),
     activityLevel: new FormControl('1', Validators.required),
-    dateOfBirth: new FormControl(new Date()),
-    password: new FormControl()
+    dateOfBirth: new FormControl(new Date())
   });
 
   initializeFormGroup() {

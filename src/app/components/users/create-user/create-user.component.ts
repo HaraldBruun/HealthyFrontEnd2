@@ -40,9 +40,7 @@ export class CreateUserComponent implements OnInit {
       this.createUser();
       this.notificationService.success('User saved.', 'OK');
       this.databaseService.createUser(this.newUser);
-      this.usersService.form.reset();
-      this.dialogRef.close();
-      this.usersService.initializeFormGroup();
+      this.onCancel();
     }
   }
 

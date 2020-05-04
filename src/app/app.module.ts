@@ -33,6 +33,7 @@ import {HttpClientModule} from '@angular/common/http';
 import {NgxChartsModule} from '@swimlane/ngx-charts';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {AppRouting} from "./app.routing";
+import {MatToolbarModule} from '@angular/material/toolbar';
 
 
 @NgModule({
@@ -72,7 +73,8 @@ import {AppRouting} from "./app.routing";
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
-    AppRouting
+    AppRouting,
+    MatToolbarModule
   ],
   providers: [UsersService],
   bootstrap: [AppComponent],

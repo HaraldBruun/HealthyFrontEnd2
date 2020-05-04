@@ -1,3 +1,7 @@
+<mat-toolbar>
+  <span>Create New User</span>
+  <button class="btn-dialog-close" mat-stroked-button (click)="onCancel()"></button>
+</mat-toolbar>
 <form [formGroup]="usersService.form" class="normal-form" (submit)="onSubmit()">
   <mat-grid-list cols="2" rowHeight="350px">
     <mat-grid-tile>
