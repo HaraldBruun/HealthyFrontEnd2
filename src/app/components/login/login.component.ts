@@ -1,5 +1,6 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-login',
@@ -10,7 +11,7 @@ export class LoginComponent implements OnInit {
   @Output() eventEmitterLogin = new EventEmitter<boolean>();
   loggedIn = false;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private route: ActivatedRoute, private router: Router) {
   }
 
   ngOnInit() {
@@ -29,10 +30,9 @@ export class LoginComponent implements OnInit {
     })
       .toPromise()
       .then((data: boolean) => {
-        console.log(data.valueOf());
         this.loggedIn = data.valueOf();
         console.log(this.loggedIn);
-        data ? this.eventEmitterLogin.emit(data) : alert('Forkert login');
+        data ? this.router.navigate(['/users']) : alert('Forkert login');
       });
   }
 }

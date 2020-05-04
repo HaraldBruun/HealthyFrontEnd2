@@ -7,7 +7,7 @@ import {Component} from '@angular/core';
 })
 export class AppComponent {
   title = 'HealthyFrontEnd';
-  loggedIn = true;
+  loggedIn = false;
   showUsers = true;
   showStats: boolean;
   showRewards: boolean;
