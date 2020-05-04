@@ -8,15 +8,16 @@ import {UsersService} from './shared/users.service';
 import {newArray} from '@angular/compiler/src/util';
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpParams} from '@angular/common/http';
+import {Router} from "@angular/router";
 
 @Injectable({providedIn: 'root'})
 export class DatabaseService {
   users: Pupil[];
-  // selectedPupil = new EventEmitter<Pupil>();
   // baseUrl = 'http://35.246.214.109:8080';
   baseUrl = 'http://localhost:8080';
+  private _loggedIn: boolean;
 
-  constructor(private http: HttpClient, private usersService: UsersService) {
+  constructor(private http: HttpClient, private usersService: UsersService, private router: Router) {
     console.log('Service created');
   }
 
@@ -75,6 +76,24 @@ export class DatabaseService {
         }
       );
     console.log('Deleting ' + userID);
+  }
+
+  login(user: string, pass: string) {
+    this.http.post('http://localhost:8080/login', {
+      user: user,
+      pass: pass
+    })
+      .toPromise()
+      .then((data: boolean) => {
+        this._loggedIn = data.valueOf();
+        console.log(this._loggedIn);
+        data ? this.router.navigate(['/users']) : alert('Forkert login');
+      });
+  }
+
+
+  get loggedIn(): boolean {
+    return this._loggedIn;
   }
 }
 
