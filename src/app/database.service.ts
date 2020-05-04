@@ -35,10 +35,6 @@ export class DatabaseService {
       );
   }
 
-  getAllUsersForReal(): Pupil[] {
-    return this.users.slice();
-  }
-
   saveUser(user: Pupil) {
     this.http.put(this.baseUrl + '/saveuser', user)
       .toPromise()
