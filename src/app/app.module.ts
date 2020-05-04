@@ -1,4 +1,3 @@
-import {ReactiveFormsModule, FormsModule} from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
@@ -29,6 +28,11 @@ import {MatNativeDateModule} from '@angular/material/core';
 import {MatButtonModule} from '@angular/material/button';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {UsersService} from './shared/users.service';
+import { RewardsComponent } from './components/rewards/rewards.component';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+
 
 @NgModule({
   declarations: [
@@ -42,6 +46,7 @@ import {UsersService} from './shared/users.service';
     UsersListComponent,
     UsersItemComponent,
     UsersDetailComponent,
+    RewardsComponent,
     StatisticsComponent,
     PopUpComponent,
     CreateUserComponent,
@@ -53,7 +58,6 @@ import {UsersService} from './shared/users.service';
     NgxChartsModule,
     ReactiveFormsModule,
     FormsModule,
-    BrowserAnimationsModule,
     MatAutocompleteModule,
     MatInputModule,
     MatDialogModule,
@@ -63,7 +67,11 @@ import {UsersService} from './shared/users.service';
     MatDatepickerModule,
     MatNativeDateModule,
     MatButtonModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    BrowserAnimationsModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule
   ],
   providers: [UsersService],
   bootstrap: [AppComponent],

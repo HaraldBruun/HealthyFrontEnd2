@@ -11,22 +11,31 @@ export class AppComponent {
   loggedIn = true;
   showUsers = true;
   showStats: boolean;
+  showRewards: boolean;
+
 
   showFeature($event: string) {
     switch ($event) {
       case 'manage_users':
         this.showUsers = true;
         this.showStats = false;
+        this.showRewards = false;
         break;
       case 'statistics':
         this.showUsers = false;
         this.showStats = true;
+        this.showRewards = false;
+        break;
+      case 'rewards':
+        this.showUsers = false;
+        this.showStats = false;
+        this.showRewards = true;
         break;
     }
 
   }
 
-  loggedInFeature($event: boolean){
+  loggedInFeature($event: boolean) {
     this.loggedIn = $event;
   }
 
