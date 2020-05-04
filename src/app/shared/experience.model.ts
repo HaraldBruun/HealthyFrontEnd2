@@ -4,10 +4,10 @@ export class ExperienceModel {
   private _activityXP: number;
   private _socialXP: number;
   private _ticket: number;
-  private _XPForCalories: boolean;
-  private _XPForProtein: boolean;
-  private _XPForCarbs: boolean;
-  private _XPForFat: boolean;
+  private _xpforCalories: boolean;
+  private _xpforProtein: boolean;
+  private _xpforCarbs: boolean;
+  private _xpforFat: boolean;
   private _totalXP: number;
 
   constructor(level: number, nutritionXP: number, activityXP: number, socialXP: number,
@@ -19,10 +19,10 @@ export class ExperienceModel {
     this._activityXP = activityXP;
     this._socialXP = socialXP;
     this._ticket = ticket;
-    this._XPForCalories = XPForCalories;
-    this._XPForProtein = XPForProtein;
-    this._XPForCarbs = XPForCarbs;
-    this._XPForFat = XPForFat;
+    this._xpforCalories = XPForCalories;
+    this._xpforProtein = XPForProtein;
+    this._xpforCarbs = XPForCarbs;
+    this._xpforFat = XPForFat;
     this._totalXP = this._activityXP + this._nutritionXP + this._socialXP;
   }
 
@@ -71,35 +71,35 @@ export class ExperienceModel {
     this._ticket = value;
   }
 
-  get XPForCalories(): boolean {
-    return this._XPForCalories;
+  get xpforCalories(): boolean {
+    return this._xpforCalories;
   }
 
-  set XPForCalories(value: boolean) {
-    this._XPForCalories = value;
+  set xpforCalories(value: boolean) {
+    this._xpforCalories = value;
   }
 
-  get XPForProtein(): boolean {
-    return this._XPForProtein;
+  get xpforProtein(): boolean {
+    return this._xpforProtein;
   }
 
-  set XPForProtein(value: boolean) {
-    this._XPForProtein = value;
+  set xpforProtein(value: boolean) {
+    this._xpforProtein = value;
   }
 
-  get XPForCarbs(): boolean {
-    return this._XPForCarbs;
+  get xpforCarbs(): boolean {
+    return this._xpforCarbs;
   }
 
-  set XPForCarbs(value: boolean) {
-    this._XPForCarbs = value;
+  set xpforCarbs(value: boolean) {
+    this._xpforCarbs = value;
   }
 
-  get XPForFat(): boolean {
-    return this._XPForFat;
+  get xpforFat(): boolean {
+    return this._xpforFat;
   }
 
-  set XPForFat(value: boolean) {
-    this._XPForFat = value;
+  set xpforFat(value: boolean) {
+    this._xpforFat = value;
   }
 }

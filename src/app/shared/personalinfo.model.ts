@@ -58,4 +58,5 @@ export class PersonalinfoModel {
   set zipCode(value: number) {
     this._zipCode = value;
   }
+
 }

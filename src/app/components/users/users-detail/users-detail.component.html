@@ -1,48 +1,230 @@
+<!--Start of picture and edit & delete bt-->
 <div class="row">
   <div class="col-xs-12">
-    <img src="https://thumbs.dreamstime.com/z/happy-laptop-user-6496192.jpg" alt="" class="img-responsive"
-         style="max-height: 300px">
-  </div>
-</div>
-<div class="row">
-  <div class="col-xs-12">
-    <h1>{{user.username}}</h1>
-  </div>
-</div>
-<div class="row">
-  <div class="col-xs-12">
-    <div class="btn-group" appDropdown>
-      <button type="button"
-              class="btn btn-primary dropdown-toggle">
-        Manage User<span class="caret"></span>
+    <div class="pull-left">
+      <img src="https://www.kindpng.com/picc/b/22/223965.png" alt="" class="img-responsive"
+           style="max-width: 150px">
+    </div>
+    <div class="pull-right">
+      <button *ngIf="!canEditCode" class="btn btn-default" (click)="onEditClick()"><i class="glyphicon glyphicon-pencil"
+      ></i> Edit
       </button>
-      <ul class="dropdown-menu">
-        <li><a
-          style="cursor: pointer"
-        >To Shopping List</a></li>
-        <li><a href="#">Edit Recipe</a></li>
-        <li><a href="#">Delete Recipe</a></li>
-      </ul>
+      <button class="btn btn-default"><i class="glyphicon glyphicon-trash"></i> Delete</button>
     </div>
   </div>
 </div>
+<!-- Stat of titles  -->
 <div class="row">
+  <div class="col-xs-1"></div>
+  <div class="col-xs-3">
+    <div class="row">
+      <div class="col-xs-12">
+        <h1>Name:</h1>
+      </div>
+      <div class="col-xs-12">
+        <h3>Email:</h3>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <h3>Birthday:</h3>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <h3>School:</h3>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <h3>Class:</h3>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <h3>Weight:</h3>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <h3>Height:</h3>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12"> *empty line*
+      </div>
+    </div>
+  </div>
+  <!--Start of data display-->
+
+  <div class="col-xs-8">
+    <ng-container *ngIf="!canEditCode; then displayData; else editData"></ng-container>
+    <ng-template #displayData>
+      <div class="row">
+        <div class="col-xs-12">
+          <h1>{{dummyUser.personalInfo.firstName}}</h1>
+        </div>
+        <div class="col-xs-12">
+          <h3>{{dummyUser.username}}</h3>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <h3>{{  dummyUser.personalInfo.dateOfBirth | date:'dd/MM/yyyy' }}</h3>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <h3>??</h3>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <h3>??</h3>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <h3>{{ dummyUser.physique.weight }}</h3>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <h3>{{ dummyUser.physique.height}}</h3>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12"> *empty line*
+        </div>
+      </div>
+    </ng-template>
+    <ng-template #editData>
+      <div class="row">
+        <div class="col-xs-12">
+          <input [(ngModel)]="dummyUser.personalInfo.firstName" type="text" class="form-control">
+        </div>
+
+        <div class="col-xs-12">
+          <input [(ngModel)]="dummyUser.username" type="text" class="form-control refreshSpecial">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <p>{{  dummyUser.personalInfo.dateOfBirth | date:'dd/MM/yyyy' }}</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <p>??</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <p>??</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <p>{{ dummyUser.physique.weight }}</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <p>{{ dummyUser.physique.height}}</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12"> *empty line*
+        </div>
+      </div>
+    </ng-template>
+  </div>
+
+
+  <!--Edit buttons to confirm-->
+  <div class="row">
+    <div class="col-xs-3"></div>
+    <div class="col-xs-6">
+      <p *ngIf="canEditCode" align="center">
+        <button class="btn btn-success pull-left"
+                (click)="onConfirmClick()">
+          <i class="glyphicon glyphicon-check"></i> Confirm
+        </button>
+        <button class="btn btn-danger pull-right"
+                (click)="onCancelClick()">
+          <i class="glyphicon glyphicon-circle-arrow-left"></i> Cancel
+        </button>
+      </p>
+    </div>
+    <div class="col-xs-3"></div>
+  </div>
+
+
+  <!--
+  <div class="card" style="width: 24rem;">
+    <div class="card-body">
+      <h5 class="card-title">Card title</h5>
+      <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      <a href="#" class="card-link">Card link</a>
+      <a href="#" class="card-link">Another link</a>
+    </div>
+  </div>
   <div class="col-xs-12">
-    {{user.uid}}
-  </div>
-</div>
+        <input *ngIf="canEditCode" [(ngModel)]="dummyUser.personalInfo.firstName" type="text" class="form-control">
+      </div>
 
-<!--
-<div class="card" style="width: 24rem;">
-  <div class="card-body">
-    <h5 class="card-title">Card title</h5>
-    <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    <a href="#" class="card-link">Card link</a>
-    <a href="#" class="card-link">Another link</a>
-  </div>
-</div>
--->
+      <div *ngIf="!canEditCode" class="col-xs-12">
+        <ng-container
+          *ngIf="dummyUser.personalInfo.firstName.length > 0; then hasName; else noName "></ng-container>
+        <ng-template #hasName>
+          <h1 class="list-group-item-heading">{{ dummyUser.personalInfo.firstName }}</h1>
+        </ng-template>
+        <ng-template #noName>
+          <h1 class="list-group-item-heading"> No Name </h1>
+        </ng-template>
 
+  <div class="row">
+      <div class="col-xs-1"></div>
+      <div class="col-xs-11">
+        <div class="row">
+          <div class="col-xs-12">
+            <h1>Name: {{dummyUser.personalInfo.firstName}}</h1>
+          </div>
+          <div class="col-xs-12">
+            <p>Email: {{dummyUser.username}}</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12">
+            <p>Birthday:&nbsp;&nbsp;&nbsp;&nbsp; {{  dummyUser.personalInfo.dateOfBirth | date:'dd/MM/yyyy' }}</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12">
+            <p>School: &nbsp; &nbsp; &nbsp;&nbsp;??</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12">
+            <p>Class: &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;??</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12">
+            <p>Weight: &nbsp; &nbsp; &nbsp; {{ dummyUser.physique.weight }}</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12">
+            <p>Height: &nbsp; &nbsp; &nbsp; {{ dummyUser.physique.height}}</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12"> *empty line*
+          </div>
+        </div>
+      </div>
+    </div>
 
-
+  -->

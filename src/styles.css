@@ -1,12 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
-.loginSpecial{
+.loginSpecial {
   margin-top: 1cm;
   margin-bottom: 1cm;
   width: 15%;
   margin-left: 42.5%;
 }
 
-.formsSpecial{
+.formsSpecial {
   margin-top: 1cm;
   margin-bottom: 1cm;
   width: 20%;
@@ -17,3 +17,64 @@
   margin-bottom: 1cm;
   margin-left: 31.75%;
 }
+
+.refreshSpecial {
+  margin-top: 1em;
+}
+
+.container {
+  height: 100%;
+  width: 90%;
+}
+
+.cont-container{
+  width: 100%;
+  padding: 5%;
+}
+
+.cont-container > * {
+  width: 100%;
+}
+
+.add-topbottom-padding{
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.add-bottom-padding{
+  padding-bottom: 10px;
+}
+
+
+form.normal-form {
+  margin: 10px;
+}
+
+.button-row button{
+  margin: 5px;
+}
+
+html, body {
+  height: 100%;
+}
+
+mat-radio-group mat-radio-button{
+  margin-left: 10px;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+snack-bar-container.success{
+  background-color: white;
+  color: Black;
+}
+
+snack-bar-container.notification simple-snack-bar{
+  font-size: 18px;
+  font-weight: normal;
+}
+
+

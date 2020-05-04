@@ -7,12 +7,15 @@ import {MealModel} from './shared/food.model';
 import {RewardModel} from './shared/reward.model';
 import {Pupil} from './shared/user.model';
 import {UsersService} from './shared/users.service';
+import {UsersService} from './components/users/users.service';
+import {newArray} from '@angular/compiler/src/util';
 
 @Injectable({providedIn: 'root'})
 export class DatabaseService {
   users: Pupil[];
   // selectedPupil = new EventEmitter<Pupil>();
-  baseUrl = 'http://35.246.214.109:8080';
+  // baseUrl = 'http://35.246.214.109:8080';
+  baseUrl = 'http://localhost:8080';
 
   constructor(private http: HttpClient, private usersService: UsersService) {
     console.log('Service created');
@@ -37,8 +40,8 @@ export class DatabaseService {
     return this.users.slice();
   }
 
-  saveUser() {
-    const username = 'anton123';
+  saveUser(user: Pupil) {
+    const username = 'changedname';
     const password = '123123';
     const uid = 'TestUser123';
     const first_time = false;
@@ -54,13 +57,21 @@ export class DatabaseService {
 
     const new_pupil = new Pupil(username, password, uid, first_time, phys, personal_info, xp,
       meals, friends, activities, rewards);
-
-    this.http.post(this.baseUrl + '/saveuser', new_pupil)
+    this.http.post(this.baseUrl + '/saveuser', user)
       .toPromise()
       .then((data: JSON) => {
         console.log(data);
       });
   }
+
+  createUser(user: Pupil) {
+  this.http.put(this.baseUrl + '/createUser', user)
+    .toPromise()
+    .then((data: JSON) => {
+      console.log(data);
+    });
+}
+
 
   getUser(userID: string) {
     this.http.get(this.baseUrl + '/getuser')
@@ -87,3 +98,4 @@ export class DatabaseService {
     console.log('Deleting ' + userID);
   }
 }
+
