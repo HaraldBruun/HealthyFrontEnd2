@@ -1,6 +1,7 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {ActivatedRoute, Router} from "@angular/router";
+import {ActivatedRoute, Router} from '@angular/router';
+import {DatabaseService} from '../../database.service';
 
 @Component({
   selector: 'app-login',
@@ -11,10 +12,11 @@ export class LoginComponent implements OnInit {
   @Output() eventEmitterLogin = new EventEmitter<boolean>();
   loggedIn = false;
 
-  constructor(private http: HttpClient, private route: ActivatedRoute, private router: Router) {
+  constructor(private http: HttpClient, private route: ActivatedRoute, private router: Router, private databaseService: DatabaseService) {
   }
 
   ngOnInit() {
+
   }
 
   clickOnLoginBtn(user: string, pass: string) {

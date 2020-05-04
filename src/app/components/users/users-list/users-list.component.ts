@@ -7,6 +7,7 @@ import {map, startWith} from 'rxjs/operators';
 import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
 import {CreateUserComponent} from '../create-user/create-user.component';
 import {Component, ElementRef, OnInit} from '@angular/core';
+import {MatTableDataSource} from '@angular/material/table';
 
 @Component({
   selector: 'app-users-list',
@@ -17,54 +18,19 @@ export class UsersListComponent implements OnInit {
   users: Pupil[];
   isFetching = false;
   myControl = new FormControl();
-  filteredOptions: Observable<Pupil[]>;
   userDisplayList: Pupil[] = [];
 
   constructor(private usersService: UsersService, private databaseService: DatabaseService,
               private elementRef: ElementRef, private dialog: MatDialog) {
   }
 
+  listData: MatTableDataSource<any>;
+  displayedColumns: string[] = ['firstName'];
+
   ngOnInit() {
-    this.isFetching = true;
     this.databaseService.getAllUsers();
+    this.listData = new MatTableDataSource(this.users).;
     this.users = this.usersService.getUsers();
-    this.usersService.usersChanged.subscribe(
-      (users: Pupil[]) => {
-        this.users = users;
-        this.userDisplayList = users;
-        this.isFetching = false;
-        this.filteredOptions = this.myControl.valueChanges.pipe(
-          startWith(''),
-          map(value => typeof value === 'string' ? value : value.name),
-          map(username => username ? this._filter(username) : this.users.slice())
-        );
-      }
-    );
+    console.log(this.users);
   }
-
-  private _filter(value: string): Pupil[] {
-    const filterValue = value.toLowerCase();
-    console.log(this.filteredOptions);
-    this.userDisplayList = this.filteredOptions as unknown as Pupil[];
-    return this.users.filter(option =>
-      option.username.indexOf(filterValue) === 0);
-  }
-
-  refreshUsers() {
-    this.databaseService.getAllUsers();
-  }
-
-  displayFn(user: Pupil): string {
-    return user && user.username ? user.username : '';
-  }
-
-  updateDisplayList() {
-    this.userDisplayList = [];
-    this.filteredOptions.forEach(user => {
-      user.forEach(user2 => {
-        this.userDisplayList.push(user2);
-      });
-    });
-  }
-
 }

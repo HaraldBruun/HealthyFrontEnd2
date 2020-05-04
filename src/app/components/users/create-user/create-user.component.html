@@ -1,6 +1,6 @@
 <mat-toolbar>
-  <span>Create New User</span>
-  <button class="btn-dialog-close" mat-stroked-button (click)="onCancel()"></button>
+  <span>{{"Create New User"}}</span>
+  <button class="btn-dialog-close" mat-stroked-button (click)="onCancel()" tabindex="-1"><mat-icon>clear</mat-icon></button>
 </mat-toolbar>
 <form [formGroup]="usersService.form" class="normal-form" (submit)="onSubmit()">
   <mat-grid-list cols="2" rowHeight="350px">
@@ -27,7 +27,8 @@
           </mat-radio-group>
         </div>
         <mat-form-field>
-          <input formControlName="dateOfBirth" matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker" placeholder="Date Of Birth">
+          <input formControlName="dateOfBirth" matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker"
+                 placeholder="Date Of Birth">
           <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
           <mat-datepicker #picker></mat-datepicker>
           <mat-error>Insert correct date of birth. Please Use date picker.</mat-error>
@@ -59,7 +60,8 @@
           </mat-radio-group>
         </div>
         <div class="button-row">
-          <button mat-raised-button color="primary" type="submit" [disabled]="usersService.form.invalid">Add User</button>
+          <button mat-raised-button color="primary" type="submit" [disabled]="usersService.form.invalid">Add User
+          </button>
           <button mat-raised-button color="warn" type="cancel" (click)="onCancel()">Cancel</button>
         </div>
       </div>

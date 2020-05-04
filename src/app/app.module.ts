@@ -34,6 +34,7 @@ import {NgxChartsModule} from '@swimlane/ngx-charts';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {AppRouting} from "./app.routing";
 import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatIconModule} from '@angular/material/icon';
 
 
 @NgModule({
@@ -74,7 +75,8 @@ import {MatToolbarModule} from '@angular/material/toolbar';
     MatPaginatorModule,
     MatSortModule,
     AppRouting,
-    MatToolbarModule
+    MatToolbarModule,
+    MatIconModule
   ],
   providers: [UsersService],
   bootstrap: [AppComponent],
