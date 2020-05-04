@@ -85,7 +85,7 @@ export class DatabaseService {
   deleteUser(userID: string) {
     const httpParams = new HttpParams().set('uid', userID);
     const options = {params: httpParams};
-    // const options = this.makeOption(userID);¬
+    // const options = this.makeOption(userID);
     // console.log(options);
     this.http.delete(this.baseUrl + '/deleteuser', options)
       .toPromise()

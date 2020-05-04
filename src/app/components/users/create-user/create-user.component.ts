@@ -54,9 +54,9 @@ export class CreateUserComponent implements OnInit {
       this.gender = 'male';
     }
     const username = this.usersService.form.get('userName').value;
-    const password = this.generatePassword();
+    const password = '123123';
     const uid = 'thisshouldhopefullybeligemeget';
-    const first_time = true;
+    const first_time = false;
     const phys = new PhysiqueModel(
       this.usersService.form.get('height').value,
       this.usersService.form.get('weight').value,
