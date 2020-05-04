@@ -22,7 +22,7 @@ import {MatNativeDateModule} from '@angular/material/core';
 import {MatButtonModule} from '@angular/material/button';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {UsersService} from './shared/users.service';
-import { RewardsComponent } from './components/rewards/rewards.component';
+import {RewardtableComponent} from './components/rewardtable/rewardtable.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
@@ -46,7 +46,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     UsersListComponent,
     UsersItemComponent,
     UsersDetailComponent,
-    RewardsComponent,
+    RewardtableComponent,
     StatisticsComponent,
     PopUpComponent,
     CreateUserComponent,
