@@ -6,8 +6,11 @@
            style="max-width: 150px">
     </div>
     <div class="pull-right">
-      <button *ngIf="!canEditCode" class="btn btn-default" (click)="onEditClick()"><i class="glyphicon glyphicon-pencil"
-      ></i> Edit
+      <button *ngIf="!canEditCode" class="btn btn-default"
+             [routerLink]="['edit']">
+<!--              (click)="onEditClick()" >-->
+        <i class="glyphicon glyphicon-pencil"></i>
+        Edit
       </button>
       <button class="btn btn-default"><i class="glyphicon glyphicon-trash"></i> Delete</button>
     </div>
@@ -98,6 +101,7 @@
         </div>
       </div>
     </ng-template>
+
     <ng-template #editData>
       <div class="row">
         <div class="col-xs-12">

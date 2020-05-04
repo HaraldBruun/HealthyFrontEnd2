@@ -33,6 +33,7 @@ import {HttpClientModule} from '@angular/common/http';
 import {NgxChartsModule} from '@swimlane/ngx-charts';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {AppRouting} from "./app.routing";
+import { UsersEditComponent } from './components/users/users-edit/users-edit.component';
 
 
 @NgModule({
@@ -51,6 +52,7 @@ import {AppRouting} from "./app.routing";
     StatisticsComponent,
     PopUpComponent,
     CreateUserComponent,
+    UsersEditComponent,
   ],
   imports: [
     BrowserModule,

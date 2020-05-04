@@ -1,0 +1,56 @@
+<div class="row">
+  <div class="col-xs-12">
+    <input [(ngModel)]="dummyUser.personalInfo.firstName" type="text" class="form-control">
+  </div>
+
+  <div class="col-xs-12">
+    <input [(ngModel)]="dummyUser.username" type="text" class="form-control refreshSpecial">
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+    <p>{{  dummyUser.personalInfo.dateOfBirth | date:'dd/MM/yyyy' }}</p>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+    <p>??</p>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+    <p>??</p>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+    <p>{{ dummyUser.physique.weight }}</p>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+    <p>{{ dummyUser.physique.height}}</p>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12"> *empty line*
+  </div>
+</div>
+
+<!--Edit
+ buttons to confirm-->
+<div class="row">
+  <div class="col-xs-3"></div>
+  <div class="col-xs-6">
+    <p align="center">
+      <button class="btn btn-success pull-left"
+              (click)="onConfirmClick()">
+        <i class="glyphicon glyphicon-check"></i> Confirm
+      </button>
+      <button class="btn btn-danger pull-right"
+              (click)="onCancelClick()">
+        <i class="glyphicon glyphicon-circle-arrow-left"></i> Cancel
+      </button>
+    </p>
+  </div>
+</div>

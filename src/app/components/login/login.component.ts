@@ -15,6 +15,9 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
+    if (this.loggedIn) {
+      this.router.navigate(['/users']);
+    }
   }
 
   clickOnLoginBtn(user: string, pass: string) {

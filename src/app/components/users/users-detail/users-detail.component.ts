@@ -12,7 +12,7 @@ import {ActivatedRoute, Params} from "@angular/router";
   styleUrls: ['./users-detail.component.css'],
 })
 export class UsersDetailComponent implements OnInit, OnChanges {
-  user: Pupil;
+    user: Pupil;
   dummyUser: Pupil;
   canEditCode = false;
   userSaved = false;
