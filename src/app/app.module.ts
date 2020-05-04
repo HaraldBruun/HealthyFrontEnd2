@@ -1,9 +1,4 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
-import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { StatisticsComponent } from './components/statistics/statistics.component';
-
 import {AppComponent} from './app.component';
 import {HeaderComponent} from './components/header/header.component';
 import {FrameComponent} from './components/frame/frame.component';
@@ -14,7 +9,6 @@ import {UsersComponent} from './components/users/users.component';
 import {UsersListComponent} from './components/users/users-list/users-list.component';
 import {UsersItemComponent} from './components/users/users-list/users-item/users-item.component';
 import {UsersDetailComponent} from './components/users/users-detail/users-detail.component';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatInputModule} from '@angular/material/input';
 import {MatDialogModule} from '@angular/material/dialog';
@@ -32,6 +26,12 @@ import { RewardsComponent } from './components/rewards/rewards.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {NgModule} from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {HttpClientModule} from '@angular/common/http';
+import {NgxChartsModule} from '@swimlane/ngx-charts';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -56,7 +56,6 @@ import { MatSortModule } from '@angular/material/sort';
     HttpClientModule,
     ReactiveFormsModule,
     NgxChartsModule,
-    ReactiveFormsModule,
     FormsModule,
     MatAutocompleteModule,
     MatInputModule,

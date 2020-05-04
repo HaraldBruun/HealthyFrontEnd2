@@ -1,4 +1,3 @@
-import {AfterContentChecked, AfterContentInit, AfterViewInit, Component, ElementRef, OnInit} from '@angular/core';
 import {Pupil} from '../../../shared/user.model';
 import {UsersService} from '../../../shared/users.service';
 import {DatabaseService} from '../../../database.service';
@@ -7,6 +6,7 @@ import {Observable, observable, pipe} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
 import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
 import {CreateUserComponent} from '../create-user/create-user.component';
+import {Component, ElementRef, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-users-list',
