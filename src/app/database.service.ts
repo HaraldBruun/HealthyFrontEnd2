@@ -40,23 +40,7 @@ export class DatabaseService {
   }
 
   saveUser(user: Pupil) {
-    const username = 'changedname';
-    const password = '123123';
-    const uid = 'TestUser123';
-    const first_time = false;
-    const phys = new PhysiqueModel(180, 80, 1);
-    const personal_info = new PersonalinfoModel('Anton', 'Hansen', 'male',
-      123123, 2820);
-    const xp = new ExperienceModel(1, 1, 1, 1, 1,
-      false, false, false, false);
-    let meals: MealModel[];
-    let friends: string[];
-    let activities: string[];
-    let rewards: RewardModel[];
-
-    const new_pupil = new Pupil(username, password, uid, first_time, phys, personal_info, xp,
-      meals, friends, activities, rewards);
-    this.http.post(this.baseUrl + '/saveuser', user)
+    this.http.put(this.baseUrl + '/saveuser', user)
       .toPromise()
       .then((data: JSON) => {
         console.log(data);
@@ -64,12 +48,12 @@ export class DatabaseService {
   }
 
   createUser(user: Pupil) {
-  this.http.put(this.baseUrl + '/createUser', user)
-    .toPromise()
-    .then((data: JSON) => {
-      console.log(data);
-    });
-}
+    this.http.post(this.baseUrl + '/createUser', user)
+      .toPromise()
+      .then((data: JSON) => {
+        console.log(data);
+      });
+  }
 
 
   getUser(userID: string) {

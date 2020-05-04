@@ -4,7 +4,7 @@ import {PopUpComponent} from './pop-up/pop-up.component';
 import {DatabaseService} from '../../../database.service';
 import {UsersService} from '../../../shared/users.service';
 import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
-import {ActivatedRoute, Params} from "@angular/router";
+import {ActivatedRoute, Params, Router} from "@angular/router";
 
 @Component({
   selector: 'app-users-detail',
@@ -83,6 +83,7 @@ export class UsersDetailComponent implements OnInit, OnChanges {
       console.log('The dialog was closed');
       console.log(result);
       if (result === 'SAVE') {
+        this.userSaved = true;
         this.updateUser();
         this.canEditCode = false;
         this.saveChangesToDatabase();

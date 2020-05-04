@@ -34,6 +34,7 @@ import {NgxChartsModule} from '@swimlane/ngx-charts';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {AppRouting} from "./app.routing";
 import { UsersEditComponent } from './components/users/users-edit/users-edit.component';
+import {MatToolbarModule} from '@angular/material/toolbar';
 
 
 @NgModule({
@@ -74,7 +75,8 @@ import { UsersEditComponent } from './components/users/users-edit/users-edit.com
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
-    AppRouting
+    AppRouting,
+    MatToolbarModule
   ],
   providers: [UsersService],
   bootstrap: [AppComponent],
