@@ -10,15 +10,14 @@ import {AuthGuardService} from "./auth.guard.service";
 
 const appRoutes: Routes = [
   {path: '', component: LoginComponent},
-  {
-    path: 'users', component: UsersComponent, canActivate: [AuthGuardService], children: [
+  {path: 'users', component: UsersComponent, canActivate: [AuthGuardService], children: [
       {path: ':id', component: UsersDetailComponent},
       {path: ':id/edit', component: UsersEditComponent}
     ]
   },
   {path: 'statistics', canActivate: [AuthGuardService], component: StatisticsComponent},
   {path: 'rewards', canActivate: [AuthGuardService], component: RewardsComponent},
-  {path: '**', component: UsersComponent}
+  {path: '**', redirectTo: ""}
 ];
 
 @NgModule({

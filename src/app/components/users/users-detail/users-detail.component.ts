@@ -48,4 +48,8 @@ export class UsersDetailComponent implements OnInit, OnChanges {
   initDummyUser() {
     this.dummyUser = <Pupil>JSON.parse(JSON.stringify(this.user));
   }
+
+  onDelete() {
+    confirm('Delete this user?') ? this.databaseService.deleteUser(this.user.uid) : console.log('User not deleted')
+  }
 }

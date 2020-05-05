@@ -13,8 +13,8 @@ import {Router} from "@angular/router";
 @Injectable({providedIn: 'root'})
 export class DatabaseService {
   users: Pupil[];
-  // baseUrl = 'http://35.246.214.109:8080';
-  baseUrl = 'http://localhost:8080';
+  baseUrl = 'http://35.246.214.109:8080';
+  // baseUrl = 'http://localhost:8080';
   private _loggedIn: boolean;
 
   constructor(private http: HttpClient, private usersService: UsersService, private router: Router) {
@@ -79,7 +79,7 @@ export class DatabaseService {
   }
 
   login(user: string, pass: string) {
-    this.http.post('http://localhost:8080/login', {
+    this.http.post(this.baseUrl+ '/login', {
       user: user,
       pass: pass
     })

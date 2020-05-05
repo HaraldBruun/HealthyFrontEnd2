@@ -4,7 +4,7 @@ import {PopUpComponent} from "../users-detail/pop-up/pop-up.component";
 import {MatDialog} from "@angular/material/dialog";
 import {UsersService} from "../../../shared/users.service";
 import {DatabaseService} from "../../../database.service";
-import {ActivatedRoute, Params} from "@angular/router";
+import {ActivatedRoute, Params, Router} from "@angular/router";
 
 @Component({
   selector: 'app-users-edit',
@@ -16,7 +16,8 @@ export class UsersEditComponent implements OnInit {
   dummyUser: Pupil;
   popUpType = '';
 
-  constructor(private route: ActivatedRoute, public dialog: MatDialog, private usersService: UsersService, private databaseService: DatabaseService) {
+  constructor(private route: ActivatedRoute, public dialog: MatDialog,
+              private router: Router, private usersService: UsersService, private databaseService: DatabaseService) {
   }
 
   ngOnInit(): void {
@@ -37,6 +38,8 @@ export class UsersEditComponent implements OnInit {
   onCancelClick() {
     //this.canEditCode = false;
     this.dummyUser = <Pupil>JSON.parse(JSON.stringify(this.user));
+    const id = this.route.snapshot.params['id'];
+    this.router.navigate(['/users/' + id]);
   }
 
   openDialog(): void {
@@ -51,10 +54,11 @@ export class UsersEditComponent implements OnInit {
       console.log(result);
       if (result === 'SAVE') {
         this.updateUser();
-        //this.canEditCode = false;
         this.saveChangesToDatabase();
         console.log(this.user);
         console.log(this.usersService.getUsers());
+        const id = this.route.snapshot.params['id'];
+        this.router.navigate(['/users/' + id]);
       }
     });
   }
