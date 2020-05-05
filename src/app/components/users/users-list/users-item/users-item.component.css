@@ -1,0 +1,8 @@
+.list-group-item.active {
+  background-color: aquamarine;
+  border-color: white;
+  color: #555555;
+}
+.list-group-item.active .list-group-item-text, .list-group-item.active:focus .list-group-item-text, .list-group-item.active:hover .list-group-item-text {
+  color: #555555;
+}

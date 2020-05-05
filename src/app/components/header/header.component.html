@@ -1,7 +1,7 @@
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a style="cursor: pointer" class="navbar-brand"> {{ headerTitle }}</a>
+      <a [routerLink]="['/users']" style="cursor: pointer" class="navbar-brand"> {{ headerTitle }}</a>
     </div>
 
     <div class="collapse navbar-collapse">
@@ -12,6 +12,9 @@
           Statistics </a></li>
         <li routerLinkActive="active"><a [routerLink]="['/rewards']">
           Rewards </a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
       </ul>
     </div>
   </div>

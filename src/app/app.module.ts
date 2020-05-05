@@ -36,7 +36,6 @@ import {AppRouting} from "./app.routing";
 import { UsersEditComponent } from './components/users/users-edit/users-edit.component';
 import {MatToolbarModule} from '@angular/material/toolbar';
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -76,7 +75,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
     MatPaginatorModule,
     MatSortModule,
     AppRouting,
-    MatToolbarModule
+    MatToolbarModule,
   ],
   providers: [UsersService],
   bootstrap: [AppComponent],
