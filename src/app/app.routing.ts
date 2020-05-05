@@ -7,16 +7,23 @@ import {LoginComponent} from "./components/login/login.component";
 import {UsersDetailComponent} from "./components/users/users-detail/users-detail.component";
 import {UsersEditComponent} from "./components/users/users-edit/users-edit.component";
 import {AuthGuardService} from "./auth.guard.service";
+import {CreateUserComponent} from "./components/users/create-user/create-user.component";
 
 const appRoutes: Routes = [
   {path: '', component: LoginComponent},
-  {path: 'users', component: UsersComponent, canActivate: [AuthGuardService], children: [
+  {path: 'users', component: UsersComponent,
+    canActivate: [AuthGuardService],
+    children: [
       {path: ':id', component: UsersDetailComponent},
       {path: ':id/edit', component: UsersEditComponent}
     ]
   },
-  {path: 'statistics', canActivate: [AuthGuardService], component: StatisticsComponent},
-  {path: 'rewards', canActivate: [AuthGuardService], component: RewardsComponent},
+  {path: 'statistics',
+    canActivate: [AuthGuardService],
+    component: StatisticsComponent},
+  {path: 'rewards',
+    canActivate: [AuthGuardService],
+    component: RewardsComponent},
   {path: '**', redirectTo: ""}
 ];
 

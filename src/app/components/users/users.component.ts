@@ -4,6 +4,7 @@ import {Pupil} from '../../shared/user.model';
 import {DatabaseService} from '../../database.service';
 import {CreateUserComponent} from './create-user/create-user.component';
 import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-users',
@@ -14,7 +15,7 @@ export class UsersComponent implements OnInit {
   selectedUser: Pupil;
 
   constructor(private usersService: UsersService, private databaseService: DatabaseService,
-              private elementRef: ElementRef, private dialog: MatDialog) {
+              private elementRef: ElementRef, private dialog: MatDialog, private route: ActivatedRoute) {
   }
 
   ngOnInit(): void {
@@ -22,6 +23,12 @@ export class UsersComponent implements OnInit {
       (user: Pupil) => {
         this.selectedUser = user;
       });
+
+    this.route.queryParams.subscribe(params => {
+      if (params['dialog']) {
+        this.onCreate();
+      }
+    });
   }
 
   onCreate() {
@@ -30,7 +37,6 @@ export class UsersComponent implements OnInit {
     dialogConfig.disableClose = true;
     dialogConfig.width = '60%';
     this.dialog.open(CreateUserComponent, dialogConfig);
-
   }
 
 

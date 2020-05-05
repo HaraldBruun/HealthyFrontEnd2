@@ -9,6 +9,7 @@ import {RewardModel} from '../../../shared/reward.model';
 import {NotificationService} from '../../../shared/notification.service';
 import {MatDialogRef} from '@angular/material/dialog';
 import {UsersService} from '../../../shared/users.service';
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-create-user',
@@ -21,7 +22,8 @@ export class CreateUserComponent implements OnInit {
   newUser: Pupil;
   gender: string;
 
-  constructor(public usersService: UsersService, private databaseService: DatabaseService,
+  constructor(private router: Router, private route: ActivatedRoute,
+              public usersService: UsersService, private databaseService: DatabaseService,
               private notificationService: NotificationService, public dialogRef: MatDialogRef<CreateUserComponent>) {
   }
 
@@ -32,7 +34,7 @@ export class CreateUserComponent implements OnInit {
     this.usersService.form.reset();
     this.dialogRef.close();
     this.usersService.initializeFormGroup();
-
+    this.router.navigate(['/users'])
   }
 
   onSubmit() {

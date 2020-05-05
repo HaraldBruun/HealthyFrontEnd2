@@ -4,7 +4,8 @@
       <app-users-list></app-users-list>
     </div>
     <div class="col-xs-2">
-      <a class="btn btn-success" (click)="onCreate()">
+      <a class="btn btn-success" [routerLink]="['./']" [queryParams]="{dialog: true}">
+<!--         (click)="onCreate()">-->
         <span class="glyphicon glyphicon-plus"></span> Create User
       </a>
     </div>
