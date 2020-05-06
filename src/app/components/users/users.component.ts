@@ -40,4 +40,11 @@ export class UsersComponent implements OnInit {
   }
 
 
+  testAndroid() {
+    this.databaseService.testAndroid('rest@api.dk');
+  }
+
+  testGetUser() {
+    this.databaseService.getUser('rest@api.dk');
+  }
 }

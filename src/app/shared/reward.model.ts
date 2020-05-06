@@ -1,10 +1,10 @@
 export class RewardModel {
   private _name: string;
   private _tier: number;
-  private _resource: string;
+  private _resource: number;
   private _redeemed: boolean;
 
-  constructor(name: string, tier: number, resource: string, redeemed: boolean) {
+  constructor(name: string, tier: number, resource: number, redeemed: boolean) {
     this._name = name;
     this._tier = tier;
     this._resource = resource;
@@ -27,11 +27,11 @@ export class RewardModel {
     this._tier = value;
   }
 
-  get resource(): string {
+  get resource(): number {
     return this._resource;
   }
 
-  set resource(value: string) {
+  set resource(value: number) {
     this._resource = value;
   }
 

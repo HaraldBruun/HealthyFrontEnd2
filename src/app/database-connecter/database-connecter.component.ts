@@ -26,7 +26,7 @@ export class DatabaseConnecterComponent implements OnInit {
   }
 
   getUser(userID: string) {
-    this.databaseService.getUser('heyhey');
+    this.databaseService.testAndroid('heyhey');
     // this.http.get('http://localhost:8080/getuser')
     //   .toPromise()
     //   .then(
