@@ -9,12 +9,14 @@ import {newArray} from '@angular/compiler/src/util';
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpParams} from '@angular/common/http';
 import {Router} from "@angular/router";
+import {JsonObject} from '@angular/compiler-cli/ngcc/src/packages/entry_point';
+import {LoginResponse} from './shared/loginresponse';
 
 @Injectable({providedIn: 'root'})
 export class DatabaseService {
   users: Pupil[];
-  baseUrl = 'http://35.246.214.109:8080';
-  // baseUrl = 'http://localhost:8080';
+  //baseUrl = 'http://35.246.214.109:8080';
+  baseUrl = 'http://localhost:8080';
   private _loggedIn: boolean;
 
   constructor(private http: HttpClient, private usersService: UsersService, private router: Router) {
@@ -79,17 +81,22 @@ export class DatabaseService {
   }
 
   login(user: string, pass: string) {
-    this.http.post(this.baseUrl+ '/login', {
-      user: user,
-      pass: pass
+    this.http.post(this.baseUrl + '/login', {
+      username: user,
+      password: pass
     })
       .toPromise()
-      .then((data: boolean) => {
-        this._loggedIn = data.valueOf();
-        console.log(this._loggedIn);
-        data ? this.router.navigate(['/users']) : alert('Forkert login');
+      .then((loginResponse: LoginResponse) => {
+        console.log(loginResponse);
+        this._loggedIn = loginResponse.allowed;
+        this._loggedIn ? this.router.navigate(['/users']) : alert('Forkert login');
       });
   }
+  //       this._loggedIn = data.valueOf();
+  //       console.log(this._loggedIn);
+  //       data ? this.router.navigate(['/users']) : alert('Forkert login');
+  //     });
+  // }
 
 
   get loggedIn(): boolean {
