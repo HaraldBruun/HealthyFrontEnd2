@@ -54,6 +54,11 @@
     </div>
     <div class="row">
       <div class="col-xs-12">
+        <h3>Activity Level:</h3>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
         <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
           <!-- This is the tree node template for leaf nodes -->
           <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding>
@@ -92,7 +97,7 @@
   <div class="col-xs-8">
       <div class="row">
         <div class="col-xs-12">
-          <h1>{{dummyUser.personalInfo.firstName}}</h1>
+          <h1>{{dummyUser.personalInfo.firstName}} {{dummyUser.personalInfo.lastName}}</h1>
         </div>
         <div class="col-xs-12">
           <h3>{{dummyUser.username}}</h3>
@@ -124,7 +129,8 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-xs-12"> *empty line*
+        <div class="col-xs-12">
+          <h3>{{dummyUser.physique.activityLevel}}</h3>
         </div>
       </div>
   </div>

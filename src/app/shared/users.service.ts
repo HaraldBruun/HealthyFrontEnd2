@@ -56,8 +56,6 @@ export class UsersService {
   private date: Date;
 
   initializeEditGroup(user: Pupil) {
-    console.log('loggin user');
-    console.log(user);
     let gender = '2';
     if (user.personalInfo.gender === 'male') {
       gender = '1';
