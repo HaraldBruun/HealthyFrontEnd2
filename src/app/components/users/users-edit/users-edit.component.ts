@@ -47,6 +47,7 @@ export class UsersEditComponent implements OnInit {
   }
 
   openDialog(): void {
+    console.log('Opened')
     const dialogRef = this.dialog.open(PopUpComponent, {
       data: {
         var: this.popUpType,

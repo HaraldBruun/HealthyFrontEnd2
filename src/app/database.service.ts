@@ -1,8 +1,8 @@
 import {Pupil} from './shared/user.model';
 import {UsersService} from './shared/users.service';
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpErrorResponse, HttpParams} from '@angular/common/http';
-import {Router} from "@angular/router";
+import {HttpClient, HttpErrorResponse, HttpHeaders, HttpParams} from '@angular/common/http';
+import {Data, Router} from "@angular/router";
 import {throwError} from "rxjs";
 import {catchError} from "rxjs/operators";
 
@@ -94,8 +94,6 @@ export class DatabaseService {
   }
 
 
-
-
   deleteUser(userID: string) {
     const httpParams = new HttpParams().set('uid', userID);
     const options = {params: httpParams};
@@ -141,4 +139,26 @@ export class DatabaseService {
   };
 
 
+  testHeader() {
+    const options = {
+      headers: new HttpHeaders({
+        'Authorization': 'my-auth-token'
+      })
+    };
+    this.http.get(this.baseUrl + '/getallusers', options)
+      .toPromise()
+      .then(
+        // (data: Pupil[]) => {
+        //   console.log(data);
+        //   this.users = data;
+        //   this.usersService.addUsers(this.users);
+        // }
+        (data: string) => {
+          console.log(data)
+        }
+      ).catch(this.handleError);
+
+
+
+  }
 }
