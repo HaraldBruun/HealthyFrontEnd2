@@ -7,10 +7,12 @@ import {Pupil} from './shared/user.model';
 import {UsersService} from './shared/users.service';
 import {newArray} from '@angular/compiler/src/util';
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
+import {HttpClient, HttpErrorResponse, HttpHeaders, HttpParams} from '@angular/common/http';
 import {Router} from '@angular/router';
 import {JsonObject} from '@angular/compiler-cli/ngcc/src/packages/entry_point';
 import {LoginResponse} from './shared/loginresponse';
+import {throwError} from 'rxjs';
+import {hostname} from 'os';
 
 
 @Injectable({providedIn: 'root'})
@@ -49,26 +51,24 @@ export class DatabaseService {
       );
   }
 
-  // postManTest() {
-  //   this.http.get(this.baseUrl + '/postmantest', {headers:this.getHeaders()})
-  //     .toPromise()
-  //     .then(
-  //       (data: string) => {
-  //         console.log(data);
-  //       }
-  //     );
-  // }
-  // HVORFOR VIRKER DET HER IKKE ARHHH
-  postManTest() {
-    this.http.get(this.baseUrl + '/postmantest', {headers: new HttpHeaders({Authorization: '123'})})
+  getAllUsersAuth() {
+    const tokenString = 'Bearer ' + this._loginResponse.token.toString();
+    const options = {
+      headers: new HttpHeaders({
+        Authorization: tokenString
+      })
+    };
+    this.usersService.removeAllUsers();
+    this.http.get('http://localhost:8080/getallusers', options)
       .toPromise()
       .then(
-        (data: string) => {
+        (data: Pupil[]) => {
           console.log(data);
+          this.users = data;
+          this.usersService.addUsers(this.users);
         }
-      );
+      ).catch(this.handleError);
   }
-
 
   saveUser(user: Pupil) {
     this.http.put(this.baseUrl + '/saveuser', user)
@@ -145,5 +145,17 @@ export class DatabaseService {
   set loginResponse(value: LoginResponse) {
     this._loginResponse = value;
   }
+
+  private handleError(error: HttpErrorResponse) {
+    if (error.error instanceof ErrorEvent) {
+      console.error('An error occurred:', error.error.message);
+    } else {
+      console.error(
+        `Backend returned code ${error.status}, ` +
+        `body was: ${error.error}`);
+    }
+    return throwError(
+      'Something bad happened; please try again later.');
+  };
 }
 
