@@ -7,20 +7,31 @@ import {Pupil} from './shared/user.model';
 import {UsersService} from './shared/users.service';
 import {newArray} from '@angular/compiler/src/util';
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpParams} from '@angular/common/http';
-import {Router} from "@angular/router";
+import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
+import {Router} from '@angular/router';
 import {JsonObject} from '@angular/compiler-cli/ngcc/src/packages/entry_point';
 import {LoginResponse} from './shared/loginresponse';
+
 
 @Injectable({providedIn: 'root'})
 export class DatabaseService {
   users: Pupil[];
-  //baseUrl = 'http://35.246.214.109:8080';
+  // baseUrl = 'http://35.246.214.109:8080';
   baseUrl = 'http://localhost:8080';
+  private _loginResponse: LoginResponse;
   private _loggedIn: boolean;
 
   constructor(private http: HttpClient, private usersService: UsersService, private router: Router) {
     console.log('Service created');
+  }
+
+  public getHeaders(): HttpHeaders {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${this._loginResponse.token}`,
+      'Access-Control-Allow-Origin': '*'
+    });
+    return headers;
   }
 
   getAllUsers() {
@@ -30,10 +41,20 @@ export class DatabaseService {
       .then(
         (data: Pupil[]) => {
           console.log(data);
-          //console.log(data.slice(0, 1));
+          // console.log(data.slice(0, 1));
           this.users = data;
-          //console.log(this.users.slice(0, 1));
+          // console.log(this.users.slice(0, 1));
           this.usersService.addUsers(this.users);
+        }
+      );
+  }
+
+  postManTest() {
+    this.http.get(this.baseUrl + '/postmantest', {headers:this.getHeaders()})
+      .toPromise()
+      .then(
+        (data: string) => {
+          console.log(data);
         }
       );
   }
@@ -88,10 +109,13 @@ export class DatabaseService {
       .toPromise()
       .then((loginResponse: LoginResponse) => {
         console.log(loginResponse);
-        this._loggedIn = loginResponse.allowed;
+        this._loginResponse = loginResponse;
+        this._loggedIn = this._loginResponse.allowed;
+        console.log(this._loggedIn);
         this._loggedIn ? this.router.navigate(['/users']) : alert('Forkert login');
       });
   }
+
   //       this._loggedIn = data.valueOf();
   //       console.log(this._loggedIn);
   //       data ? this.router.navigate(['/users']) : alert('Forkert login');
@@ -101,6 +125,14 @@ export class DatabaseService {
 
   get loggedIn(): boolean {
     return this._loggedIn;
+  }
+
+  get loginResponse(): LoginResponse {
+    return this._loginResponse;
+  }
+
+  set loginResponse(value: LoginResponse) {
+    this._loginResponse = value;
   }
 }
 

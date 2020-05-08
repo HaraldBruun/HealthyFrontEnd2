@@ -13,6 +13,7 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.databaseService.postManTest();
   }
 
   clickOnLoginBtn(user: string, pass: string) {
