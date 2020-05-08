@@ -1,12 +1,12 @@
 export class PhysiqueModel {
   private _height: number;
   private _weight: number;
-  private _activity_Level: number
+  private _activityLevel: number
 
   constructor(height: number, weight: number, activity_level: number) {
     this._height = height;
     this._weight = weight;
-    this._activity_Level = activity_level;
+    this._activityLevel = activity_level;
   }
 
   get height(): number {
@@ -25,11 +25,11 @@ export class PhysiqueModel {
     this._weight = value;
   }
 
-  get activity_Level(): number {
-    return this._activity_Level;
+  get activityLevel(): number {
+    return this._activityLevel;
   }
 
-  set activity_Level(value: number) {
-    this._activity_Level = value;
+  set activityLevel(value: number) {
+    this._activityLevel = value;
   }
 }

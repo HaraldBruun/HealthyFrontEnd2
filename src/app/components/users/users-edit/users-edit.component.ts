@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {Pupil} from "../../../shared/user.model";
-import {PopUpComponent} from "../users-detail/pop-up/pop-up.component";
-import {MatDialog} from "@angular/material/dialog";
-import {UsersService} from "../../../shared/users.service";
-import {DatabaseService} from "../../../database.service";
-import {ActivatedRoute, Params, Router} from "@angular/router";
+import {Pupil} from '../../../shared/user.model';
+import {PopUpComponent} from '../users-detail/pop-up/pop-up.component';
+import {MatDialog} from '@angular/material/dialog';
+import {UsersService} from '../../../shared/users.service';
+import {DatabaseService} from '../../../database.service';
+import {ActivatedRoute, Params, Router} from '@angular/router';
 
 @Component({
   selector: 'app-users-edit',
@@ -15,9 +15,11 @@ export class UsersEditComponent implements OnInit {
   user: Pupil;
   dummyUser: Pupil;
   popUpType = '';
+  minDate = new Date(1900, 0, 1);
+  maxDate = new Date(new Date().setDate(new Date().getDate() - 1));
 
   constructor(private route: ActivatedRoute, public dialog: MatDialog,
-              private router: Router, private usersService: UsersService, private databaseService: DatabaseService) {
+              private router: Router, public usersService: UsersService, private databaseService: DatabaseService) {
   }
 
   ngOnInit(): void {
@@ -28,6 +30,7 @@ export class UsersEditComponent implements OnInit {
         this.initDummyUser();
       }
     );
+    this.usersService.initializeEditGroup(this.dummyUser);
   }
 
   onConfirmClick() {
@@ -37,7 +40,7 @@ export class UsersEditComponent implements OnInit {
 
   onCancelClick() {
     //this.canEditCode = false;
-    this.dummyUser = <Pupil>JSON.parse(JSON.stringify(this.user));
+    this.dummyUser = <Pupil> JSON.parse(JSON.stringify(this.user));
     const id = this.route.snapshot.params['id'];
     this.router.navigate(['/users/' + id]);
   }
@@ -55,8 +58,6 @@ export class UsersEditComponent implements OnInit {
       if (result === 'SAVE') {
         this.updateUser();
         this.saveChangesToDatabase();
-        console.log(this.user);
-        console.log(this.usersService.getUsers());
         const id = this.route.snapshot.params['id'];
         this.router.navigate(['/users/' + id]);
       }
@@ -80,10 +81,11 @@ export class UsersEditComponent implements OnInit {
   }
 
   initDummyUser() {
-    this.dummyUser = <Pupil>JSON.parse(JSON.stringify(this.user));
+    this.dummyUser = <Pupil> JSON.parse(JSON.stringify(this.user));
   }
 
   saveChangesToDatabase() {
+    console.log(this.user);
     this.databaseService.saveUser(this.user);
   }
 

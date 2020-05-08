@@ -1,56 +1,79 @@
-<div class="row">
-  <div class="col-xs-12">
-    <input [(ngModel)]="dummyUser.personalInfo.firstName" type="text" class="form-control">
-  </div>
+<form [formGroup]="usersService.formEdit" (submit)="onConfirmClick()">
+  <div class="cont-container">
+    <mat-form-field>
+      <input formControlName="firstName" matInput placeholder="First Name">
+      <mat-error>Please write your first name.</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input formControlName="lastName" matInput placeholder="Last Name">
+      <mat-error>Please write your last name.</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input formControlName="userName" matInput placeholder="E-mail">
+      <mat-error>Please write a correct email.</mat-error>
+    </mat-form-field>
+    <div class="add-topbottom-padding">
+      <mat-radio-group formControlName="gender">
+        <mat-radio-button value="1">Male</mat-radio-button>
+        <mat-radio-button value="2">Female</mat-radio-button>
+      </mat-radio-group>
+    </div>
+    <mat-form-field>
+      <input formControlName="dateOfBirth" matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker"
+             placeholder="Date Of Birth">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+      <mat-error>Insert correct date of birth. Please Use date picker.</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input type="number" formControlName="weight" matInput placeholder="Weight">
+      <mat-error *ngIf="usersService.form.controls['weight'].errors?.required"> Please insert weight</mat-error>
+      <mat-error *ngIf="usersService.form.controls['weight'].errors?.min">Please positive weight.</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input type="number" formControlName="height" matInput placeholder="Height">
+      <mat-error *ngIf="usersService.form.controls['height'].errors?.required"> Please insert height</mat-error>
+      <mat-error *ngIf="usersService.form.controls['height'].errors?.min">Please positive height.</mat-error>
+    </mat-form-field>
+    <h3>Activity Level:</h3>
+    <div class="add-bottom-padding">
+      <mat-radio-group formControlName="activityLevel">
+        <mat-radio-button value="1">1</mat-radio-button>
+        <mat-radio-button value="2">2</mat-radio-button>
+        <mat-radio-button value="3">3</mat-radio-button>
+        <mat-radio-button value="4">4</mat-radio-button>
+        <mat-radio-button value="5">5</mat-radio-button>
+      </mat-radio-group>
+    </div>
+    <mat-form-field>
+      <input type="number" formControlName="nutritionXP" matInput placeholder="Nutrition Experience">
+      <mat-error>Please Enter Experience Points</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input type="number" formControlName="activityXP" matInput placeholder="Activity Experience">
+      <mat-error>Please Enter Experience Points</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input type="number" formControlName="socialXP" matInput placeholder="Social Experience">
+      <mat-error>Please Enter Experience Points</mat-error>
+    </mat-form-field>
 
-  <div class="col-xs-12">
-    <input [(ngModel)]="dummyUser.username" type="text" class="form-control refreshSpecial">
+    <!--Edit
+     buttons to confirm-->
+    <div class="row">
+      <div class="col-xs-3"></div>
+      <div class="col-xs-6">
+        <p align="center">
+          <button class="btn btn-success pull-left"
+                  (click)="onConfirmClick()" [disabled]="usersService.formEdit.invalid">
+            <i class="glyphicon glyphicon-check"></i> Confirm
+          </button>
+          <button class="btn btn-danger pull-right"
+                  (click)="onCancelClick()">
+            <i class="glyphicon glyphicon-circle-arrow-left"></i> Cancel
+          </button>
+        </p>
+      </div>
+    </div>
   </div>
-</div>
-<div class="row">
-  <div class="col-xs-12">
-    <p>{{  dummyUser.personalInfo.dateOfBirth | date:'dd/MM/yyyy' }}</p>
-  </div>
-</div>
-<div class="row">
-  <div class="col-xs-12">
-    <p>??</p>
-  </div>
-</div>
-<div class="row">
-  <div class="col-xs-12">
-    <p>??</p>
-  </div>
-</div>
-<div class="row">
-  <div class="col-xs-12">
-    <p>{{ dummyUser.physique.weight }}</p>
-  </div>
-</div>
-<div class="row">
-  <div class="col-xs-12">
-    <p>{{ dummyUser.physique.height}}</p>
-  </div>
-</div>
-<div class="row">
-  <div class="col-xs-12"> *empty line*
-  </div>
-</div>
-
-<!--Edit
- buttons to confirm-->
-<div class="row">
-  <div class="col-xs-3"></div>
-  <div class="col-xs-6">
-    <p align="center">
-      <button class="btn btn-success pull-left"
-              (click)="onConfirmClick()">
-        <i class="glyphicon glyphicon-check"></i> Confirm
-      </button>
-      <button class="btn btn-danger pull-right"
-              (click)="onCancelClick()">
-        <i class="glyphicon glyphicon-circle-arrow-left"></i> Cancel
-      </button>
-    </p>
-  </div>
-</div>
+</form>
