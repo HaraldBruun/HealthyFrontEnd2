@@ -58,7 +58,7 @@ export class DatabaseService {
   //       }
   //     );
   // }
-  // HVOIRFOR FUCK VIRKER DET HER IKKE
+  // HVORFOR VIRKER DET HER IKKE ARHHH
   postManTest() {
     this.http.get(this.baseUrl + '/postmantest', {headers: new HttpHeaders({Authorization: '123'})})
       .toPromise()
