@@ -13,7 +13,6 @@ import {JsonObject} from '@angular/compiler-cli/ngcc/src/packages/entry_point';
 import {LoginResponse} from './shared/loginresponse';
 import {throwError} from 'rxjs';
 
-
 @Injectable({providedIn: 'root'})
 export class DatabaseService {
   users: Pupil[];
