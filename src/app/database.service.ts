@@ -64,21 +64,36 @@ export class DatabaseService {
       }).catch(this.handleError);
   }
 
+  // getUser(userID: string) {
+  //   // const httpParams = new HttpParams().set('uid', userID);
+  //   // const options = {params: httpParams};
+  //   const user = 'rest@api.dk';
+  //   const pass = '123123'
+  //
+  //   this.http.post(this.baseUrl + '/getuser', "TestUser123"
+  //   )
+  //     .toPromise()
+  //     .then((data: boolean) => {
+  //       this._loggedIn = data.valueOf();
+  //       console.log(this._loggedIn);
+  //     }).catch(this.handleError);
+  // }
+
   getUser(userID: string) {
-    // const httpParams = new HttpParams().set('uid', userID);
-    // const options = {params: httpParams};
-    const user = 'rest@api.dk';
-    const pass = '123123'
+    const httpParams = new HttpParams().set('uid', userID);
+    const options = {params: httpParams};
+    // const user = 'rest@api.dk';
+    // const pass = '123123'
 
-
-    this.http.post(this.baseUrl + '/getuser', "TestUser123"
+    this.http.get(this.baseUrl + '/getuser', options
     )
       .toPromise()
-      .then((data: boolean) => {
-        this._loggedIn = data.valueOf();
-        console.log(this._loggedIn);
+      .then((data: Pupil) => {
+        console.log(data);
       }).catch(this.handleError);
   }
+
+
 
 
   deleteUser(userID: string) {
