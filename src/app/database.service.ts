@@ -49,8 +49,18 @@ export class DatabaseService {
       );
   }
 
+  // postManTest() {
+  //   this.http.get(this.baseUrl + '/postmantest', {headers:this.getHeaders()})
+  //     .toPromise()
+  //     .then(
+  //       (data: string) => {
+  //         console.log(data);
+  //       }
+  //     );
+  // }
+  // HVOIRFOR FUCK VIRKER DET HER IKKE
   postManTest() {
-    this.http.get(this.baseUrl + '/postmantest', {headers:this.getHeaders()})
+    this.http.get(this.baseUrl + '/postmantest', {headers: new HttpHeaders({Authorization: '123'})})
       .toPromise()
       .then(
         (data: string) => {
@@ -58,6 +68,7 @@ export class DatabaseService {
         }
       );
   }
+
 
   saveUser(user: Pupil) {
     this.http.put(this.baseUrl + '/saveuser', user)
