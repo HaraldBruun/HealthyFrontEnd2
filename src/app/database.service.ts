@@ -10,9 +10,8 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpErrorResponse, HttpHeaders, HttpParams} from '@angular/common/http';
 import {Router} from '@angular/router';
 import {JsonObject} from '@angular/compiler-cli/ngcc/src/packages/entry_point';
-import {LoginResponse} from './shared/loginresponse';
 import {throwError} from 'rxjs';
-import {hostname} from 'os';
+import {LoginResponse} from "./shared/loginresponse";
 
 
 @Injectable({providedIn: 'root'})
