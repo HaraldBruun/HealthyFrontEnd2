@@ -12,7 +12,6 @@ import {Router} from '@angular/router';
 import {JsonObject} from '@angular/compiler-cli/ngcc/src/packages/entry_point';
 import {LoginResponse} from './shared/loginresponse';
 import {throwError} from 'rxjs';
-import {hostname} from 'os';
 
 
 @Injectable({providedIn: 'root'})
@@ -36,22 +35,22 @@ export class DatabaseService {
     return headers;
   }
 
-  getAllUsers() {
-    this.usersService.removeAllUsers();
-    this.http.get(this.baseUrl + '/getallusers')
-      .toPromise()
-      .then(
-        (data: Pupil[]) => {
-          console.log(data);
-          // console.log(data.slice(0, 1));
-          this.users = data;
-          // console.log(this.users.slice(0, 1));
-          this.usersService.addUsers(this.users);
-        }
-      );
-  }
+  // getAllUsers() {
+  //   this.usersService.removeAllUsers();
+  //   this.http.get(this.baseUrl + '/getallusers')
+  //     .toPromise()
+  //     .then(
+  //       (data: Pupil[]) => {
+  //         console.log(data);
+  //         // console.log(data.slice(0, 1));
+  //         this.users = data;
+  //         // console.log(this.users.slice(0, 1));
+  //         this.usersService.addUsers(this.users);
+  //       }
+  //     );
+  // }
 
-  getAllUsersAuth() {
+  getAllUsers() {
     const tokenString = 'Bearer ' + this._loginResponse.token.toString();
     const options = {
       headers: new HttpHeaders({
@@ -59,7 +58,7 @@ export class DatabaseService {
       })
     };
     this.usersService.removeAllUsers();
-    this.http.get('http://localhost:8080/getallusers', options)
+    this.http.get(this.baseUrl + '/getallusers', options)
       .toPromise()
       .then(
         (data: Pupil[]) => {

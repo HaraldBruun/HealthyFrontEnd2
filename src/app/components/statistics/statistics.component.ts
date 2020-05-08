@@ -113,6 +113,5 @@ export class StatisticsComponent implements OnInit {
       'value': 8
     });
     this.single = [...this.single];
-    this.databaseService.getAllUsersAuth();
   }
 }
