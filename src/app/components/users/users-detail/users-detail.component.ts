@@ -5,6 +5,33 @@ import {DatabaseService} from '../../../database.service';
 import {UsersService} from '../../../shared/users.service';
 import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {ActivatedRoute, Params, Router} from "@angular/router";
+import {FlatTreeControl} from '@angular/cdk/tree';
+import {MatTreeFlatDataSource, MatTreeFlattener} from '@angular/material/tree';
+
+interface ExperienceNode {
+  name: string;
+  children?: ExperienceNode[];
+}
+const TREE_DATA: ExperienceNode[] = [
+  {
+    name: 'Experience',
+    children: [
+      //14
+      {name: 'Nutrition XP: '},
+      //13
+      {name: 'Activity XP: '},
+      //11
+      {name: 'Social XP: ' },
+    ]
+  },
+];
+
+/** Flat node with expandable and level information */
+interface FlatNode {
+  expandable: boolean;
+  name: string;
+  level: number;
+}
 
 @Component({
   selector: 'app-users-detail',
@@ -12,6 +39,21 @@ import {ActivatedRoute, Params, Router} from "@angular/router";
   styleUrls: ['./users-detail.component.css'],
 })
 export class UsersDetailComponent implements OnInit, OnChanges {
+  private _transformer = (node: ExperienceNode, level: number) => {
+    return {
+      expandable: !!node.children && node.children.length > 0,
+      name: node.name,
+      level: level,
+    };
+  }
+
+  treeControl = new FlatTreeControl<FlatNode>(
+    node => node.level, node => node.expandable);
+
+  treeFlattener = new MatTreeFlattener(
+    this._transformer, node => node.level, node => node.expandable, node => node.children);
+
+  dataSource = new MatTreeFlatDataSource(this.treeControl, this.treeFlattener);
   user: Pupil;
   dummyUser: Pupil;
   canEditCode = false;
@@ -19,7 +61,10 @@ export class UsersDetailComponent implements OnInit, OnChanges {
 
   constructor(private usersService: UsersService, private databaseService: DatabaseService,
               private route: ActivatedRoute) {
+    this.dataSource.data = TREE_DATA;
   }
+
+  hasChild = (_: number, node: FlatNode) => node.expandable;
 
   ngOnInit(): void {
 
@@ -53,7 +98,6 @@ export class UsersDetailComponent implements OnInit, OnChanges {
     confirm('Delete this user?') ? this.databaseService.deleteUser(this.user.uid) : console.log('User not deleted')
   }
 
-  onGetUser() {
-    this.databaseService.getUser(this.user.uid);
-  }
+
+
 }

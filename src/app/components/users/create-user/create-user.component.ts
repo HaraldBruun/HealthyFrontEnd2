@@ -34,7 +34,7 @@ export class CreateUserComponent implements OnInit {
     this.usersService.form.reset();
     this.dialogRef.close();
     this.usersService.initializeFormGroup();
-    this.router.navigate(['/users'])
+    this.router.navigate(['/users']);
   }
 
   onSubmit() {
