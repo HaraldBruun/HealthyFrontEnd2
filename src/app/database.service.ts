@@ -25,30 +25,6 @@ export class DatabaseService {
     console.log('Service created');
   }
 
-  public getHeaders(): HttpHeaders {
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${this._loginResponse.token}`,
-      'Access-Control-Allow-Origin': '*'
-    });
-    return headers;
-  }
-
-  // getAllUsers() {
-  //   this.usersService.removeAllUsers();
-  //   this.http.get(this.baseUrl + '/getallusers')
-  //     .toPromise()
-  //     .then(
-  //       (data: Pupil[]) => {
-  //         console.log(data);
-  //         // console.log(data.slice(0, 1));
-  //         this.users = data;
-  //         // console.log(this.users.slice(0, 1));
-  //         this.usersService.addUsers(this.users);
-  //       }
-  //     );
-  // }
-
   getAllUsers() {
     const tokenString = 'Bearer ' + this._loginResponse.token.toString();
     const options = {
@@ -73,7 +49,7 @@ export class DatabaseService {
       .toPromise()
       .then((data: JSON) => {
         console.log(data);
-      });
+      }).catch(this.handleError);
   }
 
   createUser(user: Pupil) {
@@ -81,19 +57,56 @@ export class DatabaseService {
       .toPromise()
       .then((data: JSON) => {
         console.log(data);
-      });
+      }).catch(this.handleError);
   }
 
+
+  testAndroid(userID: string) {
+    // const httpParams = new HttpParams().set('uid', userID);
+    // const options = {params: httpParams};
+    const user = 'rest@api.dk';
+    const pass = '123123'
+
+    this.http.post(this.baseUrl + '/androidlogin', {
+      user: user,
+      pass: pass
+    })
+      .toPromise()
+      .then((data: boolean) => {
+        this._loggedIn = data.valueOf();
+        console.log(this._loggedIn);
+      }).catch(this.handleError);
+  }
+
+  // getUser(userID: string) {
+  //   // const httpParams = new HttpParams().set('uid', userID);
+  //   // const options = {params: httpParams};
+  //   const user = 'rest@api.dk';
+  //   const pass = '123123'
+  //
+  //   this.http.post(this.baseUrl + '/getuser', "TestUser123"
+  //   )
+  //     .toPromise()
+  //     .then((data: boolean) => {
+  //       this._loggedIn = data.valueOf();
+  //       console.log(this._loggedIn);
+  //     }).catch(this.handleError);
+  // }
 
   getUser(userID: string) {
-    this.http.get(this.baseUrl + '/getuser')
+    const httpParams = new HttpParams().set('uid', userID);
+    const options = {params: httpParams};
+    // const user = 'rest@api.dk';
+    // const pass = '123123'
+
+    this.http.get(this.baseUrl + '/getuser', options
+    )
       .toPromise()
-      .then(
-        (data: string) => {
-          console.log(data);
-        }
-      );
+      .then((data: Pupil) => {
+        console.log(data);
+      }).catch(this.handleError);
   }
+
 
   deleteUser(userID: string) {
     const httpParams = new HttpParams().set('uid', userID);
@@ -106,7 +119,7 @@ export class DatabaseService {
         (data: boolean) => {
           console.log(data);
         }
-      );
+      ).catch(this.handleError);
     console.log('Deleting ' + userID);
   }
 
@@ -125,12 +138,17 @@ export class DatabaseService {
       });
   }
 
-  //       this._loggedIn = data.valueOf();
-  //       console.log(this._loggedIn);
-  //       data ? this.router.navigate(['/users']) : alert('Forkert login');
-  //     });
-  // }
-
+  private handleError(error: HttpErrorResponse) {
+    if (error.error instanceof ErrorEvent) {
+      console.error('An error occurred:', error.error.message);
+    } else {
+      console.error(
+        `Backend returned code ${error.status}, ` +
+        `body was: ${error.error}`);
+    }
+    return throwError(
+      'Something bad happened; please try again later.');
+  }
 
   get loggedIn(): boolean {
     return this._loggedIn;
@@ -142,18 +160,6 @@ export class DatabaseService {
 
   set loginResponse(value: LoginResponse) {
     this._loginResponse = value;
-  }
-
-  private handleError(error: HttpErrorResponse) {
-    if (error.error instanceof ErrorEvent) {
-      console.error('An error occurred:', error.error.message);
-    } else {
-      console.error(
-        `Backend returned code ${error.status}, ` +
-        `body was: ${error.error}`);
-    }
-    return throwError(
-      'Something bad happened; please try again later.');
   }
 }
 

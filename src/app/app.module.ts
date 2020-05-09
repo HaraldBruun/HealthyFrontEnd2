@@ -1,4 +1,4 @@
-import { StatisticsComponent } from './components/statistics/statistics.component';
+import {StatisticsComponent} from './components/statistics/statistics.component';
 import {AppComponent} from './app.component';
 import {HeaderComponent} from './components/header/header.component';
 import {FrameComponent} from './components/frame/frame.component';
@@ -22,19 +22,22 @@ import {MatNativeDateModule} from '@angular/material/core';
 import {MatButtonModule} from '@angular/material/button';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {UsersService} from './shared/users.service';
-import { RewardsComponent } from './components/rewards/rewards.component';
-import { MatTableModule } from '@angular/material/table';
-import { MatPaginatorModule } from '@angular/material/paginator';
-import { MatSortModule } from '@angular/material/sort';
+import {RewardsComponent} from './components/rewards/rewards.component';
+import {MatTableModule} from '@angular/material/table';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatSortModule} from '@angular/material/sort';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {NgxChartsModule} from '@swimlane/ngx-charts';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {AppRouting} from "./app.routing";
-import { UsersEditComponent } from './components/users/users-edit/users-edit.component';
+import {AppRouting} from './app.routing';
+import {UsersEditComponent} from './components/users/users-edit/users-edit.component';
 import {MatToolbarModule} from '@angular/material/toolbar';
+import {ScrollingModule} from '@angular/cdk/scrolling';
+import {MatTreeModule} from '@angular/material/tree';
+import {MatIconModule} from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -76,6 +79,9 @@ import {MatToolbarModule} from '@angular/material/toolbar';
     MatSortModule,
     AppRouting,
     MatToolbarModule,
+    ScrollingModule,
+    MatTreeModule,
+    MatIconModule
   ],
   providers: [UsersService,
     // {

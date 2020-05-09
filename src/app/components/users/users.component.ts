@@ -4,7 +4,7 @@ import {Pupil} from '../../shared/user.model';
 import {DatabaseService} from '../../database.service';
 import {CreateUserComponent} from './create-user/create-user.component';
 import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Params} from "@angular/router";
 
 @Component({
   selector: 'app-users',
@@ -40,4 +40,7 @@ export class UsersComponent implements OnInit {
   }
 
 
+  testHeader() {
+    this.databaseService.testHeader();
+  }
 }

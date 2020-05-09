@@ -12,7 +12,7 @@ export class UsersService {
   constructor() {
   }
 
-    form: FormGroup = new FormGroup({
+  form: FormGroup = new FormGroup({
     $key: new FormControl(null),
     firstName: new FormControl('', Validators.required),
     lastName: new FormControl('', Validators.required),
@@ -35,6 +35,53 @@ export class UsersService {
       height: '',
       activityLevel: '1',
       dateOfBirth: new Date()
+    });
+  }
+
+  formEdit: FormGroup = new FormGroup({
+    $key: new FormControl(null),
+    firstName: new FormControl('', Validators.required),
+    lastName: new FormControl('', Validators.required),
+    userName: new FormControl('', [Validators.required, Validators.email]),
+    gender: new FormControl('1', Validators.required),
+    weight: new FormControl('', [Validators.required, Validators.min(0)]),
+    height: new FormControl('', [Validators.required, Validators.min(0)]),
+    activityLevel: new FormControl('1', Validators.required),
+    dateOfBirth: new FormControl(new Date()),
+    nutritionXP: new FormControl('', Validators.required),
+    activityXP: new FormControl('', Validators.required),
+    socialXP: new FormControl('', Validators.required)
+  });
+
+  private date: Date;
+
+  initializeEditGroup(user: Pupil) {
+    let gender = '2';
+    if (user.personalInfo.gender === 'male') {
+      gender = '1';
+    }
+    console.log(user.physique.activityLevel);
+    const activityLevel = user.physique.activityLevel.toString();
+    const nutritionXPString = user.experience.nutritionXP.toString();
+    const activityXPString = user.experience.activityXP.toString();
+    const socialXPString = user.experience.socialXP.toString();
+
+    console.log(gender.valueOf());
+    this.date = new Date();
+    this.date.setDate(user.personalInfo.dateOfBirth);
+    this.formEdit.setValue({
+      $key: null,
+      firstName: user.personalInfo.firstName,
+      lastName: user.personalInfo.lastName,
+      userName: user.username,
+      gender: gender.valueOf(),
+      weight: user.physique.weight,
+      height: user.physique.height,
+      activityLevel: activityLevel.valueOf(),
+      dateOfBirth: new Date(user.personalInfo.dateOfBirth),
+      nutritionXP: nutritionXPString.valueOf(),
+      activityXP: activityXPString.valueOf(),
+      socialXP: socialXPString.valueOf(),
     });
   }
 
