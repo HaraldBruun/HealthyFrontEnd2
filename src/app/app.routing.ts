@@ -7,6 +7,7 @@ import {LoginComponent} from "./components/login/login.component";
 import {UsersDetailComponent} from "./components/users/users-detail/users-detail.component";
 import {UsersEditComponent} from "./components/users/users-edit/users-edit.component";
 import {AuthGuardService} from "./auth.guard.service";
+import {CanDeactivateGuard} from './components/users/users-edit/can-deactivate-guard.service';
 
 const appRoutes: Routes = [
   {path: '', component: LoginComponent},
@@ -14,7 +15,7 @@ const appRoutes: Routes = [
     canActivate: [AuthGuardService],
     children: [
       {path: ':id', component: UsersDetailComponent},
-      {path: ':id/edit', component: UsersEditComponent}
+      {path: ':id/edit', component: UsersEditComponent, canDeactivate: [CanDeactivateGuard]}
     ]
   },
 

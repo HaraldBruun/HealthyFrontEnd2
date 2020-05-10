@@ -38,6 +38,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {ScrollingModule} from '@angular/cdk/scrolling';
 import {MatTreeModule} from '@angular/material/tree';
 import {MatIconModule} from '@angular/material/icon';
+import {CanDeactivateGuard} from './components/users/users-edit/can-deactivate-guard.service';
 
 @NgModule({
   declarations: [
@@ -83,13 +84,7 @@ import {MatIconModule} from '@angular/material/icon';
     MatTreeModule,
     MatIconModule
   ],
-  providers: [UsersService,
-    // {
-    //   provide : HTTP_INTERCEPTORS,
-    //   useClass: AuthInterceptor,
-    //   multi   : true,
-    // }
-    ],
+  providers: [UsersService, CanDeactivateGuard],
   bootstrap: [AppComponent],
   entryComponents: [CreateUserComponent]
 })

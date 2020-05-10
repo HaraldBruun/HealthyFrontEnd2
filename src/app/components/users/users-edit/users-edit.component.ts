@@ -5,16 +5,19 @@ import {MatDialog} from '@angular/material/dialog';
 import {UsersService} from '../../../shared/users.service';
 import {DatabaseService} from '../../../database.service';
 import {ActivatedRoute, Params, Router} from '@angular/router';
+import {CanComponentDeactivate} from './can-deactivate-guard.service';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-users-edit',
   templateUrl: './users-edit.component.html',
   styleUrls: ['./users-edit.component.css']
 })
-export class UsersEditComponent implements OnInit {
+export class UsersEditComponent implements OnInit, CanComponentDeactivate{
   user: Pupil;
   dummyUser: Pupil;
   popUpType = '';
+  updatesSaved = false;
   minDate = new Date(1900, 0, 1);
   maxDate = new Date(new Date().setDate(new Date().getDate() - 1));
   private gender: string;
@@ -35,9 +38,15 @@ export class UsersEditComponent implements OnInit {
   }
 
   onConfirmClick() {
-    this.popUpType = 'SAVE';
-    this.openDialog();
+    this.updatesSaved = true;
+    this.updateUser();
+    this.saveChangesToDatabase();
+    this.router.navigate(['../'], {relativeTo: this.route});
+    //this.popUpType = 'SAVE';
+    //this.openDialog();
   }
+
+  canDeactivate: Observable<boolean> | Promise<boolean> | boolean
 
   onCancelClick() {
     //this.canEditCode = false;
