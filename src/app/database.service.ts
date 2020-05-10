@@ -53,7 +53,7 @@ export class DatabaseService {
   }
 
   createUser(user: Pupil) {
-    this.http.post(this.baseUrl + '/createUser', user)
+    this.http.post(this.baseUrl + '/createuser', user)
       .toPromise()
       .then((data: JSON) => {
         console.log(data);

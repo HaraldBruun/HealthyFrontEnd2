@@ -22,7 +22,6 @@ import {MatNativeDateModule} from '@angular/material/core';
 import {MatButtonModule} from '@angular/material/button';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {UsersService} from './shared/users.service';
-import {RewardsComponent} from './components/rewards/rewards.component';
 import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatSortModule} from '@angular/material/sort';
@@ -38,6 +37,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {ScrollingModule} from '@angular/cdk/scrolling';
 import {MatTreeModule} from '@angular/material/tree';
 import {MatIconModule} from '@angular/material/icon';
+import { RewardComponent } from './components/reward/reward.component';
 
 @NgModule({
   declarations: [
@@ -51,11 +51,11 @@ import {MatIconModule} from '@angular/material/icon';
     UsersListComponent,
     UsersItemComponent,
     UsersDetailComponent,
-    RewardsComponent,
     StatisticsComponent,
     PopUpComponent,
     CreateUserComponent,
     UsersEditComponent,
+    RewardComponent,
   ],
   imports: [
     BrowserModule,
