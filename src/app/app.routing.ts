@@ -8,6 +8,7 @@ import {UsersDetailComponent} from "./components/users/users-detail/users-detail
 import {UsersEditComponent} from "./components/users/users-edit/users-edit.component";
 import {AuthGuardService} from "./auth.guard.service";
 import {CreateUserComponent} from "./components/users/create-user/create-user.component";
+import {StatisticsUserComponent} from "./components/statistics/statistics-user/statistics-user.component";
 
 const appRoutes: Routes = [
   {path: '', component: LoginComponent},
@@ -18,11 +19,10 @@ const appRoutes: Routes = [
       {path: ':id/edit', component: UsersEditComponent}
     ]
   },
-  {path: 'statistics', component: StatisticsComponent,
-    canActivate: [AuthGuardService],
-    children: [
-      {path: ':id', component: StatisticsComponent}
-    ]},
+
+  {path: 'statistics', component: StatisticsComponent},
+  {path: 'statistics/:id', component: StatisticsComponent},
+
   {path: 'rewards',
     canActivate: [AuthGuardService],
     component: RewardsComponent},

@@ -107,7 +107,7 @@ export class Pupil extends UserModel {
     this._rewards = value;
   }
 
-  fullName(): string {
+  get fullName(): string {
     return this.personalInfo.firstName + ' ' + this.personalInfo.lastName;
   }
 

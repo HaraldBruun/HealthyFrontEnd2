@@ -1,26 +1,52 @@
-<div class="statisticsSpecial">
-<ngx-charts-pie-chart
-  [view]="view"
-  [scheme]="colorScheme"
-  [results]="single"
-  [gradient]="gradient"
-  [legend]="showLegend"
-  [legendPosition]="legendPosition"
-  [labels]="showLabels"
-  [doughnut]="isDoughnut"
-  (select)="onSelect($event)"
-  (activate)="onActivate($event)"
-  (deactivate)="onDeactivate($event)"
-  [legendTitle]="legendTitle"
->
-</ngx-charts-pie-chart>
+<div class="container">
+  <button class="btn btn-default" [routerLink]="['/users']"><i class="glyphicon glyphicon-arrow-left"></i> Users
+  </button>
+  <div class="row">
+    <div class="col-xs-3">
+      <hr>
+      <h1>Showing statistics for</h1>
+      <h2>{{user.personalInfo.firstName}} {{user.personalInfo.lastName}}</h2>
+    </div>
+  </div>
+  <router-outlet></router-outlet>
+  <div user-stats *ngIf="showUserStats">
+    <div class="statisticsSpecial">
+      <ngx-charts-pie-chart
+        [view]="view"
+        [scheme]="colorScheme"
+        [results]="single"
+        [gradient]="gradient"
+        [legend]="showLegend"
+        [legendPosition]="legendPosition"
+        [labels]="showLabels"
+        [doughnut]="isDoughnut"
+        (select)="onSelect($event)"
+        (activate)="onActivate($event)"
+        (deactivate)="onDeactivate($event)"
+        [legendTitle]="legendTitle">
+      </ngx-charts-pie-chart>
+      <button mat-raised-button (click)="clickOnStatisticsTest()">Show stats for Class</button>
+    </div>
+  </div>
+  <div class-stats *ngIf="!showUserStats">
+    <div class="statisticsSpecial">
+<!--      <ngx-charts-pie-chart-->
+<!--        [view]="view"-->
+<!--        [scheme]="colorScheme"-->
+<!--        [results]="single"-->
+<!--        [gradient]="gradient"-->
+<!--        [legend]="showLegend"-->
+<!--        [legendPosition]="legendPosition"-->
+<!--        [labels]="showLabels"-->
+<!--        [doughnut]="isDoughnut"-->
+<!--        (select)="onSelect($event)"-->
+<!--        (activate)="onActivate($event)"-->
+<!--        (deactivate)="onDeactivate($event)"-->
+<!--        [legendTitle]="legendTitle">-->
+<!--      </ngx-charts-pie-chart>-->
+      <button mat-raised-button (click)="clickOnStatisticsTest()">Show stats for pupil</button>
+    </div>
+  </div>
 
-<p></p>
-
-<button mat-raised-button (click)="clickOnStatisticsUpdate()">Update</button>
-
-<button mat-raised-button (click)="clickOnStatisticsTest()">Test Add 1</button>
-
-<button mat-raised-button (click)="clickOnStatisticsTest2()">Test Add 2</button>
 
 </div>
