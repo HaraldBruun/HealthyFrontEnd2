@@ -1,0 +1,65 @@
+<div class="search-div" xmlns="">
+  <!-- til en creat knap.
+  <button mat-raised-button (click)="onCreate">
+    <mat-icon>add</mat-icon>Create
+  </button>
+  -->
+  <mat-form-field class="search-form-field" floatLabel="never">
+    <input matInput [(ngModel)]="searchKey" placeholder="Search" autocomplete="off" (keyup)="applyFilters()">
+    <button mat-button matSuffix mat-icon-button aria-label="Clear" *ngIf="searchKey" (click)="onSearchClear()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-form-field>
+</div>
+
+<button (click)="deleteReward(rewardName)">click</button>
+
+<form (submit)="addReward()">
+  <input type="text" [(ngModel)]="rewardName" name="Name">
+  <button type="submit">Add Reward</button>
+</form>
+
+
+<div class="mat-elevation-z8 rewarder">
+  <table mat-table class="full-width-table" matSort aria-label="Elements">
+    <!-- Id Column -->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Id</th>
+      <td mat-cell *matCellDef="let row">{{row.id}}</td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+      <td mat-cell *matCellDef="let row">{{row.name}}</td>
+    </ng-container>
+
+    <!-- Current Amount Column -->
+    <ng-container matColumnDef="current amount">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Current Amount</th>
+      <td mat-cell *matCellDef="let row">{{row.currentAmount}}</td>
+    </ng-container>
+
+    <!-- Total Capacity Column -->
+    <ng-container matColumnDef="total capacity">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Total Capacity</th>
+      <td mat-cell *matCellDef="let row">{{row.totalCapacity}}</td>
+    </ng-container>
+
+    <!--
+    action til edit og delete
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let row">
+        <button mat-icon-button (click)="onEdit(row)"><mat-icon>launch</mat-icon></button>
+        <button mat-icon-button color="warn" (click)="onDelete(row.$key"><mat-icon>delete_outline</mat-icon></button>
+      </td>
+    </ng-container>
+    -->
+
+    <tr mat-header-row *matHeaderRowDef ="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+  </table>
+  <mat-paginator [pageSizeOptions]="[25, 50, 100, 250]" [pageSize]="5" showFirstLastButtons></mat-paginator>
+</div>
