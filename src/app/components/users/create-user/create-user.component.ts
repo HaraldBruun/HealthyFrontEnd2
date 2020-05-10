@@ -70,7 +70,7 @@ export class CreateUserComponent implements OnInit {
     const xp = new ExperienceModel(1, 0, 0, 0, 0,
       false, false, false, false);
     // empty arrays
-    const meals: MealModel[] = [new MealModel('test', 123, 123 ,123 ,123 , '123', 1231)];
+    const meals: MealModel[] = [];
     const friends: string[] = [];
     const activities: string[] = [];
     const rewards: RewardModel[] = [];
