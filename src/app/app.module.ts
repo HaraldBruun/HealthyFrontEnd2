@@ -12,7 +12,6 @@ import {UsersDetailComponent} from './components/users/users-detail/users-detail
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatInputModule} from '@angular/material/input';
 import {MatDialogModule} from '@angular/material/dialog';
-import {PopUpComponent} from './components/users/users-detail/pop-up/pop-up.component';
 import {CreateUserComponent} from './components/users/create-user/create-user.component';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatFormFieldModule} from '@angular/material/form-field';
@@ -54,7 +53,6 @@ import {CanDeactivateGuard} from './components/users/users-edit/can-deactivate-g
     UsersDetailComponent,
     RewardsComponent,
     StatisticsComponent,
-    PopUpComponent,
     CreateUserComponent,
     UsersEditComponent,
   ],

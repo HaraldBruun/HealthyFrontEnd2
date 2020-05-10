@@ -1,6 +1,5 @@
 import {Pupil} from '../../../shared/user.model';
 import {MatDialog} from '@angular/material/dialog';
-import {PopUpComponent} from './pop-up/pop-up.component';
 import {DatabaseService} from '../../../database.service';
 import {UsersService} from '../../../shared/users.service';
 import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
@@ -95,6 +94,6 @@ export class UsersDetailComponent implements OnInit, OnChanges {
   }
 
   onDelete() {
-    confirm('Delete this user?') ? this.databaseService.deleteUser(this.user.uid) : console.log('User not deleted')
+    confirm('Delete this user?') ? this.databaseService.deleteUser(this.user.uid) : console.log('User not deleted');
   }
 }
