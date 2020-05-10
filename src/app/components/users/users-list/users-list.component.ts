@@ -38,14 +38,16 @@ export class UsersListComponent implements OnInit {
           map(value => typeof value === 'string' ? value : value.name),
           map(username => username ? this._filter(username) : this.users.slice())
         );
+        this.filteredOptions.subscribe(result => {
+          this.userDisplayList = result as Pupil[];
+        });
       }
     );
   }
 
   private _filter(value: string): Pupil[] {
     const filterValue = value.toLowerCase();
-    console.log(this.filteredOptions);
-    this.userDisplayList = this.filteredOptions as unknown as Pupil[];
+   //this.userDisplayList = this.filteredOptions as unknown as Pupil[];
     return this.users.filter(option =>
       option.username.indexOf(filterValue) === 0);
   }

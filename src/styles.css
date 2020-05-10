@@ -55,6 +55,9 @@
   padding-bottom: 10px;
 }
 
+.extra-bottom-padding{
+  padding-bottom: 35px;
+}
 
 form.normal-form {
   margin: 10px;

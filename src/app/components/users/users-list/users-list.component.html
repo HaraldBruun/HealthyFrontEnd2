@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-xs-8">
         <mat-form-field>
-          <input type="text" placeholder="Enter E-mail" matInput [formControl]="myControl"
+          <input type="text" placeholder="Enter E-mail" aria-label="Number" matInput [formControl]="myControl"
                  [matAutocomplete]="auto">
           <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
             <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
@@ -24,7 +24,7 @@
       <!--<cdk-virtual-scroll-viewport itemSize="50" class="example-viewport">
         <div *cdkVirtualFor="let user of users" class="example-item">{{user.username}}</div>
       </cdk-virtual-scroll-viewport>-->
-       <app-users-item *ngFor="let userElement of userDisplayList; let i = index"
+      <app-users-item *ngFor="let userElement of userDisplayList; let i = index "
                       [user]="userElement"
                       [index]="i">
       </app-users-item>
