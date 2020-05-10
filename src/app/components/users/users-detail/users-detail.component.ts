@@ -60,7 +60,7 @@ export class UsersDetailComponent implements OnInit, OnChanges {
   id: number;
 
   constructor(private usersService: UsersService, private databaseService: DatabaseService,
-              private route: ActivatedRoute) {
+              private route: ActivatedRoute, private router: Router) {
     this.dataSource.data = TREE_DATA;
   }
 
@@ -99,5 +99,7 @@ export class UsersDetailComponent implements OnInit, OnChanges {
   }
 
 
-
+  onStats() {
+    this.router.navigate(['/statistics', this.user.uid]);
+  }
 }

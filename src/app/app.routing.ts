@@ -18,9 +18,11 @@ const appRoutes: Routes = [
       {path: ':id/edit', component: UsersEditComponent}
     ]
   },
-  {path: 'statistics',
+  {path: 'statistics', component: StatisticsComponent,
     canActivate: [AuthGuardService],
-    component: StatisticsComponent},
+    children: [
+      {path: ':id', component: StatisticsComponent}
+    ]},
   {path: 'rewards',
     canActivate: [AuthGuardService],
     component: RewardsComponent},

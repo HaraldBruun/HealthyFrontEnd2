@@ -5,6 +5,7 @@ import {single} from './data';
 import {UsersService} from '../../shared/users.service';
 import {DatabaseService} from '../../database.service';
 import {Pupil} from '../../shared/user.model';
+import {ActivatedRoute, Params} from "@angular/router";
 
 function setSingleSingle(id: number, name: string, value: number) {
   single[id].name = name;
@@ -33,6 +34,7 @@ function generateRandomColour() {
   styleUrls: ['./statistics.component.css']
 })
 export class StatisticsComponent implements OnInit {
+  user = Pupil;
   single: any[];
   users: Pupil[];
   view: any[] = [700, 400];
@@ -51,7 +53,8 @@ export class StatisticsComponent implements OnInit {
     domain: ['#a42036', '#33a125', '#4945c7']
   };
 
-  constructor(private usersService: UsersService, private databaseService: DatabaseService) {
+  constructor(private usersService: UsersService, private databaseService: DatabaseService,
+              private route: ActivatedRoute) {
     Object.assign(this, {single});
   }
 
@@ -68,6 +71,12 @@ export class StatisticsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    // this.route.queryParams.subscribe(
+    //   (params: Params) => {
+    //     const uid: string = params['id'];
+    //     console.log(uid)
+    //   }
+    // );
     this.databaseService.getAllUsers();
     this.users = this.usersService.getUsers();
     this.usersService.usersChanged.subscribe(
