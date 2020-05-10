@@ -7,8 +7,6 @@ import {LoginComponent} from "./components/login/login.component";
 import {UsersDetailComponent} from "./components/users/users-detail/users-detail.component";
 import {UsersEditComponent} from "./components/users/users-edit/users-edit.component";
 import {AuthGuardService} from "./auth.guard.service";
-import {CreateUserComponent} from "./components/users/create-user/create-user.component";
-import {StatisticsUserComponent} from "./components/statistics/statistics-user/statistics-user.component";
 
 const appRoutes: Routes = [
   {path: '', component: LoginComponent},

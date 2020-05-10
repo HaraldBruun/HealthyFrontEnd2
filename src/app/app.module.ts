@@ -38,8 +38,6 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {ScrollingModule} from '@angular/cdk/scrolling';
 import {MatTreeModule} from '@angular/material/tree';
 import {MatIconModule} from '@angular/material/icon';
-import { StatisticsUserComponent } from './components/statistics/statistics-user/statistics-user.component';
-import { StatisticsClassComponent } from './components/statistics/statistics-class/statistics-class.component';
 
 @NgModule({
   declarations: [
@@ -58,8 +56,6 @@ import { StatisticsClassComponent } from './components/statistics/statistics-cla
     PopUpComponent,
     CreateUserComponent,
     UsersEditComponent,
-    StatisticsUserComponent,
-    StatisticsClassComponent,
   ],
   imports: [
     BrowserModule,
