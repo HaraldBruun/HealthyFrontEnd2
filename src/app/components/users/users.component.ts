@@ -39,8 +39,4 @@ export class UsersComponent implements OnInit {
     this.dialog.open(CreateUserComponent, dialogConfig);
   }
 
-
-  testHeader() {
-    this.databaseService.testHeader();
-  }
 }

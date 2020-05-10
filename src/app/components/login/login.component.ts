@@ -1,7 +1,6 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {ActivatedRoute, Router} from "@angular/router";
-import {DatabaseService} from "../../database.service";
+import {DatabaseService} from '../../database.service';
 
 @Component({
   selector: 'app-login',

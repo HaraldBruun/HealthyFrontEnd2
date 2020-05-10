@@ -29,7 +29,7 @@ import {MatSortModule} from '@angular/material/sort';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {NgxChartsModule} from '@swimlane/ngx-charts';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {AppRouting} from './app.routing';
@@ -83,7 +83,13 @@ import {MatIconModule} from '@angular/material/icon';
     MatTreeModule,
     MatIconModule
   ],
-  providers: [UsersService],
+  providers: [UsersService,
+    // {
+    //   provide : HTTP_INTERCEPTORS,
+    //   useClass: AuthInterceptor,
+    //   multi   : true,
+    // }
+    ],
   bootstrap: [AppComponent],
   entryComponents: [CreateUserComponent]
 })

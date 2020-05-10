@@ -1,16 +1,24 @@
+import {PhysiqueModel} from './shared/physique.model';
+import {PersonalinfoModel} from './shared/personalinfo.model';
+import {ExperienceModel} from './shared/experience.model';
+import {MealModel} from './shared/food.model';
+import {RewardModel} from './shared/reward.model';
 import {Pupil} from './shared/user.model';
 import {UsersService} from './shared/users.service';
+import {newArray} from '@angular/compiler/src/util';
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpErrorResponse, HttpHeaders, HttpParams} from '@angular/common/http';
-import {Data, Router} from "@angular/router";
-import {throwError} from "rxjs";
-import {catchError} from "rxjs/operators";
+import {Router} from '@angular/router';
+import {JsonObject} from '@angular/compiler-cli/ngcc/src/packages/entry_point';
+import {LoginResponse} from './shared/loginresponse';
+import {throwError} from 'rxjs';
 
 @Injectable({providedIn: 'root'})
 export class DatabaseService {
   users: Pupil[];
   // baseUrl = 'http://35.246.214.109:8080';
   baseUrl = 'http://localhost:8080';
+  private _loginResponse: LoginResponse;
   private _loggedIn: boolean;
 
   constructor(private http: HttpClient, private usersService: UsersService, private router: Router) {
@@ -18,8 +26,14 @@ export class DatabaseService {
   }
 
   getAllUsers() {
+    const tokenString = 'Bearer ' + this._loginResponse.token.toString();
+    const options = {
+      headers: new HttpHeaders({
+        Authorization: tokenString
+      })
+    };
     this.usersService.removeAllUsers();
-    this.http.get(this.baseUrl + '/getallusers')
+    this.http.get(this.baseUrl + '/getallusers', options)
       .toPromise()
       .then(
         (data: Pupil[]) => {
@@ -51,7 +65,7 @@ export class DatabaseService {
     // const httpParams = new HttpParams().set('uid', userID);
     // const options = {params: httpParams};
     const user = 'rest@api.dk';
-    const pass = '123123'
+    const pass = '123123';
 
     this.http.post(this.baseUrl + '/androidlogin', {
       user: user,
@@ -63,21 +77,6 @@ export class DatabaseService {
         console.log(this._loggedIn);
       }).catch(this.handleError);
   }
-
-  // getUser(userID: string) {
-  //   // const httpParams = new HttpParams().set('uid', userID);
-  //   // const options = {params: httpParams};
-  //   const user = 'rest@api.dk';
-  //   const pass = '123123'
-  //
-  //   this.http.post(this.baseUrl + '/getuser', "TestUser123"
-  //   )
-  //     .toPromise()
-  //     .then((data: boolean) => {
-  //       this._loggedIn = data.valueOf();
-  //       console.log(this._loggedIn);
-  //     }).catch(this.handleError);
-  // }
 
   getUser(userID: string) {
     const httpParams = new HttpParams().set('uid', userID);
@@ -111,19 +110,17 @@ export class DatabaseService {
 
   login(user: string, pass: string) {
     this.http.post(this.baseUrl + '/login', {
-      user: user,
-      pass: pass
+      username: user,
+      password: pass
     })
       .toPromise()
-      .then((data: boolean) => {
-        this._loggedIn = data.valueOf();
+      .then((loginResponse: LoginResponse) => {
+        console.log(loginResponse);
+        this._loginResponse = loginResponse;
+        this._loggedIn = this._loginResponse.allowed;
         console.log(this._loggedIn);
-        data ? this.router.navigate(['/users']) : alert('Forkert login');
-      }).catch(this.handleError);
-  }
-
-  get loggedIn(): boolean {
-    return this._loggedIn;
+        this._loggedIn ? this.router.navigate(['/users']) : alert('Forkert login');
+      });
   }
 
   private handleError(error: HttpErrorResponse) {
@@ -136,29 +133,18 @@ export class DatabaseService {
     }
     return throwError(
       'Something bad happened; please try again later.');
-  };
+  }
 
+  get loggedIn(): boolean {
+    return this._loggedIn;
+  }
 
-  testHeader() {
-    const options = {
-      headers: new HttpHeaders({
-        'Authorization': 'my-auth-token'
-      })
-    };
-    this.http.get(this.baseUrl + '/getallusers', options)
-      .toPromise()
-      .then(
-        // (data: Pupil[]) => {
-        //   console.log(data);
-        //   this.users = data;
-        //   this.usersService.addUsers(this.users);
-        // }
-        (data: string) => {
-          console.log(data)
-        }
-      ).catch(this.handleError);
+  get loginResponse(): LoginResponse {
+    return this._loginResponse;
+  }
 
-
-
+  set loginResponse(value: LoginResponse) {
+    this._loginResponse = value;
   }
 }
+
