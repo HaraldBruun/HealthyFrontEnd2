@@ -47,7 +47,6 @@ export class UsersListComponent implements OnInit {
 
   private _filter(value: string): Pupil[] {
     const filterValue = value.toLowerCase();
-   //this.userDisplayList = this.filteredOptions as unknown as Pupil[];
     return this.users.filter(option =>
       option.username.indexOf(filterValue) === 0);
   }
@@ -58,15 +57,6 @@ export class UsersListComponent implements OnInit {
 
   displayFn(user: Pupil): string {
     return user && user.username ? user.username : '';
-  }
-
-  updateDisplayList() {
-    this.userDisplayList = [];
-    this.filteredOptions.forEach(user => {
-      user.forEach(user2 => {
-        this.userDisplayList.push(user2);
-      });
-    });
   }
 
 }

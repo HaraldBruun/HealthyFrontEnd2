@@ -21,9 +21,6 @@
     </div>
     <ng-container *ngIf="users.length > 0; then showUsers; else loading"></ng-container>
     <ng-template #showUsers>
-      <!--<cdk-virtual-scroll-viewport itemSize="50" class="example-viewport">
-        <div *cdkVirtualFor="let user of users" class="example-item">{{user.username}}</div>
-      </cdk-virtual-scroll-viewport>-->
       <app-users-item *ngFor="let userElement of userDisplayList; let i = index "
                       [user]="userElement"
                       [index]="i">
