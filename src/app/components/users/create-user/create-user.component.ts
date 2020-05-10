@@ -71,9 +71,9 @@ export class CreateUserComponent implements OnInit {
       false, false, false, false);
     // empty arrays
     const meals: MealModel[] = [new MealModel('test', 123, 123 ,123 ,123 , '123', 1231)];
-    const friends: string[] = ['fakefriend'];
-    const activities: string[] = ['hestepolo'];
-    const rewards: RewardModel[] = [new RewardModel("banana", 1, 123321, false )];
+    const friends: string[] = [];
+    const activities: string[] = [];
+    const rewards: RewardModel[] = [];
     // Create pupil to upload to DB
     this.newUser = new Pupil(username, password, uid, first_time, phys, personal_info, xp,
       meals, friends, activities, rewards);
