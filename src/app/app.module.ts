@@ -12,7 +12,6 @@ import {UsersDetailComponent} from './components/users/users-detail/users-detail
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatInputModule} from '@angular/material/input';
 import {MatDialogModule} from '@angular/material/dialog';
-import {PopUpComponent} from './components/users/users-detail/pop-up/pop-up.component';
 import {CreateUserComponent} from './components/users/create-user/create-user.component';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatFormFieldModule} from '@angular/material/form-field';
@@ -40,6 +39,8 @@ import {MatIconModule} from '@angular/material/icon';
 import { RewardComponent } from './components/reward/reward.component';
 import { CreaterewardComponent } from './components/reward/createreward/createreward.component';
 import { RewardService} from './shared/reward.service';
+import {CanDeactivateGuard} from './components/users/users-edit/can-deactivate-guard.service';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -54,11 +55,11 @@ import { RewardService} from './shared/reward.service';
     UsersItemComponent,
     UsersDetailComponent,
     StatisticsComponent,
-    PopUpComponent,
     CreateUserComponent,
     UsersEditComponent,
     RewardComponent,
     CreaterewardComponent,
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule,
@@ -86,13 +87,7 @@ import { RewardService} from './shared/reward.service';
     MatTreeModule,
     MatIconModule
   ],
-  providers: [UsersService, RewardService
-    // {
-    //   provide : HTTP_INTERCEPTORS,
-    //   useClass: AuthInterceptor,
-    //   multi   : true,
-    // }
-    ],
+  providers: [UsersService, CanDeactivateGuard],
   bootstrap: [AppComponent],
   entryComponents: [CreateUserComponent, CreaterewardComponent]
 })

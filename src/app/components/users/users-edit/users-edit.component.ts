@@ -1,20 +1,22 @@
 import {Component, OnInit} from '@angular/core';
 import {Pupil} from '../../../shared/user.model';
-import {PopUpComponent} from '../users-detail/pop-up/pop-up.component';
 import {MatDialog} from '@angular/material/dialog';
 import {UsersService} from '../../../shared/users.service';
 import {DatabaseService} from '../../../database.service';
 import {ActivatedRoute, Params, Router} from '@angular/router';
+import {CanComponentDeactivate} from './can-deactivate-guard.service';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-users-edit',
   templateUrl: './users-edit.component.html',
   styleUrls: ['./users-edit.component.css']
 })
-export class UsersEditComponent implements OnInit {
+export class UsersEditComponent implements OnInit, CanComponentDeactivate {
   user: Pupil;
   dummyUser: Pupil;
   popUpType = '';
+  updatesSaved = false;
   minDate = new Date(1900, 0, 1);
   maxDate = new Date(new Date().setDate(new Date().getDate() - 1));
   private gender: string;
@@ -35,37 +37,29 @@ export class UsersEditComponent implements OnInit {
   }
 
   onConfirmClick() {
-    this.popUpType = 'SAVE';
-    this.openDialog();
+    confirm('Do you want to save changes?') ? this.saveUser() : console.log('changes not saved');
+    if (this.updatesSaved) {
+      this.router.navigate(['../'], {relativeTo: this.route});
+    }
+  }
+
+  saveUser() {
+    this.updatesSaved = true;
+    this.updateUser();
+    this.saveChangesToDatabase();
+  }
+
+  canDeactivate(): Observable<boolean> | Promise<boolean> | boolean {
+    if (!this.updatesSaved) {
+      return confirm('Do you want to discard changes?');
+    } else {
+      return true;
+    }
   }
 
   onCancelClick() {
     //this.canEditCode = false;
     this.dummyUser = <Pupil> JSON.parse(JSON.stringify(this.user));
-    const id = this.route.snapshot.params['id'];
-    this.router.navigate(['/users/' + id]);
-  }
-
-  openDialog(): void {
-    console.log('Opened')
-    const dialogRef = this.dialog.open(PopUpComponent, {
-      data: {
-        var: this.popUpType,
-      }
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      console.log(result);
-      if (result === 'SAVE') {
-        this.updateUser();
-        this.saveChangesToDatabase();
-        this.closePopUp();
-      }
-    });
-  }
-
-  closePopUp() {
     const id = this.route.snapshot.params['id'];
     this.router.navigate(['/users/' + id]);
   }
@@ -101,6 +95,4 @@ export class UsersEditComponent implements OnInit {
     console.log(this.user);
     this.databaseService.saveUser(this.user);
   }
-
-
 }

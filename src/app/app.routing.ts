@@ -1,32 +1,36 @@
-import {RouterModule, Routes} from '@angular/router';
-import {UsersComponent} from './components/users/users.component';
-import {StatisticsComponent} from './components/statistics/statistics.component';
-import {NgModule} from '@angular/core';
-import {LoginComponent} from './components/login/login.component';
-import {UsersDetailComponent} from './components/users/users-detail/users-detail.component';
-import {UsersEditComponent} from './components/users/users-edit/users-edit.component';
-import {AuthGuardService} from './auth.guard.service';
-import {CreateUserComponent} from './components/users/create-user/create-user.component';
-import {RewardComponent} from './components/reward/reward.component';
+import {RouterModule, Routes} from "@angular/router";
+import {UsersComponent} from "./components/users/users.component";
+import {StatisticsComponent} from "./components/statistics/statistics.component";
+import {RewardComponent} from "./components/rewards/rewards.component";
+import {NgModule} from "@angular/core";
+import {LoginComponent} from "./components/login/login.component";
+import {UsersDetailComponent} from "./components/users/users-detail/users-detail.component";
+import {UsersEditComponent} from "./components/users/users-edit/users-edit.component";
+import {AuthGuardService} from "./auth.guard.service";
+import {CanDeactivateGuard} from './components/users/users-edit/can-deactivate-guard.service';
+import {NotFoundComponent} from "./components/not-found/not-found.component";
 
 const appRoutes: Routes = [
   {path: '', component: LoginComponent},
-  {path: 'users', component: UsersComponent,
+  {
+    path: 'users', component: UsersComponent,
     canActivate: [AuthGuardService],
     children: [
       {path: ':id', component: UsersDetailComponent},
-      {path: ':id/edit', component: UsersEditComponent}
+      {path: ':id/edit', component: UsersEditComponent, canDeactivate: [CanDeactivateGuard]}
     ]
   },
-  {path: 'statistics', component: StatisticsComponent,
+
+  {path: 'statistics', canActivate: [AuthGuardService], component: StatisticsComponent},
+  {path: 'statistics/:id', canActivate: [AuthGuardService] ,component: StatisticsComponent},
+
+  {
+    path: 'rewards',
     canActivate: [AuthGuardService],
-    children: [
-      {path: ':id', component: StatisticsComponent}
-    ]},
-  {path: 'rewards',
-    canActivate: [AuthGuardService],
-    component: RewardComponent},
-  {path: '**', redirectTo: ''}
+    component: RewardComponent
+  },
+  {path: 'not-found', component: NotFoundComponent},
+  {path: '**', redirectTo: 'not-found'}
 ];
 
 @NgModule({

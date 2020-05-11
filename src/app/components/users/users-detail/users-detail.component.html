@@ -12,7 +12,7 @@
         Edit
       </button>
       <button class="btn btn-default" (click)="onDelete()"><i class="glyphicon glyphicon-trash"></i> Delete</button>
-      <button class="btn btn-default" (click)="onStats()"><i class="glyphicon glyphicon-check"></i> Statistics</button>
+      <button class="btn btn-default" [routerLink]="['/statistics', id]"><i class="glyphicon glyphicon-check"></i> Statistics</button>
     </div>
   </div>
 </div>
@@ -60,6 +60,11 @@
     </div>
     <div class="row">
       <div class="col-xs-12">
+        <h3>Level:</h3>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
         <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
           <!-- This is the tree node template for leaf nodes -->
           <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding>
@@ -86,10 +91,6 @@
             {{node.name}}
           </mat-tree-node>
         </mat-tree>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-xs-12"> *empty line edit*
       </div>
     </div>
   </div>
@@ -134,6 +135,11 @@
           <h3>{{dummyUser.physique.activityLevel}}</h3>
         </div>
       </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <h3>{{dummyUser.experience.level}}</h3>
+      </div>
+    </div>
   </div>
 </div>
 

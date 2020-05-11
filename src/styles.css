@@ -15,7 +15,7 @@
 
 .statisticsSpecial{
   margin-bottom: 1cm;
-  margin-left: 31.75%;
+  margin-left: 21.75%;
 }
 
 .refreshSpecial {
@@ -55,6 +55,9 @@
   padding-bottom: 10px;
 }
 
+.extra-bottom-padding{
+  padding-bottom: 35px;
+}
 
 form.normal-form {
   margin: 10px;

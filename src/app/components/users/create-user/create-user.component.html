@@ -26,7 +26,8 @@
           </mat-radio-group>
         </div>
         <mat-form-field>
-          <input formControlName="dateOfBirth" matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker" placeholder="Date Of Birth">
+          <input formControlName="dateOfBirth" matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker"
+                 placeholder="Date Of Birth">
           <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
           <mat-datepicker #picker></mat-datepicker>
           <mat-error>Insert correct date of birth. Please Use date picker.</mat-error>
@@ -35,30 +36,32 @@
     </mat-grid-tile>
     <mat-grid-tile>
       <div class="cont-container">
-        <h1>Activity & Physique</h1>
-        <p>*filling*</p>
+        <h1 class="">Activity & Physique</h1>
         <mat-form-field>
-          <input type="number" formControlName="weight" matInput placeholder="Weight">
+          <input type="number" formControlName="weight" matInput placeholder="Weight(kg)">
           <mat-error *ngIf="usersService.form.controls['weight'].errors?.required"> Please insert weight</mat-error>
           <mat-error *ngIf="usersService.form.controls['weight'].errors?.min">Please positive weight.</mat-error>
         </mat-form-field>
         <mat-form-field>
-          <input type="number" formControlName="height" matInput placeholder="Height">
+          <input type="number" formControlName="height" matInput placeholder="Height(cm)">
           <mat-error *ngIf="usersService.form.controls['height'].errors?.required"> Please insert height</mat-error>
           <mat-error *ngIf="usersService.form.controls['height'].errors?.min">Please positive height.</mat-error>
         </mat-form-field>
-        <h3>Activity Level:</h3>
-        <div class="add-bottom-padding">
-          <mat-radio-group formControlName="activityLevel">
-            <mat-radio-button value="1">1</mat-radio-button>
-            <mat-radio-button value="2">2</mat-radio-button>
-            <mat-radio-button value="3">3</mat-radio-button>
-            <mat-radio-button value="4">4</mat-radio-button>
-            <mat-radio-button value="5">5</mat-radio-button>
-          </mat-radio-group>
+        <div class="extra-bottom-padding">
+          <h3>Activity Level:</h3>
+          <div class="add-bottom-padding">
+            <mat-radio-group formControlName="activityLevel">
+              <mat-radio-button value="1">1</mat-radio-button>
+              <mat-radio-button value="2">2</mat-radio-button>
+              <mat-radio-button value="3">3</mat-radio-button>
+              <mat-radio-button value="4">4</mat-radio-button>
+              <mat-radio-button value="5">5</mat-radio-button>
+            </mat-radio-group>
+          </div>
         </div>
         <div class="button-row">
-          <button mat-raised-button color="primary" type="submit" [disabled]="usersService.form.invalid">Add User</button>
+          <button mat-raised-button color="primary" type="submit" [disabled]="usersService.form.invalid">Add User
+          </button>
           <button mat-raised-button color="warn" type="cancel" (click)="onCancel()">Cancel</button>
         </div>
       </div>

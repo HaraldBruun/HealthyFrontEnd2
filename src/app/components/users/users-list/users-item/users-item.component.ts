@@ -12,19 +12,10 @@ export class UsersItemComponent implements OnInit {
   @Input() user: Pupil;
   @Input() index: number;
 
-  constructor(private usersService: UsersService, private databaseService: DatabaseService) {
+  constructor() {
   }
 
   ngOnInit(): void {
-  }
-
-  onClickItem() {
-    this.usersService.selectedUser.emit(this.user);
-  }
-
-  onClickDelete() {
-    this.usersService.deleteUser(this.user);
-    this.databaseService.deleteUser(this.user.uid);
   }
 
 }

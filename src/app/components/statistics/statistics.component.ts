@@ -11,8 +11,9 @@ function setSingleSingle(id: number, name: string, value: number) {
   single[id].name = name;
   single[id].value = value;
 }
+
 function delay(ms: number) {
-  return new Promise( resolve => setTimeout(resolve, ms) );
+  return new Promise(resolve => setTimeout(resolve, ms));
 }
 
 // Virker ikke helt
@@ -34,7 +35,8 @@ function generateRandomColour() {
   styleUrls: ['./statistics.component.css']
 })
 export class StatisticsComponent implements OnInit {
-  user = Pupil;
+  user: Pupil;
+  id: number;
   single: any[];
   users: Pupil[];
   view: any[] = [700, 400];
@@ -43,7 +45,7 @@ export class StatisticsComponent implements OnInit {
   totalNutritionXP = 0;
 
   // Options
-  legendTitle = '123';
+  legendTitle = '';
   gradient = true;
   showLegend = true;
   showLabels = true;
@@ -52,6 +54,7 @@ export class StatisticsComponent implements OnInit {
   colorScheme = {
     domain: ['#a42036', '#33a125', '#4945c7']
   };
+  showUserStats = true;
 
   constructor(private usersService: UsersService, private databaseService: DatabaseService,
               private route: ActivatedRoute) {
@@ -71,27 +74,30 @@ export class StatisticsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.route.queryParams.subscribe(
-    //   (params: Params) => {
-    //     const uid: string = params['id'];
-    //     console.log(uid)
-    //   }
-    // );
+    this.route.paramMap.subscribe(params => {
+      this.id = (+params.get('id'));
+    });
+    this.user = this.usersService.getUser(this.id)
+    console.log(this.user.uid)
     this.databaseService.getAllUsers();
     this.users = this.usersService.getUsers();
-    this.usersService.usersChanged.subscribe(
-      (users: Pupil[]) => {
-        for (let user in users) {
-          console.log(users[user]);
-          this.totalActivityXP += this.users[user].experience.activityXP.valueOf();
-          this.totalNutritionXP += this.users[user].experience.nutritionXP.valueOf();
-          this.totalSocialXP += this.users[user].experience.socialXP.valueOf();
-        }
-        console.log('TotalActivityXP = ' + this.totalActivityXP);
-        console.log('TotalNutritionXP = ' + this.totalNutritionXP);
-        console.log('TotalSocialXP = ' + this.totalSocialXP);
-      }
-    );
+
+    this.totalActivityXP = this.user.experience.activityXP;
+    this.totalNutritionXP = this.user.experience.nutritionXP;
+    this.totalSocialXP = this.user.experience.socialXP;
+    console.log('total xp ' + this.totalActivityXP);
+    // -- virker --
+    // this.usersService.usersChanged.subscribe(
+    //   (users: Pupil[]) => {
+    //     for (let user in users) {
+    //       // console.log(users[user]);
+    //       this.totalActivityXP += this.users[user].experience.activityXP.valueOf();
+    //       this.totalNutritionXP += this.users[user].experience.nutritionXP.valueOf();
+    //       this.totalSocialXP += this.users[user].experience.socialXP.valueOf();
+    //     }
+    //   }
+    // );
+    this.clickOnStatisticsUpdate()
   }
 
   clickOnStatisticsUpdate() {
@@ -101,20 +107,23 @@ export class StatisticsComponent implements OnInit {
 
     // addSingleSingle(hej, 10); Virker ikke lige pt,
 
-    // VERY FUCKING IMPORTANT FOR UPDATING
+    // IMPORTANT FOR UPDATING
     this.single = [...this.single];
   }
+
   clickOnStatisticsTest() {
+    this.showUserStats = !this.showUserStats;
     // addSingleSingle('Hej', 10); TODO : Virker ikke, fejl med JSON og binding med name og value.
-    this.colorScheme.domain.push(generateRandomColour());
-    this.single.push({
-      'name': 'TEST 1',
-      'value': 4
-    });
-    console.log(generateRandomColour());
-    this.single = [...this.single];
+    // this.colorScheme.domain.push(generateRandomColour());
+    // this.single.push({
+    //   'name': 'TEST 1',
+    //   'value': 4
+    // });
+    // console.log(generateRandomColour());
+    // this.single = [...this.single];
   }
-  clickOnStatisticsTest2()  {
+
+  clickOnStatisticsTest2() {
     // addSingleSingle('Hej', 10); TODO : Slet, bare for at vise farver
     this.colorScheme.domain.push(generateRandomColour());
     this.single.push({
