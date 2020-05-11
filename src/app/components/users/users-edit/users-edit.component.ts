@@ -59,7 +59,7 @@ export class UsersEditComponent implements OnInit, CanComponentDeactivate {
 
   onCancelClick() {
     //this.canEditCode = false;
-    this.dummyUser = <Pupil> JSON.parse(JSON.stringify(this.user));
+    this.dummyUser = <Pupil>JSON.parse(JSON.stringify(this.user));
     const id = this.route.snapshot.params['id'];
     this.router.navigate(['/users/' + id]);
   }
@@ -88,7 +88,7 @@ export class UsersEditComponent implements OnInit, CanComponentDeactivate {
   }
 
   initDummyUser() {
-    this.dummyUser = <Pupil> JSON.parse(JSON.stringify(this.user));
+    this.dummyUser = <Pupil>JSON.parse(JSON.stringify(this.user));
   }
 
   saveChangesToDatabase() {

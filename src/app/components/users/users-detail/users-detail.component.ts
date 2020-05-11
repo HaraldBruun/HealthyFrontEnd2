@@ -11,6 +11,7 @@ interface ExperienceNode {
   name: string;
   children?: ExperienceNode[];
 }
+
 const TREE_DATA: ExperienceNode[] = [
   {
     name: 'Experience',
@@ -20,7 +21,7 @@ const TREE_DATA: ExperienceNode[] = [
       //13
       {name: 'Activity XP: '},
       //11
-      {name: 'Social XP: ' },
+      {name: 'Social XP: '},
     ]
   },
 ];
