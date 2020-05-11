@@ -1,7 +1,6 @@
 import {RouterModule, Routes} from "@angular/router";
 import {UsersComponent} from "./components/users/users.component";
 import {StatisticsComponent} from "./components/statistics/statistics.component";
-import {RewardComponent} from "./components/rewards/rewards.component";
 import {NgModule} from "@angular/core";
 import {LoginComponent} from "./components/login/login.component";
 import {UsersDetailComponent} from "./components/users/users-detail/users-detail.component";
@@ -9,6 +8,7 @@ import {UsersEditComponent} from "./components/users/users-edit/users-edit.compo
 import {AuthGuardService} from "./auth.guard.service";
 import {CanDeactivateGuard} from './components/users/users-edit/can-deactivate-guard.service';
 import {NotFoundComponent} from "./components/not-found/not-found.component";
+import {RewardComponent} from './components/reward/reward.component';
 
 const appRoutes: Routes = [
   {path: '', component: LoginComponent},
