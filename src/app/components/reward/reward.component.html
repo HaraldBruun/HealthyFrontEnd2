@@ -1,17 +1,17 @@
 <div align="center">
-<table matSort (matSortChange)="sortData($event)">
-  <tr>
-    <th mat-sort-header="name">name</th>
-    <th mat-sort-header="tier">tier</th>
-    <th mat-sort-header="resource">resource</th>
-    <th mat-sort-header="redeemed">redeemed</th>
-  </tr>
+  <table matSort (matSortChange)="sortData($event)">
+    <tr>
+      <th mat-sort-header="name">name</th>
+      <th mat-sort-header="tier">tier</th>
+      <th mat-sort-header="resource">resource</th>
+      <th mat-sort-header="redeemed">redeemed</th>
+    </tr>
 
-  <tr *ngFor="let reward of sortedData">
-    <td>{{reward.name}}</td>
-    <td>{{reward.tier}}</td>
-    <td>{{reward.resource}}</td>
-    <td>{{reward.redeemed}}</td>
-  </tr>
-</table>
+    <tr *ngFor="let reward of sortedData">
+      <td>{{reward.name}}</td>
+      <td>{{reward.tier}}</td>
+      <td>{{reward.resource}}</td>
+      <td>{{reward.redeemed}}</td>
+    </tr>
+  </table>
 </div>

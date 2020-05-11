@@ -16,8 +16,8 @@ import {throwError} from 'rxjs';
 @Injectable({providedIn: 'root'})
 export class DatabaseService {
   users: Pupil[];
-  // baseUrl = 'http://35.246.214.109:8080';
-  baseUrl = 'http://localhost:8080';
+  baseUrl = 'http://35.246.214.109:8080';
+  //baseUrl = 'http://localhost:8080';
   private _loginResponse: LoginResponse;
   private _loggedIn: boolean;
 
