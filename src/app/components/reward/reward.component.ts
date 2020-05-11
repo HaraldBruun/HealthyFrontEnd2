@@ -1,70 +1,48 @@
-import {Component, OnInit} from '@angular/core';
-import {Sort} from '@angular/material/sort';
-import {RewardModel} from '../../shared/reward.model';
-import {DatabaseService} from '../../database.service';
-import {Pupil} from '../../shared/user.model';
-import {UsersService} from '../../shared/users.service';
+import {Component, HostListener, OnInit, ViewChild} from '@angular/core';
+import {MatSort} from '@angular/material/sort';
+import {MatTableDataSource} from '@angular/material/table';
+import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
+import {ActivatedRoute} from '@angular/router';
+import {CreaterewardComponent} from './createreward/createreward.component';
+import {RewardService} from '../../shared/reward.service';
 
 @Component({
   selector: 'app-reward',
   templateUrl: './reward.component.html',
   styleUrls: ['./reward.component.css']
 })
+
 export class RewardComponent implements OnInit {
-  users: Pupil[];
-  rewards: RewardModel[];
-  components: RewardModel[] = [
-    new RewardModel('AAA', 0, 500, false),
-    new RewardModel('ZZZ', 10, 213213, true),
-  ];
+  // private components: RewardtableModel[] = [
+  //   new RewardtableModel(512, 'Banana', 20, 614, 253),
+  //   new RewardtableModel(281, 'Elastik-bånd', 3, 32, 18),
+  //   new RewardtableModel(146, 'Sportssko', 0.4, 1, 0),
+  //   new RewardtableModel(709, 'Proteinbar', 4, 41, 12)
+  // ];
 
-  sortedData: RewardModel[];
+  // Didnt work with RewardModel
+  displayedColumns: string[] = ['ID', 'name', 'chance', 'active', 'redeemed'];
+  dataSource = new MatTableDataSource(this.rewardService.DATA);
 
-  constructor(private databaseService: DatabaseService, private usersService: UsersService) {
-    this.sortedData = this.components.slice();
+  constructor(private dialog: MatDialog, private route: ActivatedRoute, private rewardService: RewardService) {
   }
 
-  sortData(sort: Sort) {
-    const data = this.components.slice();
-    if (!sort.active || sort.direction === '') {
-      this.sortedData = data;
-      return;
-    }
-
-    this.sortedData = data.sort((a, b) => {
-      const isAsc = sort.direction === 'asc';
-      switch (sort.active) {
-        case 'name':
-          return compare(a.name, b.name, isAsc);
-        case 'tier':
-          return compare(a.tier, b.tier, isAsc);
-        case 'resource':
-          return compare(a.resource, b.resource, isAsc);
-        case 'redeemed':
-          return compare(a.redeemed, b.redeemed, isAsc);
-        default:
-          return 0;
+  @ViewChild(MatSort, {static: true}) sort: MatSort;
+  ngOnInit() {
+    this.dataSource.sort = this.sort;
+    this.route.queryParams.subscribe(params => {
+      if (params['dialog']) {
+        this.onCreate();
       }
     });
   }
 
-  ngOnInit(): void {
-    this.databaseService.getAllUsers();
-    this.users = this.usersService.getUsers();
-    console.log(this.users);
-    this.usersService.usersChanged.subscribe(
-      (users: Pupil[]) => {
-        for (let user in this.users) {
-          // for (let reward in this.users[user].rewards[]) {
-          // }
-          this.components.push(this.users[user].rewards[0]);
-        }
-      }
-    );
-    this.components = [...this.rewards];
+  onCreate() {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.autoFocus = true;
+    dialogConfig.disableClose = true;
+    dialogConfig.width = '30%';
+    this.dialog.open(CreaterewardComponent, dialogConfig);
   }
 }
 
-function compare(a: number | string | boolean, b: number | string | boolean, isAsc: boolean) {
-  return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
-}

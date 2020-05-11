@@ -1,21 +1,7 @@
-.mat-sort-header-container {
-  align-items: center;
-}
 table {
-  width: 50%;
-  text-align: center;
-  align-content: center;
-  border-collapse: collapse;
-}
-::ng-deep .mat-sort-header-container {
-  display:flex;
-  justify-content:center;
-}
-mat-header-cell {
-  display:flex;
-  justify-content:flex-end;
+  width: 45%;
 }
 
-table, th, td {
-  border: 1px solid black;
+th.mat-sort-header-sorted {
+  color: black;
 }

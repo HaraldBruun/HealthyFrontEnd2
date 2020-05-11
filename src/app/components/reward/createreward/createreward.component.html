@@ -1,0 +1,38 @@
+<mat-toolbar>
+  <span>Create New Reward</span>
+</mat-toolbar>
+<form [formGroup]="rewardService.form" class="normal-form" (submit)="onSubmit()">
+  <div class="cont-container">
+    <mat-form-field>
+      <input type="number" formControlName="ID" matInput placeholder="Reward ID">
+      <mat-error *ngIf="rewardService.form.controls['ID'].errors?.required"> Please enter ID</mat-error>
+      <mat-error *ngIf="rewardService.form.controls['ID'].errors?.min"> Must be positive</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input type="string" formControlName="name" matInput placeholder="Name">
+      <mat-error>Please enter ID.</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input type="number" formControlName="chance" matInput placeholder="Probability %">
+      <mat-error *ngIf="rewardService.form.controls['chance'].errors?.required"> Please enter probability</mat-error>
+      <mat-error *ngIf="rewardService.form.controls['chance'].errors?.min"> Must be positive</mat-error>
+      <mat-error *ngIf="rewardService.form.controls['chance'].errors?.max"> Must be below 100%</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input type="number" formControlName="active" matInput placeholder="# active">
+      <mat-error>Please enter # of active rewards of this type.</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input type="number" formControlName="redeemed" matInput placeholder="# redeemed">
+      <mat-error>Please enter # of redeemed rewards of this type.</mat-error>
+    </mat-form-field>
+    <div class="button-row">
+      <button mat-raised-button color="primary" type="submit" [disabled]="rewardService.form.invalid">Add Reward</button>
+      <button mat-raised-button color="warn" type="cancel" (click)="onCancel()">Cancel</button>
+    </div>
+  </div>
+</form>

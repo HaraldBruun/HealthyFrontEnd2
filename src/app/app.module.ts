@@ -38,6 +38,8 @@ import {ScrollingModule} from '@angular/cdk/scrolling';
 import {MatTreeModule} from '@angular/material/tree';
 import {MatIconModule} from '@angular/material/icon';
 import { RewardComponent } from './components/reward/reward.component';
+import { CreaterewardComponent } from './components/reward/createreward/createreward.component';
+import { RewardService} from './shared/reward.service';
 
 @NgModule({
   declarations: [
@@ -56,6 +58,7 @@ import { RewardComponent } from './components/reward/reward.component';
     CreateUserComponent,
     UsersEditComponent,
     RewardComponent,
+    CreaterewardComponent,
   ],
   imports: [
     BrowserModule,
@@ -83,7 +86,7 @@ import { RewardComponent } from './components/reward/reward.component';
     MatTreeModule,
     MatIconModule
   ],
-  providers: [UsersService,
+  providers: [UsersService, RewardService
     // {
     //   provide : HTTP_INTERCEPTORS,
     //   useClass: AuthInterceptor,
@@ -91,7 +94,7 @@ import { RewardComponent } from './components/reward/reward.component';
     // }
     ],
   bootstrap: [AppComponent],
-  entryComponents: [CreateUserComponent]
+  entryComponents: [CreateUserComponent, CreaterewardComponent]
 })
 export class AppModule {
 }
