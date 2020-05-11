@@ -38,7 +38,6 @@ import {MatTreeModule} from '@angular/material/tree';
 import {MatIconModule} from '@angular/material/icon';
 import { RewardComponent } from './components/reward/reward.component';
 import { CreaterewardComponent } from './components/reward/createreward/createreward.component';
-import { RewardService} from './shared/reward.service';
 import {CanDeactivateGuard} from './components/users/users-edit/can-deactivate-guard.service';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 
