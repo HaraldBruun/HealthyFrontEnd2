@@ -94,5 +94,6 @@ export class UsersDetailComponent implements OnInit, OnChanges {
 
   onDelete() {
     confirm('Delete this user?') ? this.databaseService.deleteUser(this.user.uid) : console.log('User not deleted');
+    this.databaseService.getAllUsers();
   }
 }

@@ -38,12 +38,12 @@
       <div class="cont-container">
         <h1 class="">Activity & Physique</h1>
         <mat-form-field>
-          <input type="number" formControlName="weight" matInput placeholder="Weight">
+          <input type="number" formControlName="weight" matInput placeholder="Weight(kg)">
           <mat-error *ngIf="usersService.form.controls['weight'].errors?.required"> Please insert weight</mat-error>
           <mat-error *ngIf="usersService.form.controls['weight'].errors?.min">Please positive weight.</mat-error>
         </mat-form-field>
         <mat-form-field>
-          <input type="number" formControlName="height" matInput placeholder="Height">
+          <input type="number" formControlName="height" matInput placeholder="Height(cm)">
           <mat-error *ngIf="usersService.form.controls['height'].errors?.required"> Please insert height</mat-error>
           <mat-error *ngIf="usersService.form.controls['height'].errors?.min">Please positive height.</mat-error>
         </mat-form-field>
