@@ -19,7 +19,6 @@ export class UsersComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.databaseService.getAllUsers();
     this.usersService.selectedUser.subscribe(
       (user: Pupil) => {
         this.selectedUser = user;
