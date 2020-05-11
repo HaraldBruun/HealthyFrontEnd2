@@ -132,7 +132,7 @@ export class DatabaseService {
         `body was: ${error.error}`);
     }
     return throwError(
-      'Something bad happened; please try again later.');
+      'An error has happened; please try again later.');
   }
 
   get loggedIn(): boolean {
