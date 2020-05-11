@@ -22,7 +22,7 @@ const appRoutes: Routes = [
   },
 
   {path: 'statistics', canActivate: [AuthGuardService], component: StatisticsComponent},
-  {path: 'statistics/:id', canActivate: [AuthGuardService] ,component: StatisticsComponent},
+  {path: 'statistics/:id', canActivate: [AuthGuardService] , component: StatisticsComponent},
 
   {
     path: 'rewards',
