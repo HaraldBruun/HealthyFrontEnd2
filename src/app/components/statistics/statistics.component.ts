@@ -86,50 +86,59 @@ export class StatisticsComponent implements OnInit {
     this.totalNutritionXP = this.user.experience.nutritionXP;
     this.totalSocialXP = this.user.experience.socialXP;
     console.log('total xp ' + this.totalActivityXP);
-    // -- virker --
-    // this.usersService.usersChanged.subscribe(
-    //   (users: Pupil[]) => {
-    //     for (let user in users) {
-    //       // console.log(users[user]);
-    //       this.totalActivityXP += this.users[user].experience.activityXP.valueOf();
-    //       this.totalNutritionXP += this.users[user].experience.nutritionXP.valueOf();
-    //       this.totalSocialXP += this.users[user].experience.socialXP.valueOf();
-    //     }
-    //   }
-    // );
-    this.clickOnStatisticsUpdate()
+
+    this.updateDataToPupil()
   }
 
-  clickOnStatisticsUpdate() {
-    setSingleSingle(0, 'ActivityXP', this.totalActivityXP);
-    setSingleSingle(1, 'NutritionXP', this.totalNutritionXP);
-    setSingleSingle(2, 'SocialXP', this.totalSocialXP);
+  updateDataToPupil() {
+    // this.single = this.single.slice(0,3);
+    this.single = [];
 
-    // addSingleSingle(hej, 10); Virker ikke lige pt,
-
-    // IMPORTANT FOR UPDATING
-    this.single = [...this.single];
-  }
-
-  clickOnStatisticsTest() {
-    this.showUserStats = !this.showUserStats;
-    // addSingleSingle('Hej', 10); TODO : Virker ikke, fejl med JSON og binding med name og value.
     // this.colorScheme.domain.push(generateRandomColour());
-    // this.single.push({
-    //   'name': 'TEST 1',
-    //   'value': 4
-    // });
-    // console.log(generateRandomColour());
-    // this.single = [...this.single];
-  }
-
-  clickOnStatisticsTest2() {
-    // addSingleSingle('Hej', 10); TODO : Slet, bare for at vise farver
-    this.colorScheme.domain.push(generateRandomColour());
     this.single.push({
-      'name': 'TEST 2',
-      'value': 8
+      'name': 'ActivityXP',
+      'value': this.user.experience.activityXP
     });
     this.single = [...this.single];
+    // this.colorScheme.domain.push(generateRandomColour());
+    this.single.push({
+      'name': 'NutritionXP',
+      'value': this.user.experience.nutritionXP
+    });
+    this.single = [...this.single];
+    // this.colorScheme.domain.push(generateRandomColour());
+    this.single.push({
+      'name': 'SocialXP',
+      'value': this.user.experience.socialXP
+    });
+    this.single = [...this.single];
+  }
+
+  clickOnStatsClass() {
+    console.log('leeee' + this.single.length)
+    this.showUserStats = !this.showUserStats;
+
+    this.single = [];
+
+    let i = 0;
+    for (let user in this.users) {
+      // setSingleSingle(i, this.users[user].personalInfo.firstName, this.users[user].experience.totalXP);
+      i++;
+      console.log(i)
+
+      this.colorScheme.domain.push(generateRandomColour());
+      this.single.push({
+        'name': this.users[user].personalInfo.firstName,
+        'value': this.users[user].experience.totalXP
+      });
+      this.single = [...this.single];
+      console.log('leeee123' + this.single.length)
+      // setSingleSingle(i, this.users[user].personalInfo.firstName, this.users[user].experience.totalXP);
+    }
+  }
+
+  clickOnStatsPupil() {
+    this.showUserStats = !this.showUserStats;
+    this.updateDataToPupil()
   }
 }
