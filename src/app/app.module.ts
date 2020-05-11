@@ -38,6 +38,7 @@ import {ScrollingModule} from '@angular/cdk/scrolling';
 import {MatTreeModule} from '@angular/material/tree';
 import {MatIconModule} from '@angular/material/icon';
 import {CanDeactivateGuard} from './components/users/users-edit/can-deactivate-guard.service';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -55,6 +56,7 @@ import {CanDeactivateGuard} from './components/users/users-edit/can-deactivate-g
     StatisticsComponent,
     CreateUserComponent,
     UsersEditComponent,
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule,

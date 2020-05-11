@@ -8,10 +8,12 @@ import {UsersDetailComponent} from "./components/users/users-detail/users-detail
 import {UsersEditComponent} from "./components/users/users-edit/users-edit.component";
 import {AuthGuardService} from "./auth.guard.service";
 import {CanDeactivateGuard} from './components/users/users-edit/can-deactivate-guard.service';
+import {NotFoundComponent} from "./components/not-found/not-found.component";
 
 const appRoutes: Routes = [
   {path: '', component: LoginComponent},
-  {path: 'users', component: UsersComponent,
+  {
+    path: 'users', component: UsersComponent,
     canActivate: [AuthGuardService],
     children: [
       {path: ':id', component: UsersDetailComponent},
@@ -19,13 +21,16 @@ const appRoutes: Routes = [
     ]
   },
 
-  {path: 'statistics', component: StatisticsComponent},
-  {path: 'statistics/:id', component: StatisticsComponent},
+  {path: 'statistics', canActivate: [AuthGuardService], component: StatisticsComponent},
+  {path: 'statistics/:id', canActivate: [AuthGuardService] ,component: StatisticsComponent},
 
-  {path: 'rewards',
+  {
+    path: 'rewards',
     canActivate: [AuthGuardService],
-    component: RewardsComponent},
-  {path: '**', redirectTo: ""}
+    component: RewardsComponent
+  },
+  {path: 'not-found', component: NotFoundComponent},
+  {path: '**', redirectTo: 'not-found'}
 ];
 
 @NgModule({

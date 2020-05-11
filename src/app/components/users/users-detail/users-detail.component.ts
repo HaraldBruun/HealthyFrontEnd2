@@ -66,7 +66,6 @@ export class UsersDetailComponent implements OnInit, OnChanges {
   hasChild = (_: number, node: FlatNode) => node.expandable;
 
   ngOnInit(): void {
-
     this.route.params.subscribe(
       (params: Params) => {
         this.id = +params['id'];
