@@ -1,7 +1,9 @@
 <div align="center">
-  <a class="btn btn-success" [routerLink]="['./']" [queryParams]="{dialog: true}">
-    <span class="glyphicon glyphicon-plus"></span> Create Reward
-  </a>
+  <div class="add-bottom-padding">
+    <a class="btn btn-success" [routerLink]="['./']" [queryParams]="{dialog: true}">
+      <span class="glyphicon glyphicon-plus"></span> Create Reward
+    </a>
+  </div>
   <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
 
     <!-- Position Column -->
