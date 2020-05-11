@@ -2,6 +2,10 @@
   <div class="col-xs-12">
     <div class="row">
       <div class="col-xs-8">
+        <a class="btn btn-default"
+           (click)="refreshUsers()">
+          <span class="glyphicon glyphicon-refresh"></span> Refresh
+        </a>
         <mat-form-field>
           <input type="text" placeholder="Enter E-mail" aria-label="Number" matInput [formControl]="myControl"
                  [matAutocomplete]="auto">
@@ -13,10 +17,7 @@
         </mat-form-field>
       </div>
       <div class="col-xs-4">
-        <a class="btn btn-info btn-md"
-           (click)="refreshUsers()">
-          <span class="glyphicon glyphicon-refresh"></span> Refresh
-        </a>
+
       </div>
     </div>
     <ng-container *ngIf="users.length > 0; then showUsers; else loading"></ng-container>
