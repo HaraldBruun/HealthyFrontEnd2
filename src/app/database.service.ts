@@ -5,10 +5,10 @@ import {MealModel} from './shared/food.model';
 import {RewardModel} from './shared/reward.model';
 import {Pupil} from './shared/user.model';
 import {UsersService} from './shared/users.service';
-import {newArray} from '@angular/compiler/src/util';
+import {dashCaseToCamelCase, newArray} from '@angular/compiler/src/util';
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpErrorResponse, HttpHeaders, HttpParams} from '@angular/common/http';
-import {Router} from '@angular/router';
+import {Data, Router} from '@angular/router';
 import {JsonObject} from '@angular/compiler-cli/ngcc/src/packages/entry_point';
 import {LoginResponse} from './shared/loginresponse';
 import {throwError} from 'rxjs';
@@ -120,7 +120,7 @@ export class DatabaseService {
         this._loggedIn = this._loginResponse.allowed;
         console.log(this._loggedIn);
         this._loggedIn ? this.router.navigate(['/users']) : alert('Forkert login');
-      });
+      }).catch(this.handleError);
   }
 
   private handleError(error: HttpErrorResponse) {
@@ -128,8 +128,10 @@ export class DatabaseService {
       console.error('An error occurred:', error.error.message);
     } else {
       console.error(
-        `Backend returned code ${error.status}, ` +
-        `body was: ${error.error}`);
+        `Backend returned code ${error.status}`);
+      if (error.status === 401) {
+        alert('Fokert login')
+      }
     }
     return throwError(
       'An error has happened; please try again later.');
