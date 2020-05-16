@@ -129,8 +129,16 @@ export class DatabaseService {
     } else {
       console.error(
         `Backend returned code ${error.status}`);
-      if (error.status === 401) {
-        alert('Fokert login')
+      switch (error.status) {
+        case 400:
+          alert('Bad Request');
+          break;
+        case 401:
+          alert('Forkert login');
+          break;
+        case 500:
+          alert('Internal Server Error');
+          break;
       }
     }
     return throwError(
