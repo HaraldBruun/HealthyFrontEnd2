@@ -6,7 +6,7 @@ import {Observable, observable, pipe} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
 import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
 import {CreateUserComponent} from '../create-user/create-user.component';
-import {Component, ElementRef, OnInit} from '@angular/core';
+import {Component, ElementRef, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 
 @Component({
   selector: 'app-users-list',
@@ -44,7 +44,7 @@ export class UsersListComponent implements OnInit {
       }
     );
   }
-
+  
   private _filter(value: string): Pupil[] {
     const filterValue = value.toLowerCase();
     return this.users.filter(option =>
